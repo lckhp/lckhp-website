@@ -1,0 +1,126 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  height: 100vh;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url("lckhp-background-banner.png") #08093cb3;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: darken;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.container {
+  width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.top p {
+  font-size: 16px;
+  width: 160px;
+  text-align: center;
+}
+.top {
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  margin: 10px;
+}
+
+hr {
+  width: 100px;
+  color: white;
+  border-radius: 5px;
+  margin: 0 15px;
+}
+
+h1 {
+  margin: 30px;
+  font-size: 60px;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.social-icons {
+  margin: 25px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social-icons a:hover {
+  transform: scale(1.3);
+  opacity: 1;
+}
+
+a {
+  color: white;
+}
+
+i {
+  font-size: 45px;
+  margin: 12px;
+}
+
+.progress-wrapper {
+  width: 100%;
+  background: #2f2b2bc7;
+  display: flex;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.progress {
+  width: 0%;
+  height: 10px;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+  /* transition: all 0.003 ease-in; */
+}
+
+.progress span {
+  color: white;
+  position: relative;
+  top: 13px;
+  left: 25px;
+  font-weight: 800;
+}
+@media screen and (max-width: 640px) {
+  .container {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  i {
+    font-size: 25px;
+    margin: 10px;
+  }
+}
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 30px;
+  }
+}
