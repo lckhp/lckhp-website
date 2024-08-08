@@ -43,7 +43,7 @@
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 2; /* Ensure buttons are above the overlay */
 }
 
 .navigation-buttons button {
@@ -53,7 +53,7 @@
   color: white;
   cursor: pointer;
   transition: color 0.3s ease;
-  margin: 0 -20px;
+  margin: 0 -20px; /* Add margin to move the buttons away from the image */
 }
 
 .navigation-buttons button:hover {
@@ -67,4 +67,41 @@
 
 .navigation-buttons button:focus {
   outline: none;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1024px) {
+  .image-container {
+    width: 80%;
+    height: 65%;
+  }
+
+  .navigation-buttons button {
+    font-size: 40px;
+    margin: 0 -60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    width: 90%;
+    height: 60%;
+  }
+
+  .navigation-buttons button {
+    font-size: 36px;
+    margin: 0 -40px; /* Adjust the margin for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .image-container {
+    width: 95%;
+    height: 55%;
+  }
+
+  .navigation-buttons button {
+    font-size: 32px;
+    margin: 0 -50px; /* Adjust the margin for very small screens */
+  }
 }
