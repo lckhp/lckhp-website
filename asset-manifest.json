@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.b984bddf.css",
-    "main.js": "/static/js/main.6e514bbe.js",
+    "main.css": "/static/css/main.145d4db7.css",
+    "main.js": "/static/js/main.daa1cd20.js",
     "static/media/lckhp-background-banner.png": "/static/media/lckhp-background-banner.1c0451ed080a922ed1c6.png",
     "index.html": "/index.html",
-    "main.b984bddf.css.map": "/static/css/main.b984bddf.css.map",
-    "main.6e514bbe.js.map": "/static/js/main.6e514bbe.js.map"
+    "main.145d4db7.css.map": "/static/css/main.145d4db7.css.map",
+    "main.daa1cd20.js.map": "/static/js/main.daa1cd20.js.map"
   },
   "entrypoints": [
-    "static/css/main.b984bddf.css",
-    "static/js/main.6e514bbe.js"
+    "static/css/main.145d4db7.css",
+    "static/js/main.daa1cd20.js"
   ]
 }
