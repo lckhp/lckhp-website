@@ -10,6 +10,7 @@ Welcome to LCKHP repository! This README provides a comprehensive guide to our b
   - [Bugfix Branches](#bugfix-branches)
   - [Hotfix Branches](#hotfix-branches)
   - [Testing Branches](#testing-branches)
+  - [Other Branches](#other-branches)
 - [Examples](#examples)
 
 ## Branching Conventions
@@ -21,6 +22,7 @@ To keep our codebase maintainable and comprehensible, we follow specific branchi
 The `main` or `master` branch is reserved for stable releases.
 
 - **Branch Name:** `rel`
+- Before pushing live to GH with npm run deploy, always PR to this branch.
 
 ### Feature Branches
 
@@ -49,6 +51,17 @@ Testing branches are dedicated to testing purposes and should not be merged into
 
 - **Prefix:** `test/`
 - **Naming Convention:** `test/<user>/<branch-name>`
+
+### Other Branches
+
+These branches are stale branches kept just for references. Do not commit into these.
+
+- **old-html:**
+
+  - This branch contains old code rendering loading page with HTML and CSS.
+
+- **new-react**
+  - This branch contains oldest react code when just migrated from old-html.
 
 ## Examples
 
