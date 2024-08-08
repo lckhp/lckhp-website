@@ -1,0 +1,70 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #08093cb3;
+  color: white;
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+  width: 70%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.navigation-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.navigation-buttons button {
+  background: none;
+  border: none;
+  font-size: 48px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin: 0 -20px;
+}
+
+.navigation-buttons button:hover {
+  color: #bbb;
+}
+
+.navigation-buttons button:disabled {
+  color: #555;
+  cursor: not-allowed;
+}
+
+.navigation-buttons button:focus {
+  outline: none;
+}

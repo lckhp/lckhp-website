@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 const Home = () => {
@@ -78,6 +79,9 @@ const Home = () => {
           >
             <i className="fab fa-whatsapp"></i>
           </a>
+        </div>
+        <div className="navigation">
+          <Link to="/2425/calendar">Go to Calendar</Link>
         </div>
       </div>
     </div>
