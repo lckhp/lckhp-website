@@ -1,80 +1,50 @@
-# Leo Club of Kathmandu Himalayas Patan Website
+# React + TypeScript + Vite
 
-Welcome to LCKHP repository! This README provides a comprehensive guide to our branching conventions and naming strategies to maintain clarity and organization within our development workflow.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Table of Contents
+Currently, two official plugins are available:
 
-- [Branching Conventions](#branching-conventions)
-  - [Main/Master Branch](#mainmaster-branch)
-  - [Feature Branches](#feature-branches)
-  - [Bugfix Branches](#bugfix-branches)
-  - [Hotfix Branches](#hotfix-branches)
-  - [Testing Branches](#testing-branches)
-  - [Other Branches](#other-branches)
-- [Examples](#examples)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Branching Conventions
+## Expanding the ESLint configuration
 
-To keep our codebase maintainable and comprehensible, we follow specific branching conventions. This section outlines the purpose and naming strategy for each type of branch.
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-### Main/Master Branch
+- Configure the top-level `parserOptions` property like this:
 
-The `main` or `master` branch is reserved for stable releases.
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-- **Branch Name:** `rel`
-- Before pushing live to GH with npm run deploy, always PR to this branch.
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-### Feature Branches
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
 
-Feature branches are used for developing new features and enhancements.
-
-- **Prefix:** `feature/`
-- **Naming Convention:** `feature/<user>/<branch-name>`
-
-### Bugfix Branches
-
-Bugfix branches address minor issues and bugs in the codebase.
-
-- **Prefix:** `bugfix/`
-- **Naming Convention:** `bugfix/<user>/<branch-name>`
-
-### Hotfix Branches
-
-Hotfix branches are for critical fixes that need to be addressed immediately.
-
-- **Prefix:** `hotfix/`
-- **Naming Convention:** `hotfix/<user>/<branch-name>`
-
-### Testing Branches
-
-Testing branches are dedicated to testing purposes and should not be merged into the `main` or `master` branch.
-
-- **Prefix:** `test/`
-- **Naming Convention:** `test/<user>/<branch-name>`
-
-### Other Branches
-
-These branches are stale branches kept just for references. Do not commit into these.
-
-- **old-html:**
-
-  - This branch contains old code rendering loading page with HTML and CSS.
-
-- **new-react**
-  - This branch contains oldest react code when just migrated from old-html.
-
-## Examples
-
-Here are some examples of branch names following our conventions:
-
-- **Feature Branches:**
-  - `feature/aarush/user-login`
-  - `feature/aarati/dashboard`
-- **Bugfix Branches:**
-  - `bugfix/aarush/view-changes`
-- **Hotfix Branches:**
-  - `hotfix/enji/critical-login-issue`
-
----
-
-Let's Code!
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
