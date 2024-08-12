@@ -72,7 +72,7 @@ const Home: React.FC = () => {
             <FaInstagram style={{fontSize:'3rem'}}/>
           </a>
           <a
-            href="https://discord.gg/Yd5dbcJg9K"
+            href="https://discord.gg/aawStVKTJr"
             target="_blank"
             rel="noopener noreferrer"
             className="text-3xl text-white hover:text-blue-400"
