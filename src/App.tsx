@@ -25,7 +25,6 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/2425/calendar" element={<Calendar year="2425" />} />
         <Route path="/:year/*" element={<YearRoutes />} />
       </Routes>
     </Router>
