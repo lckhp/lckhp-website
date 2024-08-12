@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for Slick slider dots */
+.slick-dots.custom-dots li button:before {
+    color: white;
+    opacity: 0.25;
+}
+
+.slick-dots.custom-dots li.slick-active button:before {
+    color: white;
+    opacity: 1;
+}
+
+/* Optional: You might want to adjust the size and spacing of the dots */
+.slick-dots.custom-dots li {
+    margin: 0 4px;
+}
+
+.slick-dots.custom-dots li button:before {
+    font-size: 10px;
+}
