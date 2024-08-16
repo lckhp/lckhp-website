@@ -53,7 +53,7 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
       {year === "2425" ? (
         <>
           <h1 className="text-2xl md:text-4xl font-bold mb-6">
-            Calendar for L.Y. {year}
+            LCKHP Calendar for L.Y. {year}
           </h1>
           <div className="w-[75%] max-w-[75%]">
             <Slider {...settings}>
