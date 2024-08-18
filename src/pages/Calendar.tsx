@@ -79,7 +79,7 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
         </>
       ) : (
         <h1 className="text-2xl md:text-4xl font-bold">
-          Sorry, the calendar for {year} is unavailable!
+          Sorry, the calendar for L.Y. {year} is currently unavailable!
         </h1>
       )}
       <div className="navigation mt-8">
