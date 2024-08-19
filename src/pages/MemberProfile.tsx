@@ -1,0 +1,197 @@
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import membersData from "../assets/members/json/members.json";
+
+// Import social media logos
+import emailLogo from "../assets/logos/email.jpg";
+import facebookLogo from "../assets/logos/facebook.png";
+import instagramLogo from "../assets/logos/instagram.webp";
+import linkedinLogo from "../assets/logos/linkedin.png";
+
+const MemberProfile: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+
+  const member = membersData.find((m) => m.id === parseInt(id || "", 10));
+
+  useEffect(() => {
+    if (member) {
+      const loadImage = async () => {
+        try {
+          const images = import.meta.glob([
+            "../assets/members/images/*.jpg",
+            "../assets/members/images/*.JPG",
+            "../assets/members/images/*.jpeg",
+            "../assets/members/images/*.JPEG",
+            "../assets/members/images/*.png",
+            "../assets/members/images/*.PNG",
+            "../assets/members/images/*.webp",
+            "../assets/members/images/*.WEBP",
+          ]);
+          const imageName = member.photo_path.split("/").pop();
+          const imagePath = `../assets/members/images/${imageName}`;
+          if (images[imagePath]) {
+            const imageModule = (await images[imagePath]()) as {
+              default: string;
+            };
+            setPhotoUrl(imageModule.default);
+          }
+        } catch (error) {
+          console.error("Failed to load image", error);
+        }
+      };
+      loadImage();
+    }
+  }, [member]);
+
+  if (!member) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+        <h1 className="text-2xl md:text-4xl font-bold">Member not found!</h1>
+        <div className="navigation mt-8">
+          <Link to="/2425/members" className="text-blue-400 hover:underline">
+            Go to Members
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto p-5">
+      <div className="bg-white p-5 rounded shadow-lg flex flex-col items-center relative">
+        <div className="relative">
+          {/* Display Leo logo overlay only if membership_type is "General Member" */}
+          {member.membership_type === "General Member" && (
+            <img
+              src="/leo-logo.png"
+              alt="Leo Logo"
+              className="absolute inset-0 opacity-20 transform scale-175"
+              style={{
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%) scale(1.75)",
+              }}
+            />
+          )}
+          {photoUrl && (
+            <img
+              src={photoUrl}
+              alt={`Profile of ${member.name}`}
+              className="w-32 h-32 rounded-full object-cover mb-4 relative z-10 mt-5" // Adjust margin top here
+            />
+          )}
+        </div>
+        <h1 className="text-3xl font-bold mt-2">Leo {member.name}</h1>
+        <p className="text-2xl font-bold mb-6">{member.designation}</p>
+
+        <MemberInfo member={member} />
+
+        <div className="flex space-x-4 mt-4">
+          <a
+            href={`mailto:${member.email}`}
+            aria-label={`Send email to ${member.name}`}
+            rel="noopener noreferrer"
+          >
+            <img
+              src={emailLogo}
+              alt="Email"
+              className="w-10 h-10 rounded-full"
+            />
+          </a>
+          {/* Conditionally render social media logos if URLs are present */}
+          {member.fb_url && (
+            <a
+              href={member.fb_url}
+              target="_blank"
+              aria-label={`${member.name}'s Facebook profile`}
+              rel="noopener noreferrer"
+            >
+              <img
+                src={facebookLogo}
+                alt="Facebook"
+                className="w-10 h-10 rounded-full"
+              />
+            </a>
+          )}
+          {member.insta_url && (
+            <a
+              href={member.insta_url}
+              target="_blank"
+              aria-label={`${member.name}'s Instagram profile`}
+              rel="noopener noreferrer"
+            >
+              <img
+                src={instagramLogo}
+                alt="Instagram"
+                className="w-10 h-10 rounded-full"
+              />
+            </a>
+          )}
+          {member.linkedin_url && (
+            <a
+              href={member.linkedin_url}
+              target="_blank"
+              aria-label={`${member.name}'s LinkedIn profile`}
+              rel="noopener noreferrer"
+            >
+              <img
+                src={linkedinLogo}
+                alt="LinkedIn"
+                className="w-10 h-10 rounded-full"
+              />
+            </a>
+          )}
+        </div>
+      </div>
+      <div className="mt-8 text-center">
+        <Link to="/2425/members" className="text-blue-500 hover:underline">
+          Members
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
+  member,
+}) => {
+  return (
+    <>
+      <p className="text-gray-600 mb-2">
+        <strong>Occupation:</strong> {member.occupation}
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Contact Number:</strong> {member.contact_number}
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Email:</strong>{" "}
+        <a
+          href={`mailto:${member.email}`}
+          className="text-blue-500 hover:underline"
+        >
+          {member.email}
+        </a>
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Address:</strong> {member.address}
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Membership Type:</strong> {member.membership_type}
+      </p>
+
+      {/* Show Leo/Lions ID only if membership_type is "General Member" */}
+      {member.membership_type === "General Member" && (
+        <p className="text-gray-600 mb-2">
+          <strong>Leo/Lions ID:</strong> {member.leo_lions_id}
+        </p>
+      )}
+
+      <p className="text-gray-600 mb-6">
+        <strong>Joined Date:</strong> {member.joined_date}
+      </p>
+    </>
+  );
+};
+
+export default MemberProfile;

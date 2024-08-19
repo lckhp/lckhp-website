@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { monthImages } from "../constants/data";
+import ZoomIcon from "../assets/zoom-icon.png"; // Ensure this path is correct and the image exists
 
 interface CalendarProps {
   year: string;
@@ -12,6 +13,8 @@ interface CalendarProps {
 
 const Calendar: React.FC<CalendarProps> = ({ year }) => {
   const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(0);
+  const [isZoomVisible, setIsZoomVisible] = useState<boolean>(false);
+  const [zoomStyle, setZoomStyle] = useState<React.CSSProperties>({});
   const sliderRef = useRef<Slider | null>(null);
 
   useEffect(() => {
@@ -24,17 +27,62 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
         (month) => month.name === currentYearMonth
       );
       setCurrentMonthIndex(index !== -1 ? index : 0);
+
+      if (sliderRef.current) {
+        const timer = setTimeout(() => {
+          sliderRef.current?.slickGoTo(index !== -1 ? index : 0, true);
+        }, 100);
+
+        return () => clearTimeout(timer);
+      }
     }
   }, [year]);
 
-  useEffect(() => {
-    if (sliderRef.current && year === "2425") {
-      const timer = setTimeout(() => {
-        sliderRef.current?.slickGoTo(currentMonthIndex, true);
-      }, 100);
-      return () => clearTimeout(timer);
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    src: string
+  ) => {
+    const zoomBoxSize = 150; // Size of the zoom box
+    const offsetX = -145; // Horizontal offset from the mouse pointer
+    const offsetY = -85; // Vertical offset from the mouse pointer
+
+    // Calculate the position of the zoom box relative to the pointer
+    let zoomLeft = e.clientX + offsetX;
+    let zoomTop = e.clientY + offsetY;
+
+    // Adjust if the zoom box goes off-screen to the right
+    if (zoomLeft + zoomBoxSize > window.innerWidth) {
+      zoomLeft = e.clientX - zoomBoxSize - offsetX;
     }
-  }, [currentMonthIndex, year]);
+
+    // Adjust if the zoom box goes off-screen to the bottom
+    if (zoomTop + zoomBoxSize > window.innerHeight) {
+      zoomTop = e.clientY - zoomBoxSize - offsetY;
+    }
+
+    setIsZoomVisible(true);
+    setZoomStyle({
+      left: `${zoomLeft}px`,
+      top: `${zoomTop}px`,
+      width: `${zoomBoxSize}px`,
+      height: `${zoomBoxSize}px`,
+      backgroundImage: `url(${src})`,
+      backgroundSize: "850%", // Increase zoom level
+      backgroundPosition: `${
+        ((e.clientX - e.currentTarget.getBoundingClientRect().left) /
+          e.currentTarget.offsetWidth) *
+        100
+      }% ${
+        ((e.clientY - e.currentTarget.getBoundingClientRect().top) /
+          e.currentTarget.offsetHeight) *
+        100
+      }%`,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setIsZoomVisible(false);
+  };
 
   const settings = {
     dots: true,
@@ -55,31 +103,42 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
           <h1 className="text-2xl md:text-4xl font-bold mb-6">
             LCKHP Calendar for L.Y. {year}
           </h1>
-          <div className="w-[75%] max-w-[75%]">
+          <div className="w-[75%] max-w-[75%] relative">
             <Slider {...settings}>
               {monthImages.length > 0 ? (
                 monthImages.map((month) => (
-                  <div key={month.name} className="relative group">
+                  <div
+                    key={month.name}
+                    className="relative group"
+                    onMouseMove={(e) => handleMouseMove(e, month.src)}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <img
                       src={month.src}
                       alt={month.name}
                       className="w-full h-[75vh] object-contain pointer-events-none select-none"
-                      onContextMenu={(e) => e.preventDefault()} // Disable right-click
-                      draggable="false" // Disable dragging
+                      onContextMenu={(e) => e.preventDefault()}
+                      draggable="false"
+                      style={{ cursor: `url(${ZoomIcon}), auto` }} // Custom zoom icon as pointer
                     />
-                    <div className="absolute inset-0 bg-transparent group-hover:bg-transparent pointer-events-auto"></div>{" "}
-                    {/* Transparent overlay */}
+                    <div className="absolute inset-0 bg-transparent group-hover:bg-transparent pointer-events-auto"></div>
                   </div>
                 ))
               ) : (
                 <div className="text-center text-lg">No images available</div>
               )}
             </Slider>
+            {isZoomVisible && (
+              <div
+                className="absolute w-[150px] h-[150px] border-2 border-black rounded-lg pointer-events-none bg-no-repeat"
+                style={zoomStyle}
+              />
+            )}
           </div>
         </>
       ) : (
         <h1 className="text-2xl md:text-4xl font-bold">
-          Sorry, the calendar for {year} is unavailable!
+          Sorry, the calendar for L.Y. {year} is currently unavailable!
         </h1>
       )}
       <div className="navigation mt-8">

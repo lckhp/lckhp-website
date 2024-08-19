@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../assets/lckhp-background-banner.png"
-import { FaDiscord, FaFacebook, FaLinkedin, FaViber, FaInstagram } from "react-icons/fa";
+import backgroundImage from "../assets/lckhp-background-banner.png";
+import {
+  FaDiscord,
+  FaFacebook,
+  FaLinkedin,
+  FaViber,
+  FaInstagram,
+} from "react-icons/fa";
 
 const Home: React.FC = () => {
   useEffect(() => {
     const progress = document.querySelector(".progress") as HTMLDivElement;
-    const percentage = document.querySelector(".progress span") as HTMLSpanElement;
+    const percentage = document.querySelector(
+      ".progress span"
+    ) as HTMLSpanElement;
 
     let per = 0;
     function progressLoad() {
@@ -34,16 +42,21 @@ const Home: React.FC = () => {
           backgroundBlendMode: "darken",
         }}
       ></div>
-     
-     
+
       <div className="relative z-10 container mx-auto p-8 text-center">
         <div className="top flex items-center justify-center space-x-4 mb-8">
           <hr className="border-gray-500 flex-grow" />
-          <p className="text-lg font-semibold">LEO CLUB OF KATHMANDU HIMALAYAS PATAN</p>
+          <p className="text-lg font-semibold">
+            LEO CLUB OF KATHMANDU HIMALAYAS PATAN
+          </p>
           <hr className="border-gray-500 flex-grow" />
         </div>
-        <h1 className="text-4xl sm:text-6xl font-bold mb-6 uppercase">SITE IS UNDER</h1>
-        <h1 className="text-4xl sm:text-6xl font-bold mb-6 uppercase">CONSTRUCTION</h1>
+        <h1 className="text-4xl sm:text-6xl font-bold mb-6 uppercase">
+          SITE IS UNDER
+        </h1>
+        <h1 className="text-4xl sm:text-6xl font-bold mb-6 uppercase">
+          CONSTRUCTION
+        </h1>
 
         <h3 className="text-2xl mb-4">PROGRESS</h3>
         <div className="progress-wrapper mx-auto w-1/2 h-8 bg-gray-800 rounded-full overflow-hidden mb-6">
@@ -52,7 +65,8 @@ const Home: React.FC = () => {
           </div>
         </div>
         <h3 className="text-xl mb-6">
-          For time being, please contact us on the following platforms for inquiries:
+          For time being, please contact us on the following platforms for
+          inquiries:
         </h3>
         <div className="social-icons flex space-x-4 justify-center mb-8">
           <a
@@ -61,7 +75,7 @@ const Home: React.FC = () => {
             rel="noopener noreferrer"
             className="text-3xl text-white hover:text-blue-400"
           >
-            <FaFacebook style={{fontSize:'3rem'}} />
+            <FaFacebook style={{ fontSize: "3rem" }} />
           </a>
           <a
             href="https://www.instagram.com/lckhpatan/"
@@ -69,7 +83,7 @@ const Home: React.FC = () => {
             rel="noopener noreferrer"
             className="text-3xl text-white hover:text-blue-400"
           >
-            <FaInstagram style={{fontSize:'3rem'}}/>
+            <FaInstagram style={{ fontSize: "3rem" }} />
           </a>
           <a
             href="https://discord.gg/aawStVKTJr"
@@ -77,7 +91,7 @@ const Home: React.FC = () => {
             rel="noopener noreferrer"
             className="text-3xl text-white hover:text-blue-400"
           >
-           <FaDiscord style={{fontSize:'3rem'}}/>
+            <FaDiscord style={{ fontSize: "3rem" }} />
           </a>
           <a
             href="https://www.linkedin.com/company/100013568/"
@@ -85,7 +99,7 @@ const Home: React.FC = () => {
             rel="noopener noreferrer"
             className="text-3xl text-white hover:text-blue-400"
           >
-            <FaLinkedin style={{fontSize:'3rem'}} />
+            <FaLinkedin style={{ fontSize: "3rem" }} />
           </a>
           <a
             href="https://wa.me/9779818143788/"
@@ -93,12 +107,22 @@ const Home: React.FC = () => {
             rel="noopener noreferrer"
             className="text-3xl text-white hover:text-blue-400"
           >
-            <FaViber style={{fontSize:'3rem'}} />
+            <FaViber style={{ fontSize: "3rem" }} />
           </a>
         </div>
         <div className="navigation">
           <Link to="/2425/calendar" className="text-blue-400 hover:underline">
             Go to Calendar
+          </Link>
+        </div>
+        <div className="navigation">
+          <Link to="/resources" className="text-blue-400 hover:underline">
+            Go to Resources
+          </Link>
+        </div>
+        <div className="navigation">
+          <Link to="/2425/members" className="text-blue-400 hover:underline">
+            Go to Members
           </Link>
         </div>
       </div>
