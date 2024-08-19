@@ -11,6 +11,10 @@ import {
 
 const Home: React.FC = () => {
   useEffect(() => {
+    document.title = "Leo Club of Kathmandu Himalayas Patan";
+  });
+
+  useEffect(() => {
     const progress = document.querySelector(".progress") as HTMLDivElement;
     const percentage = document.querySelector(
       ".progress span"

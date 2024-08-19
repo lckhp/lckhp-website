@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Resources: React.FC = () => {
+  useEffect(() => {
+    document.title = "LCKHP Resources Page";
+  });
+
   const handleMouseOver = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const actions = e.currentTarget.querySelector(".actions") as HTMLElement;
     if (actions) actions.style.display = "block";
@@ -24,6 +28,32 @@ const Resources: React.FC = () => {
   };
 
   const resources = [
+    {
+      src: "/lions-logo.png",
+      alt: "Lions International Logo",
+      text: "Lions International Logo",
+    },
+    {
+      src: "/lions-international-president-logo.JPG",
+      alt: "Lions International President Logo",
+      text: "Lions International President Logo",
+    },
+    {
+      src: "/District-R-DG-logo.jpg",
+      alt: "District 325 District Governer Logo",
+      text: "District 325 District Governer Logo",
+    },
+    { src: "/leo-logo.png", alt: "Leo Logo", text: "Leo Logo" },
+    {
+      src: "/md325-logo.PNG",
+      alt: "Leo Multiple District 325 President Logo",
+      text: "Leo Multiple District 325 President Logo",
+    },
+    {
+      src: "/ldc325r-dp-logo-2425.png",
+      alt: "Leo District 325R President Logo",
+      text: "Leo District 325R President Logo",
+    },
     { src: "/lckhp-logo.png", alt: "LCKHP Club Logo", text: "LCKHP Club Logo" },
     {
       src: "/lckhp-president-logo-2425.png",
@@ -39,7 +69,7 @@ const Resources: React.FC = () => {
 
   const googleDriveResources = [
     {
-      src: "/ldc325r-dp-logo-2425.png",
+      src: "/gdrive.png",
       alt: "District Resources",
       text: "District Resources",
       url: "https://drive.google.com/drive/folders/1X7ayyyaa_shF21ux5kThJe0EIyEQqFz3?usp=sharing", // Replace with actual link

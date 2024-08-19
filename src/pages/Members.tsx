@@ -10,6 +10,10 @@ const Members: React.FC<MembersProps> = ({ year }) => {
   const [images, setImages] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
+    document.title = "LCKHP - Leo Team";
+  });
+
+  useEffect(() => {
     // Function to load all images with various extensions
     const loadImages = async () => {
       const imports = import.meta.glob([

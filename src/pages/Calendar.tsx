@@ -18,6 +18,14 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
   const sliderRef = useRef<Slider | null>(null);
 
   useEffect(() => {
+    if (year) {
+      document.title = `LCKHP ${year} Calendar`;
+    } else {
+      document.title = "LCKHP Calendar not found!";
+    }
+  }, [year]);
+
+  useEffect(() => {
     if (year === "2425") {
       const currentDate = new Date();
       const currentYearMonth = `${currentDate.getFullYear()}-${String(

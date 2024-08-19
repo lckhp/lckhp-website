@@ -16,6 +16,14 @@ const MemberProfile: React.FC = () => {
 
   useEffect(() => {
     if (member) {
+      document.title = `Leo ${member.name}'s Profile`;
+    } else {
+      document.title = "Leo Member Not Found!";
+    }
+  }, [member]);
+
+  useEffect(() => {
+    if (member) {
       const loadImage = async () => {
         try {
           const images = import.meta.glob([
