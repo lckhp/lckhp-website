@@ -17,14 +17,27 @@ const MemberProfile: React.FC = () => {
   useEffect(() => {
     if (member) {
       const loadImage = async () => {
-        const images = import.meta.glob("../assets/members/images/*.JPG");
-        const imageName = member.photo_path.split("/").pop();
-        const imagePath = `../assets/members/images/${imageName}`;
-        if (images[imagePath]) {
-          const imageModule = (await images[imagePath]()) as {
-            default: string;
-          };
-          setPhotoUrl(imageModule.default);
+        try {
+          const images = import.meta.glob([
+            "../assets/members/images/*.jpg",
+            "../assets/members/images/*.JPG",
+            "../assets/members/images/*.jpeg",
+            "../assets/members/images/*.JPEG",
+            "../assets/members/images/*.png",
+            "../assets/members/images/*.PNG",
+            "../assets/members/images/*.webp",
+            "../assets/members/images/*.WEBP",
+          ]);
+          const imageName = member.photo_path.split("/").pop();
+          const imagePath = `../assets/members/images/${imageName}`;
+          if (images[imagePath]) {
+            const imageModule = (await images[imagePath]()) as {
+              default: string;
+            };
+            setPhotoUrl(imageModule.default);
+          }
+        } catch (error) {
+          console.error("Failed to load image", error);
         }
       };
       loadImage();
@@ -46,52 +59,40 @@ const MemberProfile: React.FC = () => {
 
   return (
     <div className="container mx-auto p-5">
-      <div className="bg-white p-5 rounded shadow-lg flex flex-col items-center">
-        {photoUrl && (
-          <img
-            src={photoUrl}
-            alt={member.name}
-            className="w-32 h-32 rounded-full object-cover mb-4"
-          />
-        )}
-        <h1 className="text-3xl font-bold">Leo {member.name}</h1>
-        <p className="text-1.5xl font-bold mb-6">{member.designation}</p>
+      <div className="bg-white p-5 rounded shadow-lg flex flex-col items-center relative">
+        <div className="relative">
+          {/* Display Leo logo overlay only if membership_type is "General Member" */}
+          {member.membership_type === "General Member" && (
+            <img
+              src="/leo-logo.png"
+              alt="Leo Logo"
+              className="absolute inset-0 opacity-20 transform scale-175"
+              style={{
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%) scale(1.75)",
+              }}
+            />
+          )}
+          {photoUrl && (
+            <img
+              src={photoUrl}
+              alt={`Profile of ${member.name}`}
+              className="w-32 h-32 rounded-full object-cover mb-4 relative z-10 mt-5" // Adjust margin top here
+            />
+          )}
+        </div>
+        <h1 className="text-3xl font-bold mt-2">Leo {member.name}</h1>
+        <p className="text-2xl font-bold mb-6">{member.designation}</p>
 
-        <p className="text-gray-600 mb-2">
-          <strong>Occupation:</strong> {member.occupation}
-        </p>
-        <p className="text-gray-600 mb-2">
-          <strong>Contact Number:</strong> {member.contact_number}
-        </p>
-        <p className="text-gray-600 mb-2">
-          <strong>Email:</strong>{" "}
-          <a
-            href={`mailto:${member.email}`}
-            className="text-blue-500 hover:underline"
-          >
-            {member.email}
-          </a>
-        </p>
-        <p className="text-gray-600 mb-2">
-          <strong>Address:</strong> {member.address}
-        </p>
-        <p className="text-gray-600 mb-2">
-          <strong>Membership Type:</strong> {member.membership_type}
-        </p>
-
-        {/* Show Leo/Lions ID only if membership_type is "General Member" */}
-        {member.membership_type === "General Member" && (
-          <p className="text-gray-600 mb-2">
-            <strong>Leo/Lions ID:</strong> {member.leo_lions_id}
-          </p>
-        )}
-
-        <p className="text-gray-600 mb-6">
-          <strong>Joined Date:</strong> {member.joined_date}
-        </p>
+        <MemberInfo member={member} />
 
         <div className="flex space-x-4 mt-4">
-          <a href={`mailto:${member.email}`} rel="noopener noreferrer">
+          <a
+            href={`mailto:${member.email}`}
+            aria-label={`Send email to ${member.name}`}
+            rel="noopener noreferrer"
+          >
             <img
               src={emailLogo}
               alt="Email"
@@ -100,7 +101,12 @@ const MemberProfile: React.FC = () => {
           </a>
           {/* Conditionally render social media logos if URLs are present */}
           {member.fb_url && (
-            <a href={member.fb_url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={member.fb_url}
+              target="_blank"
+              aria-label={`${member.name}'s Facebook profile`}
+              rel="noopener noreferrer"
+            >
               <img
                 src={facebookLogo}
                 alt="Facebook"
@@ -112,6 +118,7 @@ const MemberProfile: React.FC = () => {
             <a
               href={member.insta_url}
               target="_blank"
+              aria-label={`${member.name}'s Instagram profile`}
               rel="noopener noreferrer"
             >
               <img
@@ -125,6 +132,7 @@ const MemberProfile: React.FC = () => {
             <a
               href={member.linkedin_url}
               target="_blank"
+              aria-label={`${member.name}'s LinkedIn profile`}
               rel="noopener noreferrer"
             >
               <img
@@ -142,6 +150,47 @@ const MemberProfile: React.FC = () => {
         </Link>
       </div>
     </div>
+  );
+};
+
+const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
+  member,
+}) => {
+  return (
+    <>
+      <p className="text-gray-600 mb-2">
+        <strong>Occupation:</strong> {member.occupation}
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Contact Number:</strong> {member.contact_number}
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Email:</strong>{" "}
+        <a
+          href={`mailto:${member.email}`}
+          className="text-blue-500 hover:underline"
+        >
+          {member.email}
+        </a>
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Address:</strong> {member.address}
+      </p>
+      <p className="text-gray-600 mb-2">
+        <strong>Membership Type:</strong> {member.membership_type}
+      </p>
+
+      {/* Show Leo/Lions ID only if membership_type is "General Member" */}
+      {member.membership_type === "General Member" && (
+        <p className="text-gray-600 mb-2">
+          <strong>Leo/Lions ID:</strong> {member.leo_lions_id}
+        </p>
+      )}
+
+      <p className="text-gray-600 mb-6">
+        <strong>Joined Date:</strong> {member.joined_date}
+      </p>
+    </>
   );
 };
 
