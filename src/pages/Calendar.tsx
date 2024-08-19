@@ -30,13 +30,13 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
 
       if (sliderRef.current) {
         const timer = setTimeout(() => {
-          sliderRef.current?.slickGoTo(index !== -1 ? index : 0, true);
+          sliderRef.current?.slickGoTo(currentMonthIndex, true);
         }, 100);
 
         return () => clearTimeout(timer);
       }
     }
-  }, [year]);
+  }, [currentMonthIndex, year]);
 
   const handleMouseMove = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
