@@ -75,19 +75,24 @@ const MemberProfile: React.FC = () => {
             />
           )}
           {photoUrl && (
-            <img
-              src={photoUrl}
-              alt={`Profile of ${member.name}`}
-              className="w-32 h-32 rounded-full object-cover mb-4 relative z-10 mt-5" // Adjust margin top here
-            />
+            <div
+              className="relative w-40 h-40 rounded-full border-4 border-yellow-500 flex items-center justify-center mb-4 mt-4"
+              style={{ zIndex: 2 }}
+            >
+              <img
+                src={photoUrl}
+                alt={`Profile of ${member.name}`}
+                className="w-36 h-36 rounded-full object-cover"
+              />
+            </div>
           )}
         </div>
-        <h1 className="text-3xl font-bold mt-2">Leo {member.name}</h1>
-        <p className="text-2xl font-bold mb-6">{member.designation}</p>
+        <h1 className="text-3xl font-bold mt-3">Leo {member.name}</h1>
+        <p className="text-2xl font-bold mb-4">{member.designation}</p>
 
         <MemberInfo member={member} />
 
-        <div className="flex space-x-4 mt-4">
+        <div className="flex space-x-4 mt-1">
           <a
             href={`mailto:${member.email}`}
             aria-label={`Send email to ${member.name}`}
@@ -158,13 +163,13 @@ const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
 }) => {
   return (
     <>
-      <p className="text-gray-600 mb-2">
+      <p className="text-gray-600 mb-1">
         <strong>Occupation:</strong> {member.occupation}
       </p>
-      <p className="text-gray-600 mb-2">
+      <p className="text-gray-600 mb-1">
         <strong>Contact Number:</strong> {member.contact_number}
       </p>
-      <p className="text-gray-600 mb-2">
+      <p className="text-gray-600 mb-1">
         <strong>Email:</strong>{" "}
         <a
           href={`mailto:${member.email}`}
@@ -173,21 +178,21 @@ const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
           {member.email}
         </a>
       </p>
-      <p className="text-gray-600 mb-2">
+      <p className="text-gray-600 mb-1">
         <strong>Address:</strong> {member.address}
       </p>
-      <p className="text-gray-600 mb-2">
+      <p className="text-gray-600 mb-1">
         <strong>Membership Type:</strong> {member.membership_type}
       </p>
 
       {/* Show Leo/Lions ID only if membership_type is "General Member" */}
       {member.membership_type === "General Member" && (
-        <p className="text-gray-600 mb-2">
+        <p className="text-gray-600 mb-1">
           <strong>Leo/Lions ID:</strong> {member.leo_lions_id}
         </p>
       )}
 
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600 mb-3">
         <strong>Joined Date:</strong> {member.joined_date}
       </p>
     </>

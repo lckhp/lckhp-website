@@ -77,20 +77,24 @@ const Members: React.FC<MembersProps> = ({ year }) => {
                 style={{ zIndex: 1 }}
               />
             )}
-            {/* Member photo */}
-            <img
-              src={getImagePath(member.photo_path)}
-              alt={member.name}
-              className="relative w-32 h-32 rounded-full object-cover mb-4"
+            {/* Member photo with golden ring */}
+            <div
+              className="relative w-36 h-36 rounded-full border-4 border-yellow-500 flex items-center justify-center mb-4"
               style={{ zIndex: 2 }}
-            />
+            >
+              <img
+                src={getImagePath(member.photo_path)}
+                alt={member.name}
+                className="w-32 h-32 rounded-full object-cover"
+              />
+            </div>
             <h2
               className="text-xl font-semibold relative"
               style={{ zIndex: 2 }}
             >
               {member.name}
             </h2>
-            <p className="text-gray-600 relative" style={{ zIndex: 2 }}>
+            <p className="text-l relative font-semibold" style={{ zIndex: 2 }}>
               {member.designation}
             </p>
             <Link
