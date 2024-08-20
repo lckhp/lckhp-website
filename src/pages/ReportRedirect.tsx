@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import reportLinks from "../assets/reports/reports.json"; // Import JSON data
 
 const ReportRedirect: React.FC<{
   role: "secretary" | "treasurer" | "tail-twister";
@@ -8,27 +9,16 @@ const ReportRedirect: React.FC<{
   const [link, setLink] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchReportLinks = async () => {
-      try {
-        const response = await fetch("/src/assets/reports/reports.json");
-        const reportLinks = await response.json();
-        const path = `2425/${role}/report/${month}`;
-        const reportLink = reportLinks[path];
-        if (reportLink) {
-          setLink(reportLink);
-          document.title = "Redirecting to Report...";
-        } else {
-          setLink(null);
-          document.title = "Report not found";
-        }
-      } catch (error) {
-        console.error("Error fetching report links:", error);
-        setLink(null);
-        document.title = "Report not found";
-      }
-    };
+    const path = `2425/${role}/report/${month}`;
+    const reportLink = (reportLinks as { [key: string]: string })[path];
 
-    fetchReportLinks();
+    if (reportLink) {
+      setLink(reportLink);
+      document.title = "Redirecting to Report...";
+    } else {
+      setLink(null);
+      document.title = "Report not found";
+    }
   }, [role, month]);
 
   useEffect(() => {
