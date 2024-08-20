@@ -102,7 +102,7 @@ const MemberProfile: React.FC = () => {
 
         <div className="flex space-x-4 mt-1">
           <a
-            href={`mailto:${member.email}`}
+            href={`mailto:${member.club_email}`}
             aria-label={`Send email to ${member.name}`}
             rel="noopener noreferrer"
           >
@@ -178,12 +178,21 @@ const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
         <strong>Contact Number:</strong> {member.contact_number}
       </p>
       <p className="text-gray-600 mb-1">
-        <strong>Email:</strong>{" "}
+        <strong>Personal Email:</strong>{" "}
         <a
           href={`mailto:${member.email}`}
           className="text-blue-500 hover:underline"
         >
           {member.email}
+        </a>
+      </p>
+      <p className="text-gray-600 mb-1">
+        <strong>Club Email:</strong>{" "}
+        <a
+          href={`mailto:${member.club_email}`}
+          className="text-blue-500 hover:underline"
+        >
+          {member.club_email}
         </a>
       </p>
       <p className="text-gray-600 mb-1">
