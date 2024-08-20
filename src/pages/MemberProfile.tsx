@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import membersData from "../assets/members/json/members.json";
 
 // Import social media logos
-import emailLogo from "../assets/logos/email.jpg";
+import emailLogo from "../assets/logos/email.png";
 import facebookLogo from "../assets/logos/facebook.png";
 import instagramLogo from "../assets/logos/instagram.webp";
 import linkedinLogo from "../assets/logos/linkedin.png";
@@ -52,6 +52,11 @@ const MemberProfile: React.FC = () => {
     }
   }, [member]);
 
+  // Prevent dragging of images
+  const preventDefault = (e: React.DragEvent | React.MouseEvent) => {
+    e.preventDefault();
+  };
+
   if (!member) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
@@ -74,23 +79,25 @@ const MemberProfile: React.FC = () => {
             <img
               src="/leo-logo.png"
               alt="Leo Logo"
-              className="absolute inset-0 opacity-20 transform scale-175"
+              className="absolute inset-0 opacity-20 transform scale-175 pointer-events-none"
               style={{
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%) scale(1.75)",
               }}
+              onDragStart={preventDefault}
             />
           )}
           {photoUrl && (
             <div
-              className="relative w-40 h-40 rounded-full border-4 border-yellow-500 flex items-center justify-center mb-4 mt-4"
+              className="relative w-40 h-40 rounded-full border-4 border-yellow-500 flex items-center justify-center mb-4 mt-4 pointer-events-none"
               style={{ zIndex: 2 }}
+              onDragStart={preventDefault}
             >
               <img
                 src={photoUrl}
                 alt={`Profile of ${member.name}`}
-                className="w-36 h-36 rounded-full object-cover"
+                className="w-36 h-36 rounded-full object-cover pointer-events-none"
               />
             </div>
           )}
