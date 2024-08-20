@@ -14,6 +14,7 @@ const Register = lazy(() => import("./pages/Register"));
 const Resources = lazy(() => import("./pages/Resources"));
 const Members = lazy(() => import("./pages/Members"));
 const MemberProfile = lazy(() => import("./pages/MemberProfile"));
+const ReportRedirect = lazy(() => import("./pages/ReportRedirect"));
 
 const App: React.FC = () => {
   return (
@@ -44,8 +45,22 @@ const GenericRoutes: React.FC<{ year: string }> = ({ year }) => {
     <Routes>
       <Route path="calendar" element={<Calendar year={year} />} />
       <Route path="members" element={<Members year={year} />} />
-      <Route path="members/:id" element={<MemberProfile />} />{" "}
-      {/* New Profile Route */}
+      <Route path="members/:id" element={<MemberProfile />} />
+
+      {/* For Report Redirect */}
+      <Route
+        path="secretary/report/:month"
+        element={<ReportRedirect role="secretary" />}
+      />
+      <Route
+        path="treasurer/report/:month"
+        element={<ReportRedirect role="treasurer" />}
+      />
+      <Route
+        path="tail-twister/report/:month"
+        element={<ReportRedirect role="tail-twister" />}
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
