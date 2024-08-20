@@ -177,7 +177,9 @@ const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
   member,
 }) => {
   return (
-    <>
+    <div className="text-center">
+      {" "}
+      {/* Add text-center class here */}
       <p className="text-gray-600 mb-1">
         <strong>Occupation:</strong> {member.occupation}
       </p>
@@ -188,7 +190,8 @@ const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
         <strong>Personal Email:</strong>{" "}
         <a
           href={`mailto:${member.email}`}
-          className="text-blue-500 hover:underline"
+          className="text-blue-500 hover:underline break-words inline-block"
+          style={{ wordBreak: "break-word", textAlign: "center" }} // Added style
         >
           {member.email}
         </a>
@@ -197,7 +200,8 @@ const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
         <strong>Club Email:</strong>{" "}
         <a
           href={`mailto:${member.club_email}`}
-          className="text-blue-500 hover:underline"
+          className="text-blue-500 hover:underline break-words inline-block"
+          style={{ wordBreak: "break-word", textAlign: "center" }} // Added style
         >
           {member.club_email}
         </a>
@@ -208,18 +212,16 @@ const MemberInfo: React.FC<{ member: (typeof membersData)[0] }> = ({
       <p className="text-gray-600 mb-1">
         <strong>Membership Type:</strong> {member.membership_type}
       </p>
-
       {/* Show Leo/Lions ID only if membership_type is "General Member" */}
       {member.membership_type === "General Member" && (
         <p className="text-gray-600 mb-1">
           <strong>Leo/Lions ID:</strong> {member.leo_lions_id}
         </p>
       )}
-
       <p className="text-gray-600 mb-3">
         <strong>Joined Date:</strong> {member.joined_date}
       </p>
-    </>
+    </div>
   );
 };
 
