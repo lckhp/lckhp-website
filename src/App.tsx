@@ -16,6 +16,7 @@ const Members = lazy(() => import("./pages/Members"));
 const MemberProfile = lazy(() => import("./pages/MemberProfile"));
 const ReportRedirect = lazy(() => import("./pages/ReportRedirect"));
 const District325R = lazy(() => import("./pages/District325R"));
+const Redirect = lazy(() => import("./pages/Redirect"));
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,10 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/resources" element={<Resources />} />
+          <Route
+            path="/club-assets"
+            element={<Redirect page="club-assets" />}
+          />
           <Route path="/:year/*" element={<YearRoutes />} />
           <Route path="/325r/*" element={<District325R />} />
           <Route path="*" element={<NotFound />} />
@@ -36,6 +41,7 @@ const App: React.FC = () => {
 
 const YearRoutes: React.FC = () => {
   const { year } = useParams<{ year: string }>();
+
   if (!year) {
     return <NotFound />;
   }
@@ -61,6 +67,12 @@ const GenericRoutes: React.FC<{ year: string }> = ({ year }) => {
         path="tail-twister/report/:month"
         element={<ReportRedirect role="tail-twister" />}
       />
+      {year === "2425" && (
+        <Route
+          path="members-contact-info"
+          element={<Redirect page="members-contact-info" />}
+        />
+      )}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
