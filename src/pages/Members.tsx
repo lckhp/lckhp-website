@@ -104,7 +104,9 @@ const Members: React.FC<MembersProps> = ({ year }) => {
               className="text-xl font-semibold relative"
               style={{ zIndex: 2 }}
             >
-              {member.name}
+              {member.membership_type === "General Member"
+                ? `Leo ${member.name}`
+                : member.name}
             </h2>
             <p className="text-l relative font-semibold" style={{ zIndex: 2 }}>
               {member.designation}

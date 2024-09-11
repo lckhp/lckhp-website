@@ -102,7 +102,11 @@ const MemberProfile: React.FC = () => {
             </div>
           )}
         </div>
-        <h1 className="text-3xl font-bold mt-3">Leo {member.name}</h1>
+        <h1 className="text-3xl font-bold mt-3">
+          {member.membership_type === "General Member"
+            ? `Leo ${member.name}`
+            : member.name}
+        </h1>
         <p className="text-2xl font-bold mb-4">{member.designation}</p>
 
         <MemberInfo member={member} />
