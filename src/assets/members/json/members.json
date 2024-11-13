@@ -1060,5 +1060,23 @@
     "fb_url": "https://www.facebook.com/61555680274379/",
     "insta_url": "",
     "linkedin_url": ""
+  },
+  {
+    "id": 60,
+    "name": "Pushpa Raj Pandey",
+    "photo_path": "src/assets/members/images/60.png",
+    "designation": "Member",
+    "contact_number": "+977-9860477972",
+    "blood_group": "A+",
+    "address": "Syuchatar, Kathmandu",
+    "membership_type": "General Member",
+    "leo_lions_id": "",
+    "occupation": "Student/BSC CSIT, TU and Senior Client Executive/ BNB Softed Nepal",
+    "joined_date": "2024/11/12",
+    "email": "nasattara50@gmail.com",
+    "club_email": "pushparajpanday972@gmail.com",
+    "fb_url": "https://www.facebook.com/100003745347207/",
+    "insta_url": "",
+    "linkedin_url": ""
   }
 ]
