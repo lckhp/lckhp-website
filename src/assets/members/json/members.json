@@ -235,7 +235,7 @@
   },
   {
     "id": 16,
-    "name": "Leo Dr. Raghav Ghimire",
+    "name": "Dr. Raghav Ghimire",
     "photo_path": "src/assets/members/images/16.png",
     "designation": "Member",
     "contact_number": "+977-9841773833",
@@ -685,7 +685,7 @@
   },
   {
     "id": 45,
-    "name": "Chadani Mahat",
+    "name": "Dr. Chadani Mahat",
     "photo_path": "src/assets/members/images/45.png",
     "designation": "Member",
     "contact_number": "+977-9813733183",
@@ -1003,8 +1003,26 @@
     "joined_date": "2024/11/25",
     "email": "dikshyasinghshrestha@gmail.com",
     "club_email": "dikshyasinghshrestha@lckhp.org",
-    "fb_url": "",
+    "fb_url": "https://www.facebook.com/dikshya.singh.91/",
     "insta_url": "https://www.instagram.com/dichya_shrestha/",
+    "linkedin_url": ""
+  },
+  {
+    "id": 63,
+    "name": "Abhishek Adhikari",
+    "photo_path": "src/assets/members/images/63.png",
+    "designation": "Member",
+    "contact_number": "+977-9861333655",
+    "blood_group": "A+",
+    "address": "Suryabinayak Municipality 3, Bhaktapur",
+    "membership_type": "General Member",
+    "leo_lions_id": "",
+    "occupation": "Medical Officer (Nepal Bharat Maitri Hospital, Mitrapark)",
+    "joined_date": "2024/11/29",
+    "email": "dradhikariabhishek@gmail.com",
+    "club_email": "abhishekadhikari@lckhp.org",
+    "fb_url": "https://www.facebook.com/avisekadh",
+    "insta_url": "",
     "linkedin_url": ""
   },
   {
