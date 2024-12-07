@@ -9,7 +9,7 @@ const Landing = () => {
           <h2 className="mb-6 font-sans text-3xl font-extrabold leading-snug tracking-tight text-gray-800 sm:text-4xl">
             Leo Club of <br />
             <span className="inline-block text-green-500">
-              Kathmandu Himalayan Patan
+              Kathmandu Himalayas Patan
             </span>
           </h2>
           <p className="mb-4 text-base text-gray-600 md:text-lg">
