@@ -18,9 +18,9 @@ const Header = () => {
     </label>
     <nav aria-label="Header Navigation" className="flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all peer-checked:mt-8 peer-checked:max-h-56 md:ml-24 md:max-h-full md:flex-row md:items-start">
       <ul className="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
-        <li className="font-bold md:mr-12"><a href="/2425/members" target="_blank">Our Team</a></li>
+        <li className="md:mr-12"><a href="/2425/members" target="_blank">Our Team</a></li>
         <li className="md:mr-12"><a href="/2425/calendar" target="_blank">Calendar</a></li>
-        <li className="md:mr-12"><a href="/resources" target="_blank">Resouces</a></li>
+        <li className="md:mr-12"><a href="/resources" target="_blank">Resources</a></li>
         <li className="md:mr-12"><a href="325r/2425/LDC325R-LeoDarpan.pdf" target="_blank">Leo Darpan</a></li>
         <li className="md:mr-12">
   <a href="/register"
