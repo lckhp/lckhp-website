@@ -11,11 +11,11 @@ const About = () => {
           </h2>
           <p className="mb-4 text-base text-gray-600 md:text-lg">
             The Leo Club of Kathmandu Himalayas Patan, chartered on October 29,
-            1974, is Nepal’s first and oldest Leo Club. With over 50 years of
+            1974, is Nepal’s oldest existing Leo Club. With over 50 years of
             service, we have been at the forefront of youth empowerment and
-            community development. Our club is part of a global network of
-            Leos, working to inspire leadership, teamwork, and volunteerism
-            among young individuals.
+            community development. Our club is part of a global network of Leos,
+            working to inspire leadership, teamwork, and volunteerism among
+            young individuals.
           </p>
           <p className="mb-4 text-base text-gray-600 md:text-lg">
             From health awareness programs to environmental initiatives,
@@ -27,7 +27,9 @@ const About = () => {
             <p className="text-base text-gray-600">
               Leadership, Experience, Opportunity.
             </p>
-            <p className="mt-4 text-lg font-semibold text-gray-800">Our Goal:</p>
+            <p className="mt-4 text-lg font-semibold text-gray-800">
+              Our Goal:
+            </p>
             <p className="text-base text-gray-600">
               Empower youth to lead and serve.
             </p>
