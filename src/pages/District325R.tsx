@@ -4,16 +4,32 @@ import { useParams, Link } from "react-router-dom";
 const District325R: React.FC = () => {
   const { "*": wildcard } = useParams();
   const [redirecting, setRedirecting] = useState<boolean>(false);
+  const [redirectMessage, setRedirectMessage] = useState<string>("");
 
   useEffect(() => {
-    if (wildcard === "register") {
-      setRedirecting(true);
-      document.title = "Redirecting to Registration...";
+    let redirectUrl: string | null = null;
 
-      setTimeout(() => {
-        window.location.href =
-          "https://docs.google.com/forms/d/e/1FAIpQLSfgnO62RCSTQR7FwY2SDFewn7RiPA3fn2Ta8bi-eSknwuegYg/viewform";
-      }, 2000); // Wait 2 seconds before redirecting
+    if (wildcard === "2425/register") {
+      redirectUrl =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfgnO62RCSTQR7FwY2SDFewn7RiPA3fn2Ta8bi-eSknwuegYg/viewform";
+      setRedirectMessage(
+        "Redirecting to 3rd District Installation, 1st Council Meeting, and Award Ceremony Registration Form..."
+      );
+      document.title = "Redirecting to Registration...";
+    } else if (wildcard === "2425/clli/register") {
+      redirectUrl =
+        "https://docs.google.com/forms/d/e/1FAIpQLSeCw63p82ozSA8LpFGPtvJSzmLRnZ2VVoMd0VRhHewHaeD71g/viewform?pli=1";
+      setRedirectMessage("Redirecting to CLLI Registration Form...");
+      document.title = "Redirecting to CLLI Registration...";
+    }
+
+    if (redirectUrl) {
+      setRedirecting(true);
+      const timer = setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 2000); // Redirect after 2 seconds
+
+      return () => clearTimeout(timer); // Cleanup timeout on unmount
     } else {
       setRedirecting(false);
     }
@@ -22,9 +38,8 @@ const District325R: React.FC = () => {
   if (redirecting) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <h1 className="text-xl font-bold">
-          Redirecting to 3rd District Installation, 1st Council Meeting, and
-          Award Ceremony Registration Form...
+        <h1 className="text-xl font-bold" aria-live="polite">
+          {redirectMessage}
         </h1>
       </div>
     );
