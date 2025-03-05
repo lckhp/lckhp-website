@@ -21,6 +21,10 @@ const District325R: React.FC = () => {
         "https://docs.google.com/forms/d/e/1FAIpQLSeCw63p82ozSA8LpFGPtvJSzmLRnZ2VVoMd0VRhHewHaeD71g/viewform?pli=1";
       setRedirectMessage("Redirecting to CLLI Registration Form...");
       document.title = "Redirecting to CLLI Registration...";
+    } else if (wildcard === "2425/rlli/register") {
+      redirectUrl = "https://forms.gle/kgkHD79ihVCuArQ1A";
+      setRedirectMessage("Redirecting to RLLI Registration Form...");
+      document.title = "Redirecting to RLLI Registration...";
     }
 
     if (redirectUrl) {
