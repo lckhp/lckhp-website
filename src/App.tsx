@@ -17,6 +17,7 @@ const MemberProfile = lazy(() => import("./pages/MemberProfile"));
 const ReportRedirect = lazy(() => import("./pages/ReportRedirect"));
 const District325R = lazy(() => import("./pages/District325R"));
 const Redirect = lazy(() => import("./pages/Redirect"));
+const CertificateView = lazy(() => import("./pages/CertificateView"));
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           />
           <Route path="/:year/*" element={<YearRoutes />} />
           <Route path="/325r/*" element={<District325R />} />
+          <Route path="/verify/:uuid" element={<CertificateView />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
