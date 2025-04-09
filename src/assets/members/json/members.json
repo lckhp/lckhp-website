@@ -900,9 +900,9 @@
     "linkedin_url": ""
   },
   {
-    "id": 69,
+    "id": 70,
     "name": "Aakriti Thapa",
-    "photo_path": "src/assets/members/images/69.png",
+    "photo_path": "src/assets/members/images/70.png",
     "designation": "Member",
     "contact_number": "+977-9843800262",
     "blood_group": "A+",
@@ -916,6 +916,24 @@
     "fb_url": "https://www.facebook.com/100053591684184/",
     "insta_url": "",
     "linkedin_url": ""
+  },
+  {
+    "id": 69,
+    "name": "Buddha Mani Gautam",
+    "photo_path": "src/assets/members/images/69.png",
+    "designation": "Member",
+    "contact_number": "+977-9861286936",
+    "blood_group": "A+",
+    "address": "Thimi, Bhaktapur",
+    "membership_type": "General Member",
+    "leo_lions_id": "",
+    "occupation": "Computer Engineer",
+    "joined_date": "2025/4/9",
+    "email": "buddhagautam231@gmail.com",
+    "club_email": "gautambuddha@lckhp.org",
+    "fb_url": "https://www.facebook.com/100003197275508/",
+    "insta_url": "https://www.instagram.com/buddhaaa_gautam/",
+    "linkedin_url": "https://www.linkedin.com/in/buddhagautam/"
   },
   {
     "id": 41,
