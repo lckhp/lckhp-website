@@ -386,6 +386,24 @@
       "programName": "Cluster-1 Super 8 Cricsal Cup",
       "issuedDate": "2025-04-19",
       "folder": "2025Apr19-ClusterCricsal"
+    },
+    {
+      "uuid": "15ef9626-2e71-4d61-9a88-afc2c151d005",
+      "certificateType": "Certificate of Appreciation",
+      "name": "Leo Sewwandi Ekanayaka",
+      "issuer": "Leo Club of Kathmandu Himalayas Patan [Nepal], Leo Club of  Minuwangoda Circle [Sri Lanka] and Leo Club of Gauhati [India]",
+      "programName": "\"Way to Sakura\" – A Cultural Exploration of Japan",
+      "issuedDate": "2025-04-25",
+      "folder": "2025Apr25-WayToSakura"
+    },
+    {
+      "uuid": "150bc05e-f80c-4faf-9cff-761bb685f22c",
+      "certificateType": "Certificate of Appreciation",
+      "name": "Leo Prasant Kumar Pandit",
+      "issuer": "Leo Club of Kathmandu Himalayas Patan [Nepal], Leo Club of  Minuwangoda Circle [Sri Lanka] and Leo Club of Gauhati [India]",
+      "programName": "\"Way to Sakura\" – A Cultural Exploration of Japan",
+      "issuedDate": "2025-04-25",
+      "folder": "2025Apr25-WayToSakura"
     }
   ]
 }
