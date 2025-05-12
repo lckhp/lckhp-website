@@ -378,19 +378,19 @@ const Programs: React.FC<ProgramProps> = ({ year }) => {
                 <table className="w-full bg-gray-800 rounded-lg table-fixed">
                   <thead className="bg-gray-700 sticky top-0 z-10">
                     <tr>
-                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[8%]">
+                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[8%] sm:w-[8%]">
                         S.N.
                       </th>
-                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[30%]">
+                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[26%] sm:w-[30%]">
                         Program Name
                       </th>
-                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[18%]">
+                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[18%] sm:w-[18%]">
                         Date
                       </th>
-                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[30%]">
+                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[20%] sm:w-[24%]">
                         Venue
                       </th>
-                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[14%]">
+                      <th className="px-2 py-2 text-left text-xs font-medium text-gray-300 uppercase tracking-wider w-[28%] sm:w-[20%]">
                         Type
                       </th>
                     </tr>
@@ -420,7 +420,7 @@ const Programs: React.FC<ProgramProps> = ({ year }) => {
                           </td>
                           <td className="px-2 py-2">
                             <span
-                              className="px-2 py-1 inline-flex text-xs leading-4 font-semibold rounded-full bg-blue-600 text-white truncate max-w-full"
+                              className="px-2 py-1 inline-block text-xs leading-5 font-semibold rounded-full bg-blue-600 text-white whitespace-normal overflow-visible text-center min-w-[80px] break-words"
                               title={program["Program Type"]}
                             >
                               {program["Program Type"]}
