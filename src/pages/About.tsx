@@ -1,48 +1,139 @@
+import { useEffect, useState } from "react";
 import about from "../assets/about.png";
 
 const About = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = document.getElementById("about-section");
+      if (element) {
+        const position = element.getBoundingClientRect();
+        // If element is in viewport
+        if (position.top < window.innerHeight * 0.75) {
+          setIsVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on initial load
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="relative mx-auto px-8 pt-16 sm:max-w-xl md:max-w-full md:px-8 lg:py-24 xl:px-16">
-      <div className="mx-auto max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Text Section */}
-        <div>
-          <h2 className="mb-6 font-sans text-3xl font-extrabold leading-snug tracking-tight text-gray-800 sm:text-4xl">
-            About Us
+    <div
+      id="about-section"
+      className="relative mx-auto px-4 py-16 sm:px-6 lg:px-8"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 z-0"></div>
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            <span className="block">About Us</span>
+            <span className="mt-2 block text-lg font-normal text-gray-500">
+              Serving with Pride Since 1974
+            </span>
           </h2>
-          <p className="mb-4 text-base text-gray-600 md:text-lg">
-            The Leo Club of Kathmandu Himalayas Patan, chartered on October 29,
-            1974, is Nepal’s oldest existing Leo Club. With over 50 years of
-            service, we have been at the forefront of youth empowerment and
-            community development. Our club is part of a global network of Leos,
-            working to inspire leadership, teamwork, and volunteerism among
-            young individuals.
-          </p>
-          <p className="mb-4 text-base text-gray-600 md:text-lg">
-            From health awareness programs to environmental initiatives,
-            disaster relief, and cultural exchange, we strive to address local
-            challenges and build a better future for our community and beyond.
-          </p>
-          <div className="mt-8">
-            <p className="text-lg font-semibold text-gray-800">Our Motto:</p>
-            <p className="text-base text-gray-600">
-              Leadership, Experience, Opportunity.
-            </p>
-            <p className="mt-4 text-lg font-semibold text-gray-800">
-              Our Goal:
-            </p>
-            <p className="text-base text-gray-600">
-              Empower youth to lead and serve.
-            </p>
-          </div>
+          <div className="mx-auto mt-3 h-1 w-24 bg-green-500"></div>
         </div>
 
-        {/* Image Section */}
-        <div className="flex justify-center overflow-hidden">
-          <img
-            src={about}
-            alt="About"
-            className="h-[80%] object-cover rounded-lg shadow-md"
-          />
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          {/* Image Section - Appears first on mobile, second on desktop */}
+          <div
+            className={`order-1 lg:order-2 transition-all duration-1000 ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-10 opacity-0"
+            }`}
+          >
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -left-6 -top-6 h-64 w-64 rounded-full bg-green-200/30 -z-10"></div>
+              <div className="absolute -bottom-6 -right-6 h-64 w-64 rounded-full bg-green-100/30 -z-10"></div>
+
+              {/* Main image with frame */}
+              <div className="overflow-hidden rounded-lg shadow-xl">
+                <img
+                  src={about}
+                  alt="Leo Club Members in Action"
+                  className="h-full w-full transform object-cover transition duration-500 hover:scale-105"
+                />
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -right-6 -top-6 flex h-24 w-24 items-center justify-center rounded-full bg-green-500 p-2 text-center text-white shadow-lg">
+                <div>
+                  <div className="text-xl font-bold">50+</div>
+                  <div className="text-xs">Years of Service</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Text Section - Appears second on mobile, first on desktop */}
+          <div
+            className={`order-2 lg:order-1 transition-all duration-1000 ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-10 opacity-0"
+            }`}
+          >
+            <div className="space-y-6">
+              <p className="text-lg text-gray-700">
+                The Leo Club of Kathmandu Himalayas Patan, chartered on October
+                29, 1974, is Nepal's oldest existing Leo Club. With over 50
+                years of service, we have been at the forefront of youth
+                empowerment and community development. Our club is part of a
+                global network of Leos, working to inspire leadership, teamwork,
+                and volunteerism among young individuals.
+              </p>
+
+              <p className="text-lg text-gray-700">
+                From health awareness programs to environmental initiatives,
+                disaster relief, and cultural exchange, we strive to address
+                local challenges and build a better future for our community and
+                beyond.
+              </p>
+
+              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div className="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+                  <h3 className="mb-2 text-xl font-semibold text-gray-800">
+                    Our Motto
+                  </h3>
+                  <p className="text-gray-600">
+                    Leadership, Experience, Opportunity.
+                  </p>
+                </div>
+
+                <div className="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+                  <h3 className="mb-2 text-xl font-semibold text-gray-800">
+                    Our Goal
+                  </h3>
+                  <p className="text-gray-600">
+                    Empower youth to lead and serve.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-4">
+                <a
+                  href="/register"
+                  className="inline-flex items-center rounded-full bg-green-500 px-6 py-3 text-base font-medium text-white transition-all duration-300 hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                >
+                  Join Our Team
+                </a>
+                <a
+                  href="/2425/programs"
+                  className="inline-flex items-center rounded-full border-2 border-green-500 bg-transparent px-6 py-3 text-base font-medium text-green-500 transition-all duration-300 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                >
+                  Our Programs
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,44 +1,105 @@
-import landing from "../assets/landing.png";
+import { useEffect, useState } from "react";
+import fiftyYearLogo from "../assets/lckhp-logo-50-years.png";
 
 const Landing = () => {
-  return (
-    <div className="relative mx-auto px-8 pt-16 sm:max-w-xl md:max-w-full md:px-8 lg:py-24 xl:px-16">
-      <div className="mx-auto max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Text Section */}
-        <div>
-          <h2 className="mb-6 font-sans text-3xl font-extrabold leading-snug tracking-tight text-gray-800 sm:text-4xl">
-            Leo Club of <br />
-            <span className="inline-block text-green-500">
-              Kathmandu Himalayas Patan
-            </span>
-          </h2>
-          <p className="mb-4 text-base text-gray-600 md:text-lg">
-            Welcome to Leo Club of Kathmandu Himalayas Patan. Since 1974, we
-            have been serving communities with passion and dedication. As the
-            oldest existing Leo Club in Nepal, we are committed to empowering
-            youth, fostering leadership, and creating meaningful social impact
-            through service and innovation.
-          </p>
-          <p className="mb-4 text-base text-gray-600 md:text-lg">
-            Join us in making a difference. Together, we are #StrivingForChange.
-          </p>
-          <div className="mt-6">
-            <a
-              href="#"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-green-500 px-6 font-medium tracking-wide text-white shadow-md transition duration-200 hover:bg-green-400 focus:ring focus:ring-green-300"
-            >
-              Get In Touch
-            </a>
-          </div>
-        </div>
+  const [isVisible, setIsVisible] = useState(false);
 
-        {/* Image Section */}
-        <div className="flex justify-center overflow-hidden">
-          <img
-            src={landing}
-            alt="Landing"
-            className="h-[80%] object-cover rounded-lg shadow-md"
-          />
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const stats = [
+    { label: "Years of Service", value: "50+" },
+    { label: "Projects Completed", value: "200+" },
+    { label: "Lives Impacted", value: "10,000+" },
+    { label: "Active Members", value: "50+" },
+  ];
+
+  return (
+    <div
+      id="home"
+      className="relative bg-gradient-to-b from-green-50 to-white overflow-hidden"
+    >
+      {/* Hero Content */}
+      <div className="relative z-10 mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            {/* Text Content */}
+            <div
+              className={`transition-all duration-1000 ${
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "-translate-x-10 opacity-0"
+              }`}
+            >
+              <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                Leo Club of{" "}
+                <span className="bg-gradient-to-r from-green-500 to-green-700 bg-clip-text text-transparent">
+                  Kathmandu Himalayas Patan
+                </span>
+              </h1>
+
+              <p className="mb-6 max-w-2xl text-lg text-gray-700">
+                Since 1974, we have been the oldest existing Leo Club in Nepal,
+                dedicated to empowering youth and creating meaningful social
+                impact through service and innovation.
+              </p>
+
+              <div className="mb-8 flex flex-wrap gap-4">
+                <a
+                  href="/register"
+                  className="inline-flex items-center justify-center rounded-full bg-green-500 px-6 py-3 text-base font-medium text-white transition-all duration-300 hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                >
+                  Join Our Mission
+                </a>
+                <a
+                  href="/#about-section"
+                  className="inline-flex items-center justify-center rounded-full border-2 border-green-500 bg-transparent px-6 py-3 text-base font-medium text-green-500 transition-all duration-300 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                >
+                  Learn More
+                </a>
+              </div>
+
+              {/* Stats Row */}
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {stats.map((stat, index) => (
+                  <div
+                    key={index}
+                    className="rounded-lg bg-green-100/60 p-4 shadow-sm"
+                  >
+                    <p className="text-2xl font-bold text-green-700">
+                      {stat.value}
+                    </p>
+                    <p className="text-sm text-green-600">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div
+              className={`flex justify-center transition-all duration-1000 ${
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-10 opacity-0"
+              }`}
+            >
+              <div className="relative">
+                {/* Decorative elements */}
+                <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-green-500/20 blur-xl" />
+                <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-blue-500/20 blur-xl" />
+
+                {/* Main image with frame */}
+                <div className="relative rounded-xl bg-gradient-to-br from-green-500 to-blue-500 p-1 shadow-2xl">
+                  <img
+                    src={fiftyYearLogo}
+                    alt="LCKHP 50 Years Anniversary Logo"
+                    className="h-full w-full rounded-lg object-contain bg-white"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

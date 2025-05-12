@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
@@ -28,6 +28,7 @@ interface ProgramStats {
 }
 
 const Programs: React.FC<ProgramProps> = ({ year }) => {
+  const navigate = useNavigate();
   const [programs, setPrograms] = useState<Program[]>([]);
   const [filteredPrograms, setFilteredPrograms] = useState<Program[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
@@ -53,6 +54,11 @@ const Programs: React.FC<ProgramProps> = ({ year }) => {
     "#6A0572", // Dark Purple
     "#1A936F", // Dark Green
   ];
+
+  // Handle year change
+  const handleYearChange = (selectedYear: string) => {
+    navigate(`/${selectedYear}/programs`);
+  };
 
   useEffect(() => {
     if (year) {
@@ -228,9 +234,27 @@ const Programs: React.FC<ProgramProps> = ({ year }) => {
     <div className="flex flex-col items-center w-full min-h-screen bg-gray-900 text-white">
       {year === "2425" || year === "2324" ? (
         <div className="w-full max-w-7xl flex flex-col flex-grow p-4">
-          <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center">
-            LCKHP Programs for L.Y. {year}
-          </h1>
+          {/* Year Toggle Selector */}
+          <div className="w-full flex justify-between items-center mb-6">
+            <h1 className="text-2xl md:text-4xl font-bold text-center">
+              LCKHP Programs for L.Y. {year === "2324" ? "2023/24" : "2024/25"}
+            </h1>
+
+            <div className="flex items-center">
+              <label htmlFor="year-select" className="mr-2 text-gray-300">
+                Select programs for L.Y.
+              </label>
+              <select
+                id="year-select"
+                value={year}
+                onChange={(e) => handleYearChange(e.target.value)}
+                className="bg-gray-800 text-white border border-gray-600 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+              >
+                <option value="2324">2023/24</option>
+                <option value="2425">2024/25</option>
+              </select>
+            </div>
+          </div>
 
           <div className="flex flex-col md:flex-row gap-4 flex-grow mb-8">
             {/* Statistics section - fixed on the left */}

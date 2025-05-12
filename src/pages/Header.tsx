@@ -1,11 +1,11 @@
 const Header = () => {
   // Logo path in public directory should be referenced at root path
-  const logoPath = "/leo-logo.png";
+  const logoPath = "/lckhp-logo.png";
 
   return (
-    <header className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center">
+    <header className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center w-full">
       <a
-        href="#"
+        href="/"
         className="flex cursor-pointer items-center whitespace-nowrap text-2xl font-black"
       >
         <span className="mr-2 text-4xl text-green-500">
@@ -25,11 +25,11 @@ const Header = () => {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          stroke-width="2"
+          strokeWidth="2"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>

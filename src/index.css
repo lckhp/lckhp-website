@@ -2,22 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal scrolling */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
 /* Custom styles for Slick slider dots */
 .slick-dots.custom-dots li button:before {
-    color: white;
-    opacity: 0.25;
+  color: white;
+  opacity: 0.25;
 }
 
 .slick-dots.custom-dots li.slick-active button:before {
-    color: white;
-    opacity: 1;
+  color: white;
+  opacity: 1;
 }
 
 /* Optional: You might want to adjust the size and spacing of the dots */
 .slick-dots.custom-dots li {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 
 .slick-dots.custom-dots li button:before {
-    font-size: 10px;
+  font-size: 10px;
+}
+
+/* Custom styles for the carousel */
+.carousel-slider .slick-dots {
+  bottom: 16px;
+  z-index: 30;
+}
+
+.carousel-slider .slick-dots li button:before {
+  color: white;
+  opacity: 0.5;
+  font-size: 10px;
+}
+
+.carousel-slider .slick-dots li.slick-active button:before {
+  color: white;
+  opacity: 1;
+}
+
+.carousel-slider .slick-prev,
+.carousel-slider .slick-next {
+  z-index: 40;
+  width: 40px;
+  height: 40px;
+}
+
+.carousel-slider .slick-prev {
+  left: 15px;
+}
+
+.carousel-slider .slick-next {
+  right: 15px;
+}
+
+.carousel-slider .slick-prev:before,
+.carousel-slider .slick-next:before {
+  font-size: 40px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-slider .slick-prev:hover:before,
+.carousel-slider .slick-next:hover:before {
+  opacity: 0.8;
+}
+
+/* Image transition effect */
+.carousel-slider .slick-slide img {
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slider .slick-active img {
+  transform: scale(1);
 }

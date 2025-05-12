@@ -21,6 +21,8 @@ const Redirect = lazy(() => import("./pages/Redirect"));
 const CertificateView = lazy(() => import("./pages/CertificateView"));
 const Directory = lazy(() => import("./pages/Directory"));
 const DirectoryCategory = lazy(() => import("./pages/DirectoryCategory"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 
 const App: React.FC = () => {
   return (
@@ -31,6 +33,8 @@ const App: React.FC = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/directory" element={<Directory />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route
             path="/directory/blood-bank"
             element={<DirectoryCategory category="blood_bank" />}

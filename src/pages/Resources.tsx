@@ -56,6 +56,11 @@ const Resources: React.FC = () => {
     },
     { src: "/lckhp-logo.png", alt: "LCKHP Club Logo", text: "LCKHP Club Logo" },
     {
+      src: "/lckhp-logo-50-years.png",
+      alt: "LCKHP - 50 Years Logo",
+      text: "LCKHP - 50 Years Logo",
+    },
+    {
       src: "/lckhp-president-logo-2425.png",
       alt: "LCKHP President Logo 24/25",
       text: "LCKHP President Logo 24/25",
