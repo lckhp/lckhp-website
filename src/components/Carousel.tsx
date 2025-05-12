@@ -59,6 +59,22 @@ const Carousel: React.FC = () => {
       caption: "Leos Fellowship Futsal",
       description: "Promoting teamwork and healthy lifestyle through sports.",
     },
+    {
+      id: 8,
+      image: "/carousel/8.JPG",
+      alt: "Leo District Award",
+      caption: "Leo District Recognition",
+      description:
+        "LCKHP being recognized and awarded by our Leo District for outstanding service.",
+    },
+    {
+      id: 9,
+      image: "/carousel/9.JPG",
+      alt: "Candlelight Vigil",
+      caption: "Candlelight Vigil Ceremony",
+      description:
+        "Honoring the memory of Nepali students who lost their lives abroad through a solemn candlelight vigil.",
+    },
   ];
 
   // Slider settings

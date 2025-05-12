@@ -58,7 +58,7 @@ const ContactUs = () => {
   return (
     <div
       id="contact-section"
-      className="relative mx-auto px-4 py-12 sm:px-6 lg:px-8"
+      className="relative mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:pb-20"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>

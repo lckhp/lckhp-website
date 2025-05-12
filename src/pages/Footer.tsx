@@ -23,25 +23,24 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-br from-green-900 to-green-800 text-white pt-20">
-      {/* Smoothly curved wave at the top */}
+    <footer className="relative bg-green-800 text-white pt-12 mt-12">
+      {/* Professional wave with clean angles */}
       <div className="absolute -top-16 left-0 right-0 h-16 overflow-hidden">
         <svg
-          viewBox="0 0 1440 150"
+          viewBox="0 0 1440 100"
           preserveAspectRatio="none"
-          fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute bottom-0 w-full h-full text-green-900"
+          className="absolute bottom-0 w-full h-full"
         >
           <path
-            d="M0,128L60,117.3C120,107,240,85,360,90.7C480,96,600,128,720,138.7C840,149,960,139,1080,122.7C1200,107,1320,85,1380,74.7L1440,64L1440,150L1380,150C1320,150,1200,150,1080,150C960,150,840,150,720,150C600,150,480,150,360,150C240,150,120,150,60,150L0,150Z"
-            fill="currentColor"
+            d="M0,100 L0,60 C360,95 720,15 1440,60 L1440,100 Z"
+            fill="#166534"
           />
         </svg>
       </div>
 
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 pt-10 pb-12">
+      <div className="container mx-auto px-4 pt-2 pb-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* About Section */}
           <div>
