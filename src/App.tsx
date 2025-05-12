@@ -9,6 +9,7 @@ import {
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
 const Calendar = lazy(() => import("./pages/Calendar"));
+const Programs = lazy(() => import("./pages/Programs"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Register = lazy(() => import("./pages/Register"));
 const Resources = lazy(() => import("./pages/Resources"));
@@ -55,6 +56,7 @@ const GenericRoutes: React.FC<{ year: string }> = ({ year }) => {
   return (
     <Routes>
       <Route path="calendar" element={<Calendar year={year} />} />
+      <Route path="programs" element={<Programs year={year} />} />
       <Route path="members" element={<Members year={year} />} />
       <Route path="members/:id" element={<MemberProfile />} />
       <Route
