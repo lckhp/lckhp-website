@@ -7,6 +7,7 @@ import ContactUs from "./ContactUs";
 import Header from "./Header";
 import Carousel from "../components/Carousel";
 import AnniversaryPopup from "../components/AnniversaryPopup";
+import PresidentTheme from "../components/PresidentTheme";
 
 const Home: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -37,6 +38,7 @@ const Home: React.FC = () => {
       <About />
       <Carousel />
       <LeadershipTeam />
+      <PresidentTheme />
       <ContactUs />
       <Footer />
     </div>
