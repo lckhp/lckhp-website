@@ -55,6 +55,11 @@ const Header = () => {
             </a>
           </li>
           <li className="md:mr-12">
+            <a href="/directory" target="_blank">
+              Directory
+            </a>
+          </li>
+          <li className="md:mr-12">
             <a href="/resources" target="_blank">
               Resources
             </a>

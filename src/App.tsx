@@ -19,6 +19,8 @@ const ReportRedirect = lazy(() => import("./pages/ReportRedirect"));
 const District325R = lazy(() => import("./pages/District325R"));
 const Redirect = lazy(() => import("./pages/Redirect"));
 const CertificateView = lazy(() => import("./pages/CertificateView"));
+const Directory = lazy(() => import("./pages/Directory"));
+const DirectoryCategory = lazy(() => import("./pages/DirectoryCategory"));
 
 const App: React.FC = () => {
   return (
@@ -28,6 +30,19 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/directory" element={<Directory />} />
+          <Route
+            path="/directory/blood-bank"
+            element={<DirectoryCategory category="blood_bank" />}
+          />
+          <Route
+            path="/directory/old-age-homes"
+            element={<DirectoryCategory category="old_age_home" />}
+          />
+          <Route
+            path="/directory/orphanages"
+            element={<DirectoryCategory category="orphanage" />}
+          />
           <Route
             path="/club-assets"
             element={<Redirect page="club-assets" />}
