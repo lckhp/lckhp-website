@@ -1,10 +1,12 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   useParams,
+  useLocation,
 } from "react-router-dom";
+import PageSkeleton from "./components/PageSkeleton";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -27,37 +29,62 @@ const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const App: React.FC = () => {
   return (
     <Router>
-      <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/directory" element={<Directory />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route
-            path="/directory/blood-bank"
-            element={<DirectoryCategory category="blood_bank" />}
-          />
-          <Route
-            path="/directory/old-age-homes"
-            element={<DirectoryCategory category="old_age_home" />}
-          />
-          <Route
-            path="/directory/orphanages"
-            element={<DirectoryCategory category="orphanage" />}
-          />
-          <Route
-            path="/club-assets"
-            element={<Redirect page="club-assets" />}
-          />
-          <Route path="/:year/*" element={<YearRoutes />} />
-          <Route path="/325r/*" element={<District325R />} />
-          <Route path="/verify/:uuid" element={<CertificateView />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/*" element={<AppContent />} />
+      </Routes>
     </Router>
+  );
+};
+
+const AppContent: React.FC = () => {
+  const location = useLocation();
+  const [skeletonType, setSkeletonType] = useState<string>("default");
+
+  useEffect(() => {
+    // Determine skeleton type based on the current route
+    const path = location.pathname;
+
+    if (path === "/" || path === "") {
+      setSkeletonType("home");
+    } else if (path.includes("calendar")) {
+      setSkeletonType("calendar");
+    } else if (path.includes("members")) {
+      setSkeletonType("members");
+    } else if (path.includes("resources")) {
+      setSkeletonType("resources");
+    } else {
+      setSkeletonType("default");
+    }
+  }, [location]);
+
+  return (
+    <Suspense fallback={<PageSkeleton type={skeletonType as any} />}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/directory" element={<Directory />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route
+          path="/directory/blood-bank"
+          element={<DirectoryCategory category="blood_bank" />}
+        />
+        <Route
+          path="/directory/old-age-homes"
+          element={<DirectoryCategory category="old_age_home" />}
+        />
+        <Route
+          path="/directory/orphanages"
+          element={<DirectoryCategory category="orphanage" />}
+        />
+        <Route path="/club-assets" element={<Redirect page="club-assets" />} />
+        <Route path="/:year/*" element={<YearRoutes />} />
+        <Route path="/325r/*" element={<District325R />} />
+        <Route path="/verify/:uuid" element={<CertificateView />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 
