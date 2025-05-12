@@ -42,7 +42,9 @@ const DirectoryCategory: React.FC<DirectoryCategoryProps> = ({ category }) => {
               >
                 Whatsapp
               </a>
-              your authorized hospital prescription letter to this number:
+              your authorized hospital prescription letter to Leo Sonam Sherpa
+              (Founder Member of T.U. Lions Blood Transfusion & Research Center,
+              Kirtipur) in this number:
               <a
                 href="https://wa.me/9779862857260"
                 target="_blank"
