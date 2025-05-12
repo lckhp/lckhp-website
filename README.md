@@ -1,50 +1,145 @@
-# React + TypeScript + Vite
+# LCKHP Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based website for the Leo Club of Kathmandu Himalayas Patan (LCKHP), a social organization. This project is built using React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## 🌐 Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This website serves as the digital presence for LCKHP, featuring:
 
-## Expanding the ESLint configuration
+- Information about the organization and its leadership team
+- Programs and activities dashboard
+- Calendar of events
+- Member profiles and directory
+- Resource repository
+- Contact information
+- Blood bank, orphanages, and old-age homes directory
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend Framework**: React 18.3+
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Styling**: TailwindCSS
+- **Routing**: React Router DOM
+- **Charts**: Chart.js with react-chartjs-2
+- **Carousel**: React Slick with slick-carousel
+- **Icons**: React Icons
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📁 Project Structure
+
+```
+lckhp-website/
+├── public/            # Static assets
+├── src/
+│   ├── assets/        # Images, JSON data, etc.
+│   ├── components/    # Reusable UI components
+│   ├── component/     # Additional UI components (to be consolidated)
+│   ├── constants/     # Shared constants and data
+│   ├── pages/         # Page components
+│   ├── App.tsx        # Application routes
+│   ├── main.tsx       # Application entry point
+│   └── index.css      # Global styles
+├── carousel/          # Carousel-related assets
+└── dist/              # Production build output
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🚦 Getting Started
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerequisites
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- Node.js (v16+)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd lckhp-website
 ```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## 📦 Build for Production
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## 🧪 Linting
+
+The project uses ESLint for code quality:
+
+```bash
+npm run lint
+# or
+yarn lint
+```
+
+## 📚 Key Features
+
+### Year-Based Routing
+
+The application uses a year-based routing system with routes like `/{year}/programs`, `/{year}/calendar`, etc. to maintain data for different organizational years.
+
+### Lazy Loading
+
+Page components are lazy-loaded to improve initial load time and performance.
+
+### Directory Categorization
+
+The directory section organizes resources into categories such as blood banks, old-age homes, and orphanages.
+
+### Dynamic Programs Dashboard
+
+The Programs page features a dashboard with interactive charts showing program statistics.
+
+## 👩‍💻 Development Guidelines
+
+### Component Structure
+
+- Use functional components with TypeScript interfaces for props
+- Utilize React hooks for state management
+- Keep components focused on a single responsibility
+- Extract reusable UI elements to the components directory
+
+### Styling
+
+- Use TailwindCSS classes for styling
+- Add custom CSS in index.css only when necessary
+- Maintain consistent spacing and component sizes
+
+### Performance Considerations
+
+- Optimize images before adding to the project
+- Use React.memo for components that don't need frequent re-renders
+- Implement proper error boundaries
+
+## 🌐 Deployment
+
+The production build is deployed using Vercel.
+
+## 📄 License
+
+This project is proprietary and belongs to the Leo Club of Kathmandu Himalayas Patan.
