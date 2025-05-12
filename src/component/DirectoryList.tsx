@@ -36,6 +36,25 @@ const DirectoryList: React.FC<DirectoryListProps> = ({ category }) => {
     return `https://www.google.com/maps/search/?api=1&query=${query}`;
   };
 
+  // Helper function to format date
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "";
+
+    // Format: YYYY/MM/DD to DD MMM YYYY
+    const [year, month, day] = dateString
+      .split("/")
+      .map((num) => parseInt(num));
+
+    if (isNaN(year) || isNaN(month) || isNaN(day)) return dateString;
+
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
+
   // Load the appropriate data based on the category
   useEffect(() => {
     let categoryData: DirectoryItem[] = [];
@@ -192,19 +211,37 @@ const DirectoryList: React.FC<DirectoryListProps> = ({ category }) => {
                       <span>{item.contact_number}</span>
                     </div>
                   </div>
-                  <div className="mt-2 flex items-center text-amber-700">
-                    <svg
-                      className="mr-1 h-4 w-4 flex-shrink-0"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="font-medium">Needs: {item.needs}</span>
+                  <div className="mt-2 flex items-center text-amber-700 justify-between">
+                    <div className="flex items-center">
+                      <svg
+                        className="mr-1 h-4 w-4 flex-shrink-0"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="font-medium">Needs: {item.needs}</span>
+                    </div>
+                    {item.last_updated && (
+                      <div className="flex items-center text-gray-500 text-sm">
+                        <svg
+                          className="mr-1 h-3.5 w-3.5 flex-shrink-0"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M6 2a1 1 0 00-1.4 1v1H3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2h-1.6V3a1 1 0 00-2 0v1H8V3a1 1 0 00-2 0v1zm1 5a1 1 0 011 1v3a1 1 0 11-2 0V8a1 1 0 011-1z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>Updated: {formatDate(item.last_updated)}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -323,23 +360,41 @@ const DirectoryList: React.FC<DirectoryListProps> = ({ category }) => {
 
               {/* Show needs if available */}
               {item.needs && item.needs.trim() !== "" && (
-                <div className="mt-3 flex items-start">
-                  <svg
-                    className="mr-2 h-5 w-5 text-amber-500 mt-1 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <div className="font-medium text-amber-700">
-                    Needs: {item.needs}
+                <div className="mt-3 flex items-start justify-between">
+                  <div className="flex items-start">
+                    <svg
+                      className="mr-2 h-5 w-5 text-amber-500 mt-1 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <div className="font-medium text-amber-700">
+                      Needs: {item.needs}
+                    </div>
                   </div>
+                  {item.last_updated && (
+                    <div className="flex items-center text-gray-500 text-sm">
+                      <svg
+                        className="mr-1 h-3.5 w-3.5 flex-shrink-0"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M6 2a1 1 0 00-1.4 1v1H3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2h-1.6V3a1 1 0 00-2 0v1H8V3a1 1 0 00-2 0v1zm1 5a1 1 0 011 1v3a1 1 0 11-2 0V8a1 1 0 011-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span>Updated: {formatDate(item.last_updated)}</span>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
