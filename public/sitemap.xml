@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home page -->
+  <url>
+    <loc>https://lckhp.org/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- About section (implicitly on home page but important for SEO) -->
+  <url>
+    <loc>https://lckhp.org/#about-section</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Directory pages -->
+  <url>
+    <loc>https://lckhp.org/directory</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://lckhp.org/directory/blood-bank</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lckhp.org/directory/old-age-homes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lckhp.org/directory/orphanages</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Programs page -->
+  <url>
+    <loc>https://lckhp.org/2425/programs</loc>
+    <changefreq>biweekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Calendar page -->
+  <url>
+    <loc>https://lckhp.org/2425/calendar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Members page -->
+  <url>
+    <loc>https://lckhp.org/2425/members</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Resources page -->
+  <url>
+    <loc>https://lckhp.org/resources</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Register page -->
+  <url>
+    <loc>https://lckhp.org/register</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Policy pages -->
+  <url>
+    <loc>https://lckhp.org/privacy-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://lckhp.org/terms-of-service</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset> 

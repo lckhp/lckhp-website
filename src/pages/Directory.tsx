@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 // Icons for the buttons
 const BloodBankIcon = () => (
@@ -56,12 +57,25 @@ const OrphanageIcon = () => (
 const Directory: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      <SEO
+        title="Directory | Donate & Volunteer in Nepal - Leo Club of Kathmandu Himalayas Patan"
+        description="Find places to donate blood, support orphanages, and help old age homes in Kathmandu and Patan. Verified donation centers and volunteer opportunities in Nepal."
+        keywords="donate blood nepal, blood donation centers kathmandu, donate to orphanage nepal, old age home donations, where to donate in nepal, orphanages that need help patan, blood banks in kathmandu, charity centers kathmandu valley, volunteer opportunities nepal"
+        url="/directory"
+      />
       <div className="container mx-auto px-4">
         <h1 className="mb-8 text-center text-3xl font-bold text-gray-800">
-          Directory
+          Directory - Where to Donate & Volunteer in Nepal
         </h1>
 
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-4xl mb-10">
+          <p className="text-center text-gray-600 mb-8">
+            Leo Club of Kathmandu Himalayas Patan has compiled this directory of
+            verified places where you can donate, volunteer, and make a
+            difference in Nepal. These organizations have been vetted by our
+            team to ensure your contributions reach those in need.
+          </p>
+
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <Link
               to="/directory/blood-bank"
@@ -71,6 +85,9 @@ const Directory: React.FC = () => {
                 <BloodBankIcon />
               </div>
               <h3 className="text-lg font-medium">Blood Banks</h3>
+              <p className="text-sm text-center mt-2">
+                Find blood donation centers in Kathmandu, Patan, and Lalitpur
+              </p>
             </Link>
 
             <Link
@@ -81,6 +98,9 @@ const Directory: React.FC = () => {
                 <OldAgeHomeIcon />
               </div>
               <h3 className="text-lg font-medium">Old Age Homes</h3>
+              <p className="text-sm text-center mt-2">
+                Support elderly care facilities that need donations in Nepal
+              </p>
             </Link>
 
             <Link
@@ -91,8 +111,39 @@ const Directory: React.FC = () => {
                 <OrphanageIcon />
               </div>
               <h3 className="text-lg font-medium">Orphanages</h3>
+              <p className="text-sm text-center mt-2">
+                Help children's homes and orphanages in Kathmandu and Patan
+              </p>
             </Link>
           </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto mb-10">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800">
+            How to Donate in Nepal
+          </h2>
+          <p className="mb-4 text-gray-600">
+            Looking to make a difference? Here are ways you can contribute:
+          </p>
+          <ul className="list-disc pl-6 mb-4 text-gray-600">
+            <li>Donate blood at verified blood banks in Kathmandu and Patan</li>
+            <li>Contribute clothes, food, or supplies to orphanages</li>
+            <li>
+              Support old age homes with donations of blankets, medicine, or
+              food
+            </li>
+            <li>Volunteer your time and skills at these organizations</li>
+            <li>
+              Organize donation drives with your friends, family, or colleagues
+            </li>
+          </ul>
+          <p className="text-gray-600">
+            If you need assistance connecting with these organizations, please{" "}
+            <a href="#contact" className="text-green-600 hover:underline">
+              contact us
+            </a>{" "}
+            and our Leo Club members will help guide you.
+          </p>
         </div>
 
         {/* Go to Home Button */}

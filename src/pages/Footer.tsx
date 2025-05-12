@@ -3,6 +3,7 @@ import facebookLogo from "../assets/logos/facebook.png";
 import instagramLogo from "../assets/logos/instagram.webp";
 import linkedinLogo from "../assets/logos/linkedin.png";
 import emailLogo from "../assets/logos/email.png";
+import { Helmet } from "react-helmet-async";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -22,8 +23,48 @@ const Footer = () => {
   // Get current year for copyright
   const currentYear = new Date().getFullYear();
 
+  // JSON-LD structured data
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    name: "Leo Club of Kathmandu Himalayas Patan",
+    url: "https://lckhp.org",
+    logo: "https://lckhp.org/lckhp-logo.png",
+    sameAs: [
+      "https://www.facebook.com/lckhp",
+      "https://www.instagram.com/lckhpatan/",
+      "https://www.linkedin.com/company/100013568/",
+    ],
+    description:
+      "Leo Club of Kathmandu Himalayas Patan, established in 1974, is Nepal's oldest Leo Club focusing on youth volunteering, community service, and leadership development.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Kupondole Rd",
+      addressLocality: "Patan",
+      addressRegion: "Lalitpur",
+      postalCode: "44600",
+      addressCountry: "Nepal",
+    },
+    email: "info@lckhp.com",
+    foundingDate: "1974-10-29",
+    keywords:
+      "leo club nepal, youth volunteering, community service, blood donation, donate to orphanage, old age home, leadership development",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: "info@lckhp.com",
+      url: "https://lckhp.org/#contact-section",
+    },
+  };
+
   return (
     <footer className="relative bg-green-800 text-white pt-12 mt-12">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+      </Helmet>
+
       {/* Professional wave with clean angles */}
       <div className="absolute -top-16 left-0 right-0 h-16 overflow-hidden">
         <svg

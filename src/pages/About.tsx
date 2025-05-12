@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import about from "../assets/about.png";
+import SEO from "../components/SEO";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,6 +28,12 @@ const About = () => {
       id="about-section"
       className="relative mx-auto px-4 py-16 sm:px-6 lg:px-8"
     >
+      <SEO
+        title="About Leo Club of Kathmandu Himalayas Patan | History & Mission"
+        description="Learn about Leo Club of Kathmandu Himalayas Patan, Nepal's oldest Leo Club since 1974. Discover our history, mission, and community service work in Kathmandu and Patan."
+        keywords="leo club history nepal, oldest leo club nepal, history of leo club nepal, leo club vs lions club, youth volunteering nepal, community service nepal, leo club of kathmandu himalayas patan history"
+        url="/about"
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 z-0"></div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -58,7 +65,7 @@ const About = () => {
               <div className="overflow-hidden rounded-lg shadow-xl">
                 <img
                   src={about}
-                  alt="Leo Club Members in Action"
+                  alt="Leo Club of Kathmandu Himalayas Patan Members in Action"
                   className="h-full w-full transform object-cover transition duration-500 hover:scale-105"
                 />
               </div>
@@ -86,16 +93,18 @@ const About = () => {
                 The Leo Club of Kathmandu Himalayas Patan, chartered on October
                 29, 1974, is Nepal's oldest existing Leo Club. With over 50
                 years of service, we have been at the forefront of youth
-                empowerment and community development. Our club is part of a
-                global network of Leos, working to inspire leadership, teamwork,
-                and volunteerism among young individuals.
+                empowerment and community development in Kathmandu and Patan.
+                Our club is part of a global network of Leos, working to inspire
+                leadership, teamwork, and volunteerism among young individuals.
               </p>
 
               <p className="text-lg text-gray-700">
-                From health awareness programs to environmental initiatives,
-                disaster relief, and cultural exchange, we strive to address
-                local challenges and build a better future for our community and
-                beyond.
+                As a youth volunteer organization in Nepal, we organize various
+                community service activities including health awareness
+                programs, environmental initiatives, disaster relief, blood
+                donation camps, and support for orphanages and old age homes. We
+                strive to address local challenges and build a better future for
+                our community and beyond.
               </p>
 
               <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
