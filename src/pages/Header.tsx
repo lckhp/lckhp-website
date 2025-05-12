@@ -1,5 +1,3 @@
-import React from "react";
-
 const Header = () => {
   // Logo path in public directory should be referenced at root path
   const logoPath = "/leo-logo.png";
