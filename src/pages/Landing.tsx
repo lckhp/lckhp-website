@@ -49,6 +49,8 @@ const Landing = () => {
                 <a
                   href="/register"
                   className="inline-flex items-center justify-center rounded-full bg-green-500 px-6 py-3 text-base font-medium text-white transition-all duration-300 hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Join Our Mission
                 </a>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import Landing from "./Landing";
 import About from "./About";
 import LeadershipTeam from "./LeadershipTeam";
@@ -14,6 +15,8 @@ import SeoLinks from "../components/SeoLinks";
 const Home: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupLoaded, setPopupLoaded] = useState(false);
+  const location = useLocation();
+  const scrollToSectionRef = useRef<string | null>(null);
 
   // Preload the popup component as soon as possible
   useEffect(() => {
@@ -28,6 +31,51 @@ const Home: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Store the section to scroll to in a ref so we can access it after popup closes
+  useEffect(() => {
+    // Check for scrollTo parameter in query string
+    const searchParams = new URLSearchParams(location.search);
+    const scrollToSection = searchParams.get("scrollTo");
+
+    if (scrollToSection) {
+      scrollToSectionRef.current = scrollToSection;
+    }
+  }, [location.search]);
+
+  // Handle scrolling logic
+  const scrollToSection = () => {
+    if (scrollToSectionRef.current) {
+      const element = document.getElementById(scrollToSectionRef.current);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  // Scroll when page loads initially
+  useEffect(() => {
+    if (scrollToSectionRef.current) {
+      // Wait for all components to be rendered
+      const timer = setTimeout(() => {
+        scrollToSection();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Scroll again when popup closes if needed
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+
+    // If we have a section to scroll to, do it after popup animation finishes
+    if (scrollToSectionRef.current) {
+      setTimeout(() => {
+        scrollToSection();
+      }, 600);
+    }
+  };
+
   return (
     <div className="overflow-x-hidden w-full">
       <SEO
@@ -39,7 +87,7 @@ const Home: React.FC = () => {
       {/* Always render popup in DOM to ensure it's loaded */}
       <AnniversaryPopup
         isOpen={popupLoaded && isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+        onClose={handlePopupClose}
       />
       <Header />
       <Landing />

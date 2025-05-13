@@ -55,6 +55,15 @@ const OrphanageIcon = () => (
 );
 
 const Directory: React.FC = () => {
+  // Handle contact click with a more reliable approach
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    // Create a URL with a special parameter that signals to scroll to contact
+    const homeUrl = "/?scrollTo=contact-section";
+    window.location.href = homeUrl;
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <SEO
@@ -139,7 +148,11 @@ const Directory: React.FC = () => {
           </ul>
           <p className="text-gray-600">
             If you need assistance connecting with these organizations, please{" "}
-            <a href="#contact" className="text-green-600 hover:underline">
+            <a
+              href="/"
+              onClick={handleContactClick}
+              className="text-green-600 hover:underline cursor-pointer"
+            >
               contact us
             </a>{" "}
             and our Leo Club members will help guide you.

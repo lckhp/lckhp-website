@@ -247,7 +247,7 @@ const ContactUs = () => {
                     <FaFacebook />
                   </a>
                   <a
-                    href="https://www.instagram.com/lckhpatan/"
+                    href="https://www.instagram.com/lckhimalayaspatan/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl text-green-600 shadow-sm transition-all duration-300 hover:bg-green-600 hover:text-white"

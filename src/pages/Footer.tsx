@@ -32,7 +32,7 @@ const Footer = () => {
     logo: "https://lckhp.org/lckhp-logo.png",
     sameAs: [
       "https://www.facebook.com/lckhp",
-      "https://www.instagram.com/lckhpatan/",
+      "https://www.instagram.com/lckhimalayaspatan/",
       "https://www.linkedin.com/company/100013568/",
     ],
     description:
@@ -45,14 +45,14 @@ const Footer = () => {
       postalCode: "44600",
       addressCountry: "Nepal",
     },
-    email: "info@lckhp.com",
+    email: "info@lckhp.org",
     foundingDate: "1974-10-29",
     keywords:
       "leo club nepal, youth volunteering, community service, blood donation, donate to orphanage, old age home, leadership development",
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "info@lckhp.com",
+      email: "info@lckhp.org",
       url: "https://lckhp.org/#contact-section",
     },
   };
@@ -189,7 +189,7 @@ const Footer = () => {
                 <img src={facebookLogo} alt="Facebook" className="h-5 w-5" />
               </a>
               <a
-                href="https://www.instagram.com/lckhpatan/"
+                href="https://www.instagram.com/lckhimalayaspatan/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:bg-white/20"
@@ -207,7 +207,7 @@ const Footer = () => {
                 <img src={linkedinLogo} alt="LinkedIn" className="h-5 w-5" />
               </a>
               <a
-                href="mailto:info@lckhp.com"
+                href="mailto:info@lckhp.org"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:bg-white/20"
                 aria-label="Email"
               >

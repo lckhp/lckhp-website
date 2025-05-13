@@ -71,6 +71,10 @@ const AppContent: React.FC = () => {
           element={<DirectoryCategory category="blood_bank" />}
         />
         <Route
+          path="/directory/blood-banks"
+          element={<DirectoryCategory category="blood_bank" />}
+        />
+        <Route
           path="/directory/old-age-homes"
           element={<DirectoryCategory category="old_age_home" />}
         />

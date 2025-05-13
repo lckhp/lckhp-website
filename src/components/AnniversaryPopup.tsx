@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from "react";
+import { useLocation } from "react-router-dom";
 import Confetti from "react-confetti";
 import fiftyYearLogo from "../assets/lckhp-logo-50-years.png";
 
@@ -28,6 +29,7 @@ const AnniversaryPopup: React.FC<AnniversaryPopupProps> = ({
   const [showConfetti, setShowConfetti] = useState(true);
   const [confettiFading, setConfettiFading] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
+  const location = useLocation();
 
   // Handle window resize for confetti dimensions
   useEffect(() => {
@@ -80,6 +82,10 @@ const AnniversaryPopup: React.FC<AnniversaryPopupProps> = ({
       // Store the current scroll position
       const scrollY = window.scrollY;
 
+      // Check if we arrived via a scrollTo parameter
+      const searchParams = new URLSearchParams(location.search);
+      const hasScrollToParam = searchParams.has("scrollTo");
+
       // Create a custom event handler for the wheel event
       const preventDefault = (e: Event) => e.preventDefault();
 
@@ -106,11 +112,13 @@ const AnniversaryPopup: React.FC<AnniversaryPopupProps> = ({
         // Remove the padding when the popup is closed
         document.body.style.paddingRight = "";
 
-        // Restore the previous scroll position
-        window.scrollTo(0, scrollY);
+        // Only restore the previous scroll position if we did not arrive via a scrollTo parameter
+        if (!hasScrollToParam) {
+          window.scrollTo(0, scrollY);
+        }
       };
     }
-  }, [isOpen]);
+  }, [isOpen, location.search]);
 
   const handleClose = () => {
     setIsClosing(true);

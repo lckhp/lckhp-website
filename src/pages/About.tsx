@@ -131,12 +131,16 @@ const About = () => {
                 <a
                   href="/register"
                   className="inline-flex items-center rounded-full bg-green-500 px-6 py-3 text-base font-medium text-white transition-all duration-300 hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Join Our Team
                 </a>
                 <a
                   href="/2425/programs"
                   className="inline-flex items-center rounded-full border-2 border-green-500 bg-transparent px-6 py-3 text-base font-medium text-green-500 transition-all duration-300 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Our Programs
                 </a>
