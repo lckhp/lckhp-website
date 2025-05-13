@@ -52,7 +52,6 @@ const ContactUs = () => {
 
     try {
       // Using Formspree to send the form data without a backend
-      // Replace 'YOUR_FORMSPREE_ID' with your actual Formspree form ID
       const response = await fetch("https://formspree.io/f/xblopgdv", {
         method: "POST",
         headers: {
