@@ -8,15 +8,49 @@ import { Helmet } from "react-helmet-async";
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [subscribeError, setSubscribeError] = useState("");
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    // This would typically send a request to a backend API
-    if (email.trim() !== "") {
-      setIsSubscribed(true);
-      setEmail("");
-      // Reset after 3 seconds
-      setTimeout(() => setIsSubscribed(false), 3000);
+
+    if (email.trim() === "") return;
+
+    setIsSubmitting(true);
+    setSubscribeError("");
+
+    try {
+      // Send subscription data to Formspree
+      const response = await fetch("https://formspree.io/f/xblopgdv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          subject: "Newsletter Subscription",
+          message: `A new user has subscribed to your Newsletter: ${email}`,
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubscribed(true);
+        setEmail("");
+        // Reset after 3 seconds
+        setTimeout(() => setIsSubscribed(false), 3000);
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setSubscribeError(error.message);
+      } else {
+        setSubscribeError("An unexpected error occurred");
+      }
+      console.error("Newsletter subscription error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -236,6 +270,11 @@ const Footer = () => {
                 <p className="text-gray-300">
                   Get updates on our latest events and initiatives.
                 </p>
+                {subscribeError && (
+                  <div className="rounded-lg bg-red-600/20 p-2 text-center">
+                    <p className="text-white text-sm">{subscribeError}</p>
+                  </div>
+                )}
                 <div className="relative">
                   <input
                     type="email"
@@ -247,21 +286,49 @@ const Footer = () => {
                   />
                   <button
                     type="submit"
-                    className="absolute right-1 top-1/2 -translate-y-1/2 rounded-md bg-green-500 p-2 text-white transition-colors hover:bg-green-400"
+                    className={`absolute right-1 top-1/2 -translate-y-1/2 rounded-md p-2 text-white transition-colors ${
+                      isSubmitting
+                        ? "bg-green-700 cursor-not-allowed"
+                        : "bg-green-500 hover:bg-green-400"
+                    }`}
+                    disabled={isSubmitting}
                     aria-label="Subscribe"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                    {isSubmitting ? (
+                      <svg
+                        className="h-5 w-5 animate-spin"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
                   </button>
                 </div>
               </form>

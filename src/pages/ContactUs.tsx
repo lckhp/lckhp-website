@@ -18,6 +18,8 @@ const ContactUs = () => {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,16 +45,46 @@ const ContactUs = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // This would typically send a request to a backend API
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      // Using Formspree to send the form data without a backend
+      // Replace 'YOUR_FORMSPREE_ID' with your actual Formspree form ID
+      const response = await fetch("https://formspree.io/f/xblopgdv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset form after successful submission
+        setFormData({ name: "", email: "", message: "" });
+        // Reset submission status after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        const data = await response.json();
+        throw new Error(
+          data.error || "Something went wrong. Please try again."
+        );
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setSubmitError(error.message);
+      } else {
+        setSubmitError("An unexpected error occurred. Please try again.");
+      }
+      console.error("Form submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -112,6 +144,11 @@ const ContactUs = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {submitError && (
+                    <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
+                      {submitError}
+                    </div>
+                  )}
                   <div>
                     <label
                       htmlFor="name"
@@ -172,9 +209,14 @@ const ContactUs = () => {
                   <div>
                     <button
                       type="submit"
-                      className="inline-flex w-full items-center justify-center rounded-md bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                      disabled={isSubmitting}
+                      className={`inline-flex w-full items-center justify-center rounded-md px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
+                        isSubmitting
+                          ? "bg-green-400 cursor-not-allowed"
+                          : "bg-green-600 hover:bg-green-700"
+                      }`}
                     >
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </button>
                   </div>
                 </form>
