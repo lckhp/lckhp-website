@@ -12,7 +12,7 @@ This website serves as the digital presence for LCKHP, featuring:
 - Member profiles and directory
 - Resource repository
 - Contact information
-- Blood bank, orphanages, and old-age homes directory
+- Blood bank, orphanages, and old-age homes donation section
 
 ## 🚀 Tech Stack
 
@@ -107,9 +107,9 @@ The application uses a year-based routing system with routes like `/{year}/progr
 
 Page components are lazy-loaded to improve initial load time and performance.
 
-### Directory Categorization
+### Donation Categorization
 
-The directory section organizes resources into categories such as blood banks, old-age homes, and orphanages.
+The donation section organizes resources into categories such as blood banks, old-age homes, and orphanages.
 
 ### Dynamic Programs Dashboard
 

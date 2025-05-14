@@ -26,18 +26,18 @@ const SeoLinks: React.FC = () => {
           <a href="/2425/members">Youth Volunteers in Nepal</a>
         </li>
         <li>
-          <a href="/directory">Directory for Donations and Volunteering</a>
+          <a href="/donate">Directory for Donations and Volunteering</a>
         </li>
         <li>
-          <a href="/directory/blood-bank">Blood Donation Centers in Nepal</a>
+          <a href="/donate/blood-bank">Blood Donation Centers in Nepal</a>
         </li>
         <li>
-          <a href="/directory/old-age-homes">
+          <a href="/donate/old-age-homes">
             Donate to Old Age Homes in Kathmandu
           </a>
         </li>
         <li>
-          <a href="/directory/orphanages">Support Orphanages in Nepal</a>
+          <a href="/donate/orphanages">Support Orphanages in Nepal</a>
         </li>
       </ul>
 
@@ -60,24 +60,22 @@ const SeoLinks: React.FC = () => {
       <h2>Donation Opportunities</h2>
       <ul>
         <li>
-          <a href="/directory/blood-bank">Where to Donate Blood in Kathmandu</a>
+          <a href="/donate/blood-bank">Where to Donate Blood in Kathmandu</a>
         </li>
         <li>
-          <a href="/directory/blood-bank">
-            Blood Banks Accepting Donors in Nepal
-          </a>
+          <a href="/donate/blood-bank">Blood Banks Accepting Donors in Nepal</a>
         </li>
         <li>
-          <a href="/directory/blood-bank">Emergency Blood Donation Nepal</a>
+          <a href="/donate/blood-bank">Emergency Blood Donation Nepal</a>
         </li>
         <li>
-          <a href="/directory/old-age-homes">Old Age Homes Needing Donations</a>
+          <a href="/donate/old-age-homes">Old Age Homes Needing Donations</a>
         </li>
         <li>
-          <a href="/directory/orphanages">Orphanages That Need Help in Patan</a>
+          <a href="/donate/orphanages">Orphanages That Need Help in Patan</a>
         </li>
         <li>
-          <a href="/directory">Non-profit Organizations in Nepal</a>
+          <a href="/donate">Non-profit Organizations in Nepal</a>
         </li>
       </ul>
     </div>

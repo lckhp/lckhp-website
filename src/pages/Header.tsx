@@ -55,8 +55,17 @@ const Header = () => {
             </a>
           </li>
           <li className="md:mr-12">
-            <a href="/directory" target="_blank">
-              Directory
+            <a href="/donate" target="_blank">
+              Donate
+            </a>
+          </li>
+          <li className="md:mr-12">
+            <a
+              href="https://blog.lckhp.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog
             </a>
           </li>
           <li className="md:mr-12">

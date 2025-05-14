@@ -54,7 +54,7 @@ const OrphanageIcon = () => (
   </svg>
 );
 
-const Directory: React.FC = () => {
+const Donate: React.FC = () => {
   // Handle contact click with a more reliable approach
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -67,14 +67,14 @@ const Directory: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <SEO
-        title="Directory | Donate & Volunteer in Nepal - Leo Club of Kathmandu Himalayas Patan"
+        title="Donate & Volunteer in Nepal - Leo Club of Kathmandu Himalayas Patan"
         description="Find places to donate blood, support orphanages, and help old age homes in Kathmandu and Patan. Verified donation centers and volunteer opportunities in Nepal."
         keywords="donate blood nepal, blood donation centers kathmandu, donate to orphanage nepal, old age home donations, where to donate in nepal, orphanages that need help patan, blood banks in kathmandu, charity centers kathmandu valley, volunteer opportunities nepal"
-        url="/directory"
+        url="/donate"
       />
       <div className="container mx-auto px-4">
         <h1 className="mb-8 text-center text-3xl font-bold text-gray-800">
-          Directory - Where to Donate & Volunteer in Nepal
+          Donate & Volunteer in Nepal
         </h1>
 
         <div className="mx-auto max-w-4xl mb-10">
@@ -87,7 +87,7 @@ const Directory: React.FC = () => {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <Link
-              to="/directory/blood-bank"
+              to="/donate/blood-bank"
               className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md transition-all hover:bg-gray-800 hover:text-white"
             >
               <div className="mb-3 rounded-full bg-red-100 p-3 text-red-600">
@@ -100,7 +100,7 @@ const Directory: React.FC = () => {
             </Link>
 
             <Link
-              to="/directory/old-age-homes"
+              to="/donate/old-age-homes"
               className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md transition-all hover:bg-gray-800 hover:text-white"
             >
               <div className="mb-3 rounded-full bg-blue-100 p-3 text-blue-600">
@@ -113,7 +113,7 @@ const Directory: React.FC = () => {
             </Link>
 
             <Link
-              to="/directory/orphanages"
+              to="/donate/orphanages"
               className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md transition-all hover:bg-gray-800 hover:text-white"
             >
               <div className="mb-3 rounded-full bg-purple-100 p-3 text-purple-600">
@@ -173,4 +173,4 @@ const Directory: React.FC = () => {
   );
 };
 
-export default Directory;
+export default Donate;

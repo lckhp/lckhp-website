@@ -173,10 +173,10 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/directory"
+                  href="/donate"
                   className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
                 >
-                  Directory
+                  Donate
                 </a>
               </li>
               <li>
@@ -186,6 +186,16 @@ const Footer = () => {
                   target="_blank"
                 >
                   Leo Darpan
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://blog.lckhp.org"
+                  className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Blog
                 </a>
               </li>
               <li>

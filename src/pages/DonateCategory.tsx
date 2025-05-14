@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DirectoryList from "../component/DirectoryList";
+import DonateList from "../component/DonateList";
 import SEO from "../components/SEO";
 
-interface DirectoryCategoryProps {
+interface DonateCategoryProps {
   category: string;
 }
 
-const DirectoryCategory: React.FC<DirectoryCategoryProps> = ({ category }) => {
+const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
   // Set SEO parameters based on category
   const getSEOParams = () => {
     if (category === "blood_bank") {
@@ -48,7 +48,7 @@ const DirectoryCategory: React.FC<DirectoryCategoryProps> = ({ category }) => {
         title={seoParams.title}
         description={seoParams.description}
         keywords={seoParams.keywords}
-        url={`/directory/${
+        url={`/donate/${
           category === "blood_bank"
             ? "blood-bank"
             : category === "old_age_home"
@@ -67,10 +67,10 @@ const DirectoryCategory: React.FC<DirectoryCategoryProps> = ({ category }) => {
 
         <div className="mb-6 flex justify-between">
           <Link
-            to="/directory"
+            to="/donate"
             className="rounded-md bg-gray-200 px-4 py-2 text-gray-700 transition-all hover:bg-gray-300"
           >
-            &larr; Back to Directory
+            &larr; Back to Donate
           </Link>
         </div>
 
@@ -120,7 +120,7 @@ const DirectoryCategory: React.FC<DirectoryCategoryProps> = ({ category }) => {
           )}
         </div>
 
-        <DirectoryList category={category} />
+        <DonateList category={category} />
 
         {/* WhatsApp Emergency Contact for Blood Banks */}
         {category === "blood_bank" && (
@@ -167,4 +167,4 @@ const DirectoryCategory: React.FC<DirectoryCategoryProps> = ({ category }) => {
   );
 };
 
-export default DirectoryCategory;
+export default DonateCategory;

@@ -5,6 +5,7 @@ import {
   Routes,
   useParams,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import PageSkeleton from "./components/PageSkeleton";
 
@@ -21,10 +22,11 @@ const ReportRedirect = lazy(() => import("./pages/ReportRedirect"));
 const District325R = lazy(() => import("./pages/District325R"));
 const Redirect = lazy(() => import("./pages/Redirect"));
 const CertificateView = lazy(() => import("./pages/CertificateView"));
-const Directory = lazy(() => import("./pages/Directory"));
-const DirectoryCategory = lazy(() => import("./pages/DirectoryCategory"));
+// const Directory = lazy(() => import("./pages/Directory"));
+const DonateCategory = lazy(() => import("./pages/DonateCategory"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const Donate = lazy(() => import("./pages/Donate"));
 
 const App: React.FC = () => {
   return (
@@ -63,24 +65,41 @@ const AppContent: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/resources" element={<Resources />} />
-        <Route path="/directory" element={<Directory />} />
+        <Route path="/directory" element={<Navigate to="/donate" replace />} />
+        <Route path="/donate" element={<Donate />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route
           path="/directory/blood-bank"
-          element={<DirectoryCategory category="blood_bank" />}
+          element={<Navigate to="/donate/blood-bank" replace />}
         />
         <Route
           path="/directory/blood-banks"
-          element={<DirectoryCategory category="blood_bank" />}
+          element={<Navigate to="/donate/blood-bank" replace />}
         />
         <Route
           path="/directory/old-age-homes"
-          element={<DirectoryCategory category="old_age_home" />}
+          element={<Navigate to="/donate/old-age-homes" replace />}
         />
         <Route
           path="/directory/orphanages"
-          element={<DirectoryCategory category="orphanage" />}
+          element={<Navigate to="/donate/orphanages" replace />}
+        />
+        <Route
+          path="/donate/blood-bank"
+          element={<DonateCategory category="blood_bank" />}
+        />
+        <Route
+          path="/donate/blood-banks"
+          element={<DonateCategory category="blood_bank" />}
+        />
+        <Route
+          path="/donate/old-age-homes"
+          element={<DonateCategory category="old_age_home" />}
+        />
+        <Route
+          path="/donate/orphanages"
+          element={<DonateCategory category="orphanage" />}
         />
         <Route path="/club-assets" element={<Redirect page="club-assets" />} />
         <Route path="/:year/*" element={<YearRoutes />} />

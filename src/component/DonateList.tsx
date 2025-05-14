@@ -18,11 +18,11 @@ interface DirectoryItem {
   last_updated?: string;
 }
 
-interface DirectoryListProps {
+interface DonateListProps {
   category: string;
 }
 
-const DirectoryList: React.FC<DirectoryListProps> = ({ category }) => {
+const DonateList: React.FC<DonateListProps> = ({ category }) => {
   const [data, setData] = useState<DirectoryItem[]>([]);
   const [filteredData, setFilteredData] = useState<DirectoryItem[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -249,166 +249,162 @@ const DirectoryList: React.FC<DirectoryListProps> = ({ category }) => {
           </div>
         )}
 
-      {/* Search Bar */}
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Search by name, location or contact number..."
-          className="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-      </div>
-
-      {/* District Filter Buttons */}
-      {districts.length > 0 && (
-        <div className="mb-6">
-          <h3 className="mb-2 font-medium text-gray-700">
-            Filter by District:
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {districts.map((district) => (
-              <button
-                key={district}
-                onClick={() => handleDistrictSelect(district)}
-                className={`rounded-full px-4 py-1 text-sm ${
-                  selectedDistrict === district
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                {district}
-              </button>
-            ))}
-          </div>
+      {/* Search and filter section */}
+      <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <label
+            htmlFor="search"
+            className="mb-2 block text-sm font-medium text-gray-700"
+          >
+            Search by name, location or phone
+          </label>
+          <input
+            type="text"
+            id="search"
+            className="w-full rounded-md border border-gray-300 p-2 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+            placeholder="Type to search..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
         </div>
-      )}
-
-      {/* Results Count */}
-      <div className="mb-4 text-gray-600">
-        Found {filteredData.length}{" "}
-        {filteredData.length === 1 ? "result" : "results"}
-      </div>
-
-      {/* List of Items */}
-      <div className="space-y-4">
-        {filteredData.length > 0 ? (
-          filteredData.map((item) => (
-            <div key={item.id} className="rounded-lg bg-white p-5 shadow-md">
-              <a
-                href={createGoogleMapsUrl(item)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors cursor-pointer inline-block"
-              >
-                {item.name}
-              </a>
-              <div className="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
-                <div className="flex items-start">
-                  <svg
-                    className="mr-2 h-5 w-5 text-gray-500 mt-1 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  <a
-                    href={createGoogleMapsUrl(item)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-blue-600 transition-colors cursor-pointer"
-                  >
-                    {item.location}
-                  </a>
-                </div>
-                <div className="flex items-start">
-                  <svg
-                    className="mr-2 h-5 w-5 text-gray-500 mt-1 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                  <div>
-                    <div>{item.contact_number}</div>
-                    {item.alt_contact_number && (
-                      <div className="text-gray-500">
-                        {item.alt_contact_number}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Show needs if available */}
-              {item.needs && item.needs.trim() !== "" && (
-                <div className="mt-3 flex items-start justify-between">
-                  <div className="flex items-start">
-                    <svg
-                      className="mr-2 h-5 w-5 text-amber-500 mt-1 flex-shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <div className="font-medium text-amber-700">
-                      Needs: {item.needs}
-                    </div>
-                  </div>
-                  {item.last_updated && (
-                    <div className="flex items-center text-gray-500 text-sm">
-                      <svg
-                        className="mr-1 h-3.5 w-3.5 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6 2a1 1 0 00-1.4 1v1H3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2h-1.6V3a1 1 0 00-2 0v1H8V3a1 1 0 00-2 0v1zm1 5a1 1 0 011 1v3a1 1 0 11-2 0V8a1 1 0 011-1z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>Updated: {formatDate(item.last_updated)}</span>
-                    </div>
-                  )}
-                </div>
-              )}
+        {districts.length > 0 && (
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-700">
+              Filter by district
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {districts.map((district) => (
+                <button
+                  key={district}
+                  onClick={() => handleDistrictSelect(district)}
+                  className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                    selectedDistrict === district
+                      ? "bg-green-500 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
+                >
+                  {district}
+                </button>
+              ))}
             </div>
-          ))
-        ) : (
-          <div className="rounded-lg bg-gray-100 p-6 text-center">
-            <p className="text-gray-600">
-              No results found. Try adjusting your search criteria.
-            </p>
           </div>
         )}
       </div>
+
+      {/* Results count */}
+      <p className="mb-4 text-gray-600">
+        Showing {filteredData.length} of {data.length} results
+      </p>
+
+      {/* Directory items list */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {filteredData.map((item) => (
+          <div
+            key={item.id}
+            className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all hover:border-green-200 hover:shadow-md"
+          >
+            <h3 className="mb-2 text-lg font-semibold text-gray-800">
+              {item.name}
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-start text-gray-700">
+                <svg
+                  className="mr-2 h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <a
+                  href={createGoogleMapsUrl(item)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  {item.location}
+                </a>
+              </div>
+              <div className="flex items-start text-gray-700">
+                <svg
+                  className="mr-2 h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                <div>
+                  <a
+                    href={`tel:${item.contact_number}`}
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    {item.contact_number}
+                  </a>
+                  {item.alt_contact_number && (
+                    <div className="mt-1">
+                      <a
+                        href={`tel:${item.alt_contact_number}`}
+                        className="hover:text-blue-600 transition-colors"
+                      >
+                        {item.alt_contact_number}
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+              {item.needs && (
+                <div className="mt-1 flex items-start text-amber-700">
+                  <svg
+                    className="mr-2 h-5 w-5 text-amber-500 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <div>
+                    <span className="font-medium">Needs:</span> {item.needs}
+                  </div>
+                </div>
+              )}
+              {item.last_updated && (
+                <div className="text-right text-xs text-gray-500">
+                  Last verified: {formatDate(item.last_updated)}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {filteredData.length === 0 && (
+        <div className="my-8 rounded-lg bg-gray-100 p-4 text-center text-gray-700">
+          No results match your search criteria. Please try a different search
+          term or filter.
+        </div>
+      )}
     </div>
   );
 };
 
-export default DirectoryList;
+export default DonateList;

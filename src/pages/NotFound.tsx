@@ -50,7 +50,7 @@ const NotFound = () => {
             </li>
             <li>
               <Link
-                to="/directory"
+                to="/donate"
                 className="text-green-600 hover:text-green-700 hover:underline"
               >
                 Directory for Donations
@@ -58,7 +58,7 @@ const NotFound = () => {
             </li>
             <li>
               <Link
-                to="/directory/blood-bank"
+                to="/donate/blood-bank"
                 className="text-green-600 hover:text-green-700 hover:underline"
               >
                 Blood Donation Centers
