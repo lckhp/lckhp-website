@@ -1,8 +1,65 @@
 {
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/register",
+      "destination": "https://forms.gle/b7gmsnXeQTGjRCAx8",
+      "permanent": true
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources-page",
+      "permanent": true
+    },
+    { "source": "/directory", "destination": "/donate", "permanent": true },
+    {
+      "source": "/directory/orphanages",
+      "destination": "/donate/orphanages",
+      "permanent": true
+    },
+    {
+      "source": "/directory/blood-bank",
+      "destination": "/donate/blood-bank",
+      "permanent": true
+    },
+    {
+      "source": "/directory/blood-banks",
+      "destination": "/donate/blood-bank",
+      "permanent": true
+    },
+    {
+      "source": "/directory/old-age-homes",
+      "destination": "/donate/old-age-homes",
+      "permanent": true
+    },
+    {
+      "source": "http://lckhp.org",
+      "destination": "https://lckhp.org",
+      "permanent": true
+    },
+    {
+      "source": "http://www.lckhp.org",
+      "destination": "https://lckhp.org",
+      "permanent": true
+    },
+    {
+      "source": "https://www.lckhp.org",
+      "destination": "https://lckhp.org",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
 }

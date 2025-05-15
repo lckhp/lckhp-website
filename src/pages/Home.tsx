@@ -77,6 +77,27 @@ const Home: React.FC = () => {
     }
   };
 
+  // Inside useEffect
+  useEffect(() => {
+    // Handle hash fragments for better SEO indexing
+    const handleHashFragment = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetSection = document.querySelector(hash);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    // Set a timeout to ensure DOM is fully loaded
+    setTimeout(handleHashFragment, 1000);
+
+    // Also add event listener for hash changes
+    window.addEventListener("hashchange", handleHashFragment);
+    return () => window.removeEventListener("hashchange", handleHashFragment);
+  }, []);
+
   return (
     <div className="overflow-x-hidden w-full">
       <SEO

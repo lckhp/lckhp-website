@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import membersData from "../assets/members/json/members.json";
+import SEO from "../components/SEO";
 
 // Import social media logos
 import emailLogo from "../assets/logos/email.png";
@@ -71,107 +72,119 @@ const MemberProfile: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-5">
-      <div className="bg-white p-5 rounded shadow-lg flex flex-col items-center relative">
-        <div className="relative">
-          {/* Display Leo logo overlay only if membership_type is "General Member" */}
-          {member.membership_type === "General Member" && (
-            <img
-              src="/leo-logo.png"
-              alt="Leo Logo"
-              className="absolute inset-0 opacity-20 transform scale-175 pointer-events-none"
-              style={{
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%) scale(1.75)",
-              }}
-              onDragStart={preventDefault}
-            />
-          )}
-          {photoUrl && (
-            <div
-              className="relative w-40 h-40 rounded-full border-4 border-yellow-500 flex items-center justify-center mb-4 mt-4 pointer-events-none"
-              style={{ zIndex: 2 }}
-              onDragStart={preventDefault}
-            >
+    <div className="bg-gray-100 min-h-screen">
+      {member && (
+        <SEO
+          title={`${member.name} - Leo Club Member Profile | LCKHP`}
+          description={`Learn about ${member.name}, ${
+            member.designation || "member"
+          } at Leo Club of Kathmandu Himalayas Patan. View contact information, achievements, and more.`}
+          keywords={`leo club nepal, ${member.name}, youth volunteer nepal, community service nepal, leo club member`}
+          url={`/2425/members/${id}`}
+        />
+      )}
+      <div className="container mx-auto p-5">
+        <div className="bg-white p-5 rounded shadow-lg flex flex-col items-center relative">
+          <div className="relative">
+            {/* Display Leo logo overlay only if membership_type is "General Member" */}
+            {member.membership_type === "General Member" && (
               <img
-                src={photoUrl}
-                alt={`Profile of ${member.name}`}
-                className="w-36 h-36 rounded-full object-cover pointer-events-none"
+                src="/leo-logo.png"
+                alt="Leo Logo"
+                className="absolute inset-0 opacity-20 transform scale-175 pointer-events-none"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%) scale(1.75)",
+                }}
+                onDragStart={preventDefault}
               />
-            </div>
-          )}
-        </div>
-        <h1 className="text-3xl font-bold mt-3">
-          {member.membership_type === "General Member"
-            ? `Leo ${member.name}`
-            : member.name}
-        </h1>
-        <p className="text-2xl font-bold mb-4">{member.designation}</p>
+            )}
+            {photoUrl && (
+              <div
+                className="relative w-40 h-40 rounded-full border-4 border-yellow-500 flex items-center justify-center mb-4 mt-4 pointer-events-none"
+                style={{ zIndex: 2 }}
+                onDragStart={preventDefault}
+              >
+                <img
+                  src={photoUrl}
+                  alt={`Profile of ${member.name}`}
+                  className="w-36 h-36 rounded-full object-cover pointer-events-none"
+                />
+              </div>
+            )}
+          </div>
+          <h1 className="text-3xl font-bold mt-3">
+            {member.membership_type === "General Member"
+              ? `Leo ${member.name}`
+              : member.name}
+          </h1>
+          <p className="text-2xl font-bold mb-4">{member.designation}</p>
 
-        <MemberInfo member={member} />
+          <MemberInfo member={member} />
 
-        <div className="flex space-x-4 mt-1">
-          <a
-            href={`mailto:${member.club_email}`}
-            aria-label={`Send email to ${member.name}`}
-            rel="noopener noreferrer"
-          >
-            <img
-              src={emailLogo}
-              alt="Email"
-              className="w-10 h-10 rounded-full"
-            />
-          </a>
-          {/* Conditionally render social media logos if URLs are present */}
-          {member.fb_url && (
+          <div className="flex space-x-4 mt-1">
             <a
-              href={member.fb_url}
-              target="_blank"
-              aria-label={`${member.name}'s Facebook profile`}
+              href={`mailto:${member.club_email}`}
+              aria-label={`Send email to ${member.name}`}
               rel="noopener noreferrer"
             >
               <img
-                src={facebookLogo}
-                alt="Facebook"
+                src={emailLogo}
+                alt="Email"
                 className="w-10 h-10 rounded-full"
               />
             </a>
-          )}
-          {member.insta_url && (
-            <a
-              href={member.insta_url}
-              target="_blank"
-              aria-label={`${member.name}'s Instagram profile`}
-              rel="noopener noreferrer"
-            >
-              <img
-                src={instagramLogo}
-                alt="Instagram"
-                className="w-10 h-10 rounded-full"
-              />
-            </a>
-          )}
-          {member.linkedin_url && (
-            <a
-              href={member.linkedin_url}
-              target="_blank"
-              aria-label={`${member.name}'s LinkedIn profile`}
-              rel="noopener noreferrer"
-            >
-              <img
-                src={linkedinLogo}
-                alt="LinkedIn"
-                className="w-10 h-10 rounded-full"
-              />
-            </a>
-          )}
+            {/* Conditionally render social media logos if URLs are present */}
+            {member.fb_url && (
+              <a
+                href={member.fb_url}
+                target="_blank"
+                aria-label={`${member.name}'s Facebook profile`}
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={facebookLogo}
+                  alt="Facebook"
+                  className="w-10 h-10 rounded-full"
+                />
+              </a>
+            )}
+            {member.insta_url && (
+              <a
+                href={member.insta_url}
+                target="_blank"
+                aria-label={`${member.name}'s Instagram profile`}
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={instagramLogo}
+                  alt="Instagram"
+                  className="w-10 h-10 rounded-full"
+                />
+              </a>
+            )}
+            {member.linkedin_url && (
+              <a
+                href={member.linkedin_url}
+                target="_blank"
+                aria-label={`${member.name}'s LinkedIn profile`}
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={linkedinLogo}
+                  alt="LinkedIn"
+                  className="w-10 h-10 rounded-full"
+                />
+              </a>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="mt-8 text-center">
-        <Link to="/2425/members" className="text-blue-500 hover:underline">
-          Members
-        </Link>
+        <div className="mt-8 text-center">
+          <Link to="/2425/members" className="text-blue-500 hover:underline">
+            Members
+          </Link>
+        </div>
       </div>
     </div>
   );

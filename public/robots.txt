@@ -5,4 +5,5 @@ Allow: /
 # Specify sitemap locations
 Sitemap: https://lckhp.org/sitemap.xml
 Sitemap: https://blog.lckhp.org/sitemap.xml
-Sitemap: https://lckhp.org/blog-sitemap.xml 
+Sitemap: https://lckhp.org/blog-sitemap.xml
+Sitemap: https://lckhp.org/members-sitemap.xml 
