@@ -36,32 +36,33 @@ const Header = () => {
       </label>
       <nav
         aria-label="Header Navigation"
-        className="flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all peer-checked:mt-8 peer-checked:max-h-56 md:ml-24 md:max-h-full md:flex-row md:items-start"
+        className="flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all peer-checked:mt-8 peer-checked:max-h-screen md:ml-24 md:max-h-full md:flex-row md:items-start"
       >
-        <ul className="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
-          <li className="md:mr-12">
-            <a href="/2425/members" target="_blank">
+        <ul className="flex flex-col items-center space-y-4 py-3 w-full md:w-auto md:ml-auto md:flex-row md:space-y-0 md:py-0">
+          <li className="md:mr-8 lg:mr-12">
+            <a href="/2425/members" className="block py-1" target="_blank">
               Our Team
             </a>
           </li>
-          <li className="md:mr-12">
-            <a href="/2425/calendar" target="_blank">
+          <li className="md:mr-8 lg:mr-12">
+            <a href="/2425/calendar" className="block py-1" target="_blank">
               Calendar
             </a>
           </li>
-          <li className="md:mr-12">
-            <a href="/2425/programs" target="_blank">
+          <li className="md:mr-8 lg:mr-12">
+            <a href="/2425/programs" className="block py-1" target="_blank">
               Programs
             </a>
           </li>
-          <li className="md:mr-12">
-            <a href="/donate" target="_blank">
+          <li className="md:mr-8 lg:mr-12">
+            <a href="/donate" className="block py-1" target="_blank">
               Donate
             </a>
           </li>
-          <li className="md:mr-12">
+          <li className="md:mr-8 lg:mr-12">
             <a
               href="https://blog.lckhp.org"
+              className="block py-1"
               target="_blank"
               rel="canonical noopener noreferrer"
               aria-label="LCKHP Blog - Read our latest articles and updates"
@@ -70,19 +71,28 @@ const Header = () => {
               Blog
             </a>
           </li>
-          <li className="md:mr-12">
-            <a href="/resources" target="_blank">
+          <li className="md:mr-8 lg:mr-12">
+            <a href="/resources" className="block py-1" target="_blank">
               Resources
             </a>
           </li>
-          <li className="md:mr-12">
-            <a href="325r/2425/LDC325R-LeoDarpan.pdf" target="_blank">
+          <li className="md:mr-8 lg:mr-12">
+            <a
+              href="325r/2425/LDC325R-LeoDarpan.pdf"
+              className="block py-1"
+              target="_blank"
+            >
               Leo Darpan
             </a>
           </li>
-          <li className="md:mr-12">
-            <a href="/register" target="_blank" rel="noopener noreferrer">
-              <button className="rounded-full border-2 border-green-500 px-6 py-1 text-green-600 transition-colors hover:bg-green-500 hover:text-white">
+          <li className="w-full text-center md:w-auto md:mr-0">
+            <a
+              href="/register"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <button className="rounded-full border-2 border-green-500 px-6 py-2 text-green-600 transition-colors hover:bg-green-500 hover:text-white w-3/4 md:w-auto">
                 Join Us
               </button>
             </a>
