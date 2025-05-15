@@ -36,21 +36,6 @@
       "source": "/directory/old-age-homes",
       "destination": "/donate/old-age-homes",
       "permanent": true
-    },
-    {
-      "source": "http://lckhp.org",
-      "destination": "https://lckhp.org",
-      "permanent": true
-    },
-    {
-      "source": "http://www.lckhp.org",
-      "destination": "https://lckhp.org",
-      "permanent": true
-    },
-    {
-      "source": "https://www.lckhp.org",
-      "destination": "https://lckhp.org",
-      "permanent": true
     }
   ],
   "headers": [
