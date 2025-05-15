@@ -63,7 +63,9 @@ const Header = () => {
             <a
               href="https://blog.lckhp.org"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="canonical noopener noreferrer"
+              aria-label="LCKHP Blog - Read our latest articles and updates"
+              title="Leo Club of Kathmandu Himalayas Patan Blog"
             >
               Blog
             </a>

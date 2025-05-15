@@ -39,6 +39,9 @@ const SeoLinks: React.FC = () => {
         <li>
           <a href="/donate/orphanages">Support Orphanages in Nepal</a>
         </li>
+        <li>
+          <a href="https://blog.lckhp.org">LCKHP Official Blog</a>
+        </li>
       </ul>
 
       <h2>Youth Volunteering in Nepal</h2>
@@ -76,6 +79,33 @@ const SeoLinks: React.FC = () => {
         </li>
         <li>
           <a href="/donate">Non-profit Organizations in Nepal</a>
+        </li>
+      </ul>
+
+      <h2>LCKHP Blog Posts</h2>
+      <ul>
+        <li>
+          <a href="https://blog.lckhp.org">Leo Club of KHP Blog</a>
+        </li>
+        <li>
+          <a href="https://blog.lckhp.org/community-service">
+            Community Service Articles
+          </a>
+        </li>
+        <li>
+          <a href="https://blog.lckhp.org/youth-leadership">
+            Youth Leadership Development
+          </a>
+        </li>
+        <li>
+          <a href="https://blog.lckhp.org/volunteer-stories">
+            Volunteer Stories from Nepal
+          </a>
+        </li>
+        <li>
+          <a href="https://blog.lckhp.org/events">
+            Leo Club Events and Activities
+          </a>
         </li>
       </ul>
     </div>

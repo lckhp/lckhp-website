@@ -2,5 +2,7 @@
 User-agent: *
 Allow: /
 
-# Specify sitemap location
-Sitemap: https://lckhp.org/sitemap.xml 
+# Specify sitemap locations
+Sitemap: https://lckhp.org/sitemap.xml
+Sitemap: https://blog.lckhp.org/sitemap.xml
+Sitemap: https://lckhp.org/blog-sitemap.xml 

@@ -14,6 +14,13 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- Blog Section -->
+  <url>
+    <loc>https://blog.lckhp.org/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
   <!-- Donate pages -->
   <url>
     <loc>https://lckhp.org/donate</loc>
