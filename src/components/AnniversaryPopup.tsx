@@ -152,7 +152,7 @@ const AnniversaryPopup: React.FC<AnniversaryPopupProps> = ({
             width={windowDimensions.width}
             height={windowDimensions.height}
             recycle={true}
-            numberOfPieces={300}
+            numberOfPieces={200}
             gravity={0.15}
             colors={[
               "#22c55e",
@@ -168,7 +168,7 @@ const AnniversaryPopup: React.FC<AnniversaryPopupProps> = ({
       )}
 
       <div
-        className={`relative bg-white rounded-xl shadow-2xl p-8 mx-auto max-w-2xl w-full transform transition-all duration-500 ${
+        className={`relative bg-white rounded-xl shadow-2xl p-4 sm:p-6 md:p-8 mx-auto max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-500 ${
           isClosing
             ? "scale-95 opacity-0"
             : isOpen
@@ -177,15 +177,15 @@ const AnniversaryPopup: React.FC<AnniversaryPopupProps> = ({
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
+        {/* Close button - moved to top right corner and increased size for mobile */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-700 hover:text-gray-900 focus:outline-none z-10 bg-white bg-opacity-70 rounded-full p-1"
           aria-label="Close"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
+            className="h-8 w-8"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -193,34 +193,34 @@ const AnniversaryPopup: React.FC<AnniversaryPopupProps> = ({
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={2.5}
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
         </button>
 
         {/* Logo */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-4 sm:mb-6 md:mb-8">
           <img
             src={fiftyYearLogo}
             alt="LCKHP 50 Years Anniversary Logo"
-            className="h-56 object-contain"
+            className="h-32 sm:h-40 md:h-56 object-contain"
           />
         </div>
 
         {/* Content */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-green-700 mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-green-700 mb-3 sm:mb-4 md:mb-6">
             Celebrating 50 Years of Service!
           </h2>
-          <p className="text-gray-700 text-lg mb-8">
+          <p className="text-gray-700 text-base sm:text-lg mb-4 sm:mb-6 md:mb-8">
             Welcome to the Leo Club of Kathmandu Himalayas Patan's official
             website. We're proud to celebrate 50 years of youth leadership,
             community service, and making a difference in Nepal since 1974.
           </p>
           <button
             onClick={handleClose}
-            className="bg-green-600 text-white py-3 px-8 rounded-full hover:bg-green-700 transition-colors duration-300 font-medium text-lg"
+            className="bg-green-600 text-white py-2 px-6 sm:py-3 sm:px-8 rounded-full hover:bg-green-700 transition-colors duration-300 font-medium text-base sm:text-lg mb-2"
           >
             Explore Our Journey
           </button>
