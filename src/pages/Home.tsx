@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import ContactUs from "./ContactUs";
 import Header from "./Header";
 import Carousel from "../components/Carousel";
+import RecentBlogs from "../components/RecentBlogs";
 import AnniversaryPopup from "../components/AnniversaryPopup";
 import PresidentTheme from "../components/PresidentTheme";
 import SEO from "../components/SEO";
@@ -94,6 +95,7 @@ const Home: React.FC = () => {
       <About />
       <Carousel />
       <LeadershipTeam />
+      <RecentBlogs />
       <PresidentTheme />
       <ContactUs />
       <Footer />
