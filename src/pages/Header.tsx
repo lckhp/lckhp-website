@@ -40,22 +40,22 @@ const Header = () => {
       >
         <ul className="flex flex-col items-center space-y-4 py-3 w-full md:w-auto md:ml-auto md:flex-row md:space-y-0 md:py-0">
           <li className="md:mr-8 lg:mr-12">
-            <a href="/2425/members" className="block py-1" target="_blank">
+            <a href="/2425/members" className="block py-1">
               Our Team
             </a>
           </li>
           <li className="md:mr-8 lg:mr-12">
-            <a href="/2425/calendar" className="block py-1" target="_blank">
+            <a href="/2425/calendar" className="block py-1">
               Calendar
             </a>
           </li>
           <li className="md:mr-8 lg:mr-12">
-            <a href="/2425/programs" className="block py-1" target="_blank">
+            <a href="/2425/programs" className="block py-1">
               Programs
             </a>
           </li>
           <li className="md:mr-8 lg:mr-12">
-            <a href="/donate" className="block py-1" target="_blank">
+            <a href="/donate" className="block py-1">
               Donate
             </a>
           </li>
@@ -64,7 +64,7 @@ const Header = () => {
               href="https://blog.lckhp.org"
               className="block py-1"
               target="_blank"
-              rel="canonical noopener noreferrer"
+              rel="noopener noreferrer"
               aria-label="LCKHP Blog - Read our latest articles and updates"
               title="Leo Club of Kathmandu Himalayas Patan Blog"
             >
@@ -77,7 +77,7 @@ const Header = () => {
             </a>
           </li>
           <li className="md:mr-8 lg:mr-12">
-            <a href="/resources" className="block py-1" target="_blank">
+            <a href="/resources" className="block py-1">
               Resources
             </a>
           </li>
@@ -86,6 +86,7 @@ const Header = () => {
               href="325r/2425/LDC325R-LeoDarpan.pdf"
               className="block py-1"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Leo Darpan
             </a>

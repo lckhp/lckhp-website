@@ -1,6 +1,6 @@
 # Permanent redirects for pages with redirect issues
 /register https://forms.gle/b7gmsnXeQTGjRCAx8 301!
-/resources /resources-page 301!
+/resources-page /resources 301!
 /directory /donate 301!
 /directory/orphanages /donate/orphanages 301!
 /directory/blood-bank /donate/blood-bank 301!

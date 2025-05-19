@@ -12,11 +12,6 @@
       "permanent": true
     },
     {
-      "source": "/resources",
-      "destination": "/resources-page",
-      "permanent": true
-    },
-    {
       "source": "/directory",
       "destination": "/donate",
       "permanent": true

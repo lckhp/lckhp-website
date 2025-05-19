@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,6 +15,7 @@ interface BlogPost {
 const RecentBlogs: React.FC = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const sliderRef = useRef<Slider>(null);
 
   // These are fallback blog posts in case the fetch fails
   const fallbackPosts: BlogPost[] = [
@@ -168,7 +169,7 @@ const RecentBlogs: React.FC = () => {
     autoplay: true,
     autoplaySpeed: 6000,
     pauseOnHover: true,
-    arrows: true,
+    arrows: false,
     centerMode: false,
     adaptiveHeight: true,
     className: "center",
@@ -198,6 +199,19 @@ const RecentBlogs: React.FC = () => {
     ],
   };
 
+  // Navigation functions
+  const goToPrevSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+
+  const goToNextSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
+
   return (
     <div id="recent-blogs-section" className="py-12 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
@@ -211,80 +225,127 @@ const RecentBlogs: React.FC = () => {
           <div className="mx-auto mt-3 h-1 w-24 bg-green-500"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-12 relative">
           {loading ? (
             <div className="flex justify-center items-center h-64">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
             </div>
           ) : (
-            <Slider {...settings} className="blog-slider">
-              {blogPosts.map((post) => (
-                <div key={post.id} className="px-2 outline-none pb-5 pt-1">
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100 transform">
-                    <div className="relative overflow-hidden">
-                      <a
-                        href={`https://blog.lckhp.org/${post.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block flex-shrink-0"
-                        aria-label={`Read ${post.title}`}
-                        title={post.title}
-                      >
-                        <img
-                          src={
-                            post.coverImage || "/blog-images/default-cover.jpg"
-                          }
-                          alt={`${post.title} - Featured image`}
-                          className="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
-                          loading="lazy"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "/blog-images/default-cover.jpg";
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-10 transition-opacity duration-300 hover:bg-opacity-0"></div>
-                      </a>
-                    </div>
-                    <div className="p-5 flex flex-col flex-grow">
-                      <div className="text-sm text-green-600 mb-2">
-                        {formatDate(post.dateAdded)}
-                      </div>
-                      <a
-                        href={`https://blog.lckhp.org/${post.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xl font-semibold text-gray-900 hover:text-green-600 transition-colors mb-2 line-clamp-2"
-                      >
-                        {post.title}
-                      </a>
-                      <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
-                        {post.brief}
-                      </p>
-                      <a
-                        href={`https://blog.lckhp.org/${post.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center font-medium text-green-600 hover:text-green-700 transition-all hover:translate-x-1"
-                      >
-                        Read More
-                        <svg
-                          className="ml-1 w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
+            <>
+              {/* Custom navigation buttons - visible on laptop/desktop */}
+              <div className="hidden md:block">
+                <button
+                  onClick={goToPrevSlide}
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 z-30 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-all hover:bg-gray-50 focus:outline-none"
+                  aria-label="Previous blog posts"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-green-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={goToNextSlide}
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2 z-30 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-all hover:bg-gray-50 focus:outline-none"
+                  aria-label="Next blog posts"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-green-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <Slider ref={sliderRef} {...settings} className="blog-slider">
+                {blogPosts.map((post) => (
+                  <div key={post.id} className="px-2 outline-none pb-5 pt-1">
+                    <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100 transform">
+                      <div className="relative overflow-hidden">
+                        <a
+                          href={`https://blog.lckhp.org/${post.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block flex-shrink-0"
+                          aria-label={`Read ${post.title}`}
+                          title={post.title}
                         >
-                          <path
-                            fillRule="evenodd"
-                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                      </a>
+                          <img
+                            src={
+                              post.coverImage ||
+                              "/blog-images/default-cover.jpg"
+                            }
+                            alt={`${post.title} - Featured image`}
+                            className="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
+                            loading="lazy"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "/blog-images/default-cover.jpg";
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-10 transition-opacity duration-300 hover:bg-opacity-0"></div>
+                        </a>
+                      </div>
+                      <div className="p-5 flex flex-col flex-grow">
+                        <div className="text-sm text-green-600 mb-2">
+                          {formatDate(post.dateAdded)}
+                        </div>
+                        <a
+                          href={`https://blog.lckhp.org/${post.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xl font-semibold text-gray-900 hover:text-green-600 transition-colors mb-2 line-clamp-2"
+                        >
+                          {post.title}
+                        </a>
+                        <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
+                          {post.brief}
+                        </p>
+                        <a
+                          href={`https://blog.lckhp.org/${post.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center font-medium text-green-600 hover:text-green-700 transition-all hover:translate-x-1"
+                        >
+                          Read More
+                          <svg
+                            className="ml-1 w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
+                ))}
+              </Slider>
+            </>
           )}
         </div>
 

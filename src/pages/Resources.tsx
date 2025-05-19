@@ -94,7 +94,7 @@ const Resources: React.FC = () => {
         title="Resources & Logos | Leo Club of Kathmandu Himalayas Patan"
         description="Official logos and resources for Leo Club of Kathmandu Himalayas Patan (LCKHP). Download Lions International, Leo Club, and LCKHP branding assets for official use."
         keywords="leo club logos, lckhp resources, leo club nepal resources, lions international logos, leo club branding, official leo logos"
-        url="/resources-page"
+        url="/resources"
       />
 
       <h1 className="text-3xl font-bold text-center mb-8">

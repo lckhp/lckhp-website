@@ -184,6 +184,7 @@ const Footer = () => {
                   href="/325r/2425/LDC325R-LeoDarpan.pdf"
                   className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Leo Darpan
                 </a>
@@ -196,6 +197,14 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#faq-section"
+                  className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
+                >
+                  FAQ
                 </a>
               </li>
               <li>

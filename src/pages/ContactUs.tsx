@@ -3,7 +3,7 @@ import {
   FaDiscord,
   FaFacebook,
   FaLinkedin,
-  FaViber,
+  FaWhatsapp,
   FaInstagram,
   FaMapMarkerAlt,
   FaEnvelope,
@@ -319,9 +319,9 @@ const ContactUs = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl text-green-600 shadow-sm transition-all duration-300 hover:bg-green-600 hover:text-white"
-                    aria-label="Viber"
+                    aria-label="WhatsApp"
                   >
-                    <FaViber />
+                    <FaWhatsapp />
                   </a>
                 </div>
               </div>
