@@ -12,6 +12,7 @@ import AnniversaryPopup from "../components/AnniversaryPopup";
 import PresidentTheme from "../components/PresidentTheme";
 import SEO from "../components/SEO";
 import SeoLinks from "../components/SeoLinks";
+import FAQ from "../components/FAQ";
 
 const Home: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -118,6 +119,7 @@ const Home: React.FC = () => {
       <LeadershipTeam />
       <RecentBlogs />
       <PresidentTheme />
+      <FAQ />
       <ContactUs />
       <Footer />
       <SeoLinks />

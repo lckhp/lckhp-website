@@ -200,6 +200,14 @@ const Footer = () => {
               </li>
               <li>
                 <a
+                  href="/#faq-section"
+                  className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
+                >
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a
                   href="/#contact-section"
                   className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
                 >

@@ -72,6 +72,11 @@ const Header = () => {
             </a>
           </li>
           <li className="md:mr-8 lg:mr-12">
+            <a href="/#faq-section" className="block py-1">
+              FAQ
+            </a>
+          </li>
+          <li className="md:mr-8 lg:mr-12">
             <a href="/resources" className="block py-1" target="_blank">
               Resources
             </a>

@@ -66,10 +66,10 @@ const NotFound = () => {
             </li>
             <li>
               <Link
-                to="/2425/members"
+                to="/#faq-section"
                 className="text-green-600 hover:text-green-700 hover:underline"
               >
-                Our Members
+                Frequently Asked Questions
               </Link>
             </li>
           </ul>
