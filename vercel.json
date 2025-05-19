@@ -16,7 +16,11 @@
       "destination": "/resources-page",
       "permanent": true
     },
-    { "source": "/directory", "destination": "/donate", "permanent": true },
+    {
+      "source": "/directory",
+      "destination": "/donate",
+      "permanent": true
+    },
     {
       "source": "/directory/orphanages",
       "destination": "/donate/orphanages",
@@ -36,6 +40,26 @@
       "source": "/directory/old-age-homes",
       "destination": "/donate/old-age-homes",
       "permanent": true
+    },
+    {
+      "source": "/www.:path(.*)",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact-section",
+      "permanent": true
+    },
+    {
+      "source": "/tag/:tag",
+      "destination": "https://blog.lckhp.org/",
+      "permanent": false
+    },
+    {
+      "source": "/:path*/rss.xml",
+      "destination": "https://blog.lckhp.org/",
+      "permanent": false
     }
   ],
   "headers": [
@@ -45,6 +69,14 @@
         { "key": "X-Robots-Tag", "value": "index, follow" },
         { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
+    },
+    {
+      "source": "/:path(.*)\\.(xml)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/tag/:tag",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ]
 }

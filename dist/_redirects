@@ -1,0 +1,17 @@
+# Permanent redirects for pages with redirect issues
+/register https://forms.gle/b7gmsnXeQTGjRCAx8 301!
+/resources /resources-page 301!
+/directory /donate 301!
+/directory/orphanages /donate/orphanages 301!
+/directory/blood-bank /donate/blood-bank 301!
+/directory/blood-banks /donate/blood-bank 301!
+/directory/old-age-homes /donate/old-age-homes 301!
+
+# Proper handling for the root domain variations
+http://lckhp.org/ https://lckhp.org/ 301!
+http://www.lckhp.org/ https://lckhp.org/ 301!
+https://www.lckhp.org/ https://lckhp.org/ 301!
+
+# Handle hash fragments properly
+/2425/members/#about-section /2425/members 301!
+/#about-section / 200 
