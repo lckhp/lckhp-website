@@ -23,6 +23,11 @@ const MemberProfile: React.FC = () => {
 
   const member = membersData.find((m) => m.id === parseInt(id || "", 10));
 
+  // Scroll to top when component mounts or when member changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   useEffect(() => {
     if (member) {
       document.title = `Leo ${member.name}'s Profile`;
@@ -368,9 +373,60 @@ const MemberProfile: React.FC = () => {
                 label="Membership Type"
                 value={member.membership_type}
               />
-              {member.leo_lions_id && (
-                <InfoItem label="Leo/Lions ID" value={member.leo_lions_id} />
-              )}
+              <InfoItem
+                label={
+                  <div className="flex items-center space-x-1">
+                    <span>Leo/Lions ID</span>
+                    <div className="relative group">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-gray-500 cursor-pointer"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <div className="absolute left-0 bottom-full mb-2 w-64 hidden group-hover:block z-20">
+                        <div className="bg-black text-white text-xs rounded py-2 px-3 shadow-lg">
+                          Leo/Lions ID is the unique international
+                          identification number issued by Lions International to
+                          each active Leo/Lion individual which is recognizable
+                          globally.
+                          <br></br>
+                          <br></br>
+                          Only active general members are eligible to receive
+                          this ID.
+                          <br></br>
+                          <br></br>
+                          Proposed and inactive members are not eligible for
+                          lions international identification.
+                          <div className="absolute left-0 top-full w-3 h-3 -mt-1.5 ml-1 overflow-hidden">
+                            <div className="bg-black transform rotate-45 origin-top-left w-2 h-2"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+                value={
+                  member.membership_type === "Dropped" ||
+                  member.designation === "Dropped Member" ||
+                  member.membership_type === "Proposed Member" ||
+                  member.designation === "Proposed Member"
+                    ? "N/A"
+                    : member.leo_lions_id &&
+                      (typeof member.leo_lions_id === "string" ||
+                        typeof member.leo_lions_id === "number") &&
+                      (typeof member.leo_lions_id === "number" ||
+                        member.leo_lions_id.trim() !== "")
+                    ? member.leo_lions_id
+                    : "N/A"
+                }
+              />
               <InfoItem label="Joined Date" value={member.joined_date} />
               {member.blood_group && (
                 <InfoItem
@@ -392,7 +448,7 @@ const MemberProfile: React.FC = () => {
 
 // InfoItem component for consistent styling
 const InfoItem: React.FC<{
-  label: string;
+  label: string | React.ReactNode;
   value: React.ReactNode;
 }> = ({ label, value }) => {
   return (
