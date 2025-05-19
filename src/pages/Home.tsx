@@ -25,12 +25,27 @@ const Home: React.FC = () => {
     // Mark popup as loaded immediately
     setPopupLoaded(true);
 
-    // Show popup with a shorter delay
-    const timer = setTimeout(() => {
-      setIsPopupOpen(true);
-    }, 800); // Reduced from 1500ms to 800ms
+    // Check if popup has been shown in this browser session
+    const hasShownPopup = localStorage.getItem("hasShownAnniversaryPopup");
+    const lastShownTime = localStorage.getItem("lastPopupShownTime");
+    const currentTime = new Date().getTime();
 
-    return () => clearTimeout(timer);
+    // If popup hasn't been shown or it was shown more than 24 hours ago
+    if (
+      !hasShownPopup ||
+      !lastShownTime ||
+      currentTime - parseInt(lastShownTime) > 24 * 60 * 60 * 1000
+    ) {
+      // Show popup with a shorter delay if not shown recently
+      const timer = setTimeout(() => {
+        setIsPopupOpen(true);
+        // Mark that we've shown the popup and record timestamp
+        localStorage.setItem("hasShownAnniversaryPopup", "true");
+        localStorage.setItem("lastPopupShownTime", currentTime.toString());
+      }, 800); // Reduced from 1500ms to 800ms
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Store the section to scroll to in a ref so we can access it after popup closes

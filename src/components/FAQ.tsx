@@ -200,26 +200,87 @@ const FAQ: React.FC = () => {
     },
     {
       id: 10,
-      question: "How can a Proposed Member be awarded General Membership?",
+      question: "What is Proposed Member and General Member?",
       answer: (
-        <p>
-          Proposed members can be awarded General Membership if they meet all of
-          the following criteria:
-          <ul className="list-disc pl-5 space-y-1 mt-2">
+        <div>
+          <p className="mb-3">
+            Our club offers two types of membership options:
+          </p>
+
+          <p className="mb-2">
+            <strong>Proposed Member:</strong>
+          </p>
+          <ul className="list-disc pl-5 space-y-1 mb-4">
+            <li>Membership fee: 500 NPR (one-time payment)</li>
             <li>
-              Member must have attended 5 programs continuously [Without break]
+              Ideal for those who want to experience Leo Club activities before
+              full commitment
             </li>
-            <li>Member must have coordinated one program among those 5</li>
+            <li>Allows payment of membership fees in installments</li>
+            <li>Limited access to certain club benefits and privileges</li>
             <li>
-              Member must have brought at least two proposed or general members
+              Can be upgraded to General Membership by paying the remaining
+              amount
             </li>
           </ul>
-        </p>
+
+          <p className="mb-2">
+            <strong>General Member:</strong>
+          </p>
+          <ul className="list-disc pl-5 space-y-1 mb-4">
+            <li>Membership fee: 1500 NPR (one-time payment)</li>
+            <li>Full club membership with all privileges</li>
+            <li>
+              Benefits include official Leo Identity Card, voting rights,
+              eligibility for board positions, participation certificates, and
+              more
+            </li>
+          </ul>
+
+          <p>
+            Proposed members can be awarded General Membership without
+            additional payment if they meet all of these criteria: attending 5
+            consecutive programs, coordinating one program, and bringing at
+            least two new members to the club.
+          </p>
+        </div>
       ),
       category: "Membership",
     },
     {
       id: 11,
+      question: "How do I apply to join the club?",
+      answer: (
+        <div>
+          <p className="mb-3">
+            To join our Leo Club, follow these simple steps:
+          </p>
+          <ol className="list-decimal pl-5 space-y-2">
+            <li>Check that you meet the eligibility criteria (age 18-30)</li>
+            <li>
+              Complete our online registration form at{" "}
+              <a href="/register" className="text-green-600 hover:underline">
+                lckhp.org/register
+              </a>
+            </li>
+            <li>
+              Pay the membership fee (500 NPR for Proposed Member or 1500 NPR
+              for General Member)
+            </li>
+            <li>Upload a receipt of your payment in the registration form</li>
+            <li>Submit your application and wait for confirmation</li>
+          </ol>
+          <p className="mt-3">
+            After submitting your application, our team will review it and
+            contact you with further instructions. The entire process typically
+            takes 1-2 weeks.
+          </p>
+        </div>
+      ),
+      category: "Membership",
+    },
+    {
+      id: 12,
       question: "How can I contact Leo Club for more information?",
       answer: (
         <p>
@@ -236,7 +297,7 @@ const FAQ: React.FC = () => {
       category: "About Leo",
     },
     {
-      id: 12,
+      id: 13,
       question: "What is the main aim of Leo Club?",
       answer: (
         <ul className="list-disc pl-5 space-y-1">
