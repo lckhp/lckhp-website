@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DonateList from "../component/DonateList";
 import SEO from "../components/SEO";
+import WhatsAppEmergencyButton from "../components/WhatsAppEmergencyButton";
 
 interface DonateCategoryProps {
   category: string;
@@ -56,6 +57,15 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
             : "orphanages"
         }`}
       />
+
+      {/* Add WhatsApp emergency button only for blood bank category */}
+      {category === "blood_bank" && (
+        <WhatsAppEmergencyButton
+          phoneNumber="+977-9862857260"
+          message="URGENT BLOOD REQUEST: I am in an emergency situation requiring immediate blood assistance. I have the hospital prescription letter ready to share. Please respond as soon as possible as this is time-sensitive. Thank you."
+        />
+      )}
+
       <div className="container mx-auto px-4">
         <h1 className="mb-8 text-center text-3xl font-bold text-gray-800">
           {category === "blood_bank"
