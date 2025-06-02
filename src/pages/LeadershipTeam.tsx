@@ -147,7 +147,7 @@ const LeadershipTeam: React.FC = () => {
                           <div className="mt-4 flex items-center text-sm text-gray-500">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="mr-1 h-4 w-4"
+                              className="mr-1 h-4 w-4 flex-shrink-0"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -196,7 +196,7 @@ const LeadershipTeam: React.FC = () => {
                             <div className="mt-4 flex items-center text-sm text-gray-500">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="mr-1 h-4 w-4"
+                                className="mr-1 h-4 w-4 flex-shrink-0"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -248,7 +248,7 @@ const LeadershipTeam: React.FC = () => {
                           <div className="mt-4 flex items-center text-sm text-gray-500">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="mr-1 h-4 w-4"
+                              className="mr-1 h-4 w-4 flex-shrink-0"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
