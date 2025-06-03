@@ -84,7 +84,7 @@ interface DonateListProps {
   category: string;
 }
 
-const DonateList: React.FC<DonateListProps> = ({ category }) => {
+const DonateList: React.FC<DonateListProps> = ({ category }): JSX.Element => {
   const [data, setData] = useState<DirectoryItem[]>([]);
   const [filteredData, setFilteredData] = useState<DirectoryItem[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -96,6 +96,12 @@ const DonateList: React.FC<DonateListProps> = ({ category }) => {
   );
   // State to store dynamically loaded images
   const [itemImages, setItemImages] = useState<Record<string, string[]>>({});
+
+  // Full-page image viewer states
+  const [showFullImageViewer, setShowFullImageViewer] = useState(false);
+  const [currentFullImage, setCurrentFullImage] = useState<string | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageSet, setCurrentImageSet] = useState<string[]>([]);
 
   // Helper function to create Google Maps search URL
   const createGoogleMapsUrl = (item: DirectoryItem) => {
@@ -283,6 +289,61 @@ const DonateList: React.FC<DonateListProps> = ({ category }) => {
     }
   };
 
+  // Handle opening the full-page image viewer
+  const openFullImageViewer = (images: string[], index: number) => {
+    setCurrentImageSet(images);
+    setCurrentImageIndex(index);
+    setCurrentFullImage(images[index]);
+    setShowFullImageViewer(true);
+    // Prevent scrolling when viewer is open
+    document.body.style.overflow = "hidden";
+  };
+
+  // Handle closing the full-page image viewer
+  const closeFullImageViewer = () => {
+    setShowFullImageViewer(false);
+    setCurrentFullImage(null);
+    // Restore scrolling
+    document.body.style.overflow = "auto";
+  };
+
+  // Navigate to the next image
+  const goToNextImage = () => {
+    const nextIndex = (currentImageIndex + 1) % currentImageSet.length;
+    setCurrentImageIndex(nextIndex);
+    setCurrentFullImage(currentImageSet[nextIndex]);
+  };
+
+  // Navigate to the previous image
+  const goToPrevImage = () => {
+    const prevIndex =
+      (currentImageIndex - 1 + currentImageSet.length) % currentImageSet.length;
+    setCurrentImageIndex(prevIndex);
+    setCurrentFullImage(currentImageSet[prevIndex]);
+  };
+
+  // Handle keyboard events for navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!showFullImageViewer) return;
+
+      switch (e.key) {
+        case "Escape":
+          closeFullImageViewer();
+          break;
+        case "ArrowRight":
+          goToNextImage();
+          break;
+        case "ArrowLeft":
+          goToPrevImage();
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showFullImageViewer, currentImageIndex, currentImageSet]);
+
   // Function to render urgent needs
   const renderUrgentNeedsItem = (item: UrgentNeedItem) => {
     // Get the first image from our direct imports map
@@ -444,11 +505,14 @@ const DonateList: React.FC<DonateListProps> = ({ category }) => {
                 >
                   {allImages.map((imgSrc, index) => (
                     <div key={`carousel-${item.id}-${index}`} className="h-48">
-                      <img
-                        src={imgSrc}
-                        alt={`${item.name} - Image ${index + 1}`}
-                        className="h-full w-full object-contain mx-auto"
-                      />
+                      <div className="h-full w-full flex items-center justify-center">
+                        <img
+                          src={imgSrc}
+                          alt={`${item.name} - Image ${index + 1}`}
+                          className="h-full max-h-48 object-contain mx-auto cursor-pointer transition-transform hover:scale-105"
+                          onClick={() => openFullImageViewer(allImages, index)}
+                        />
+                      </div>
                     </div>
                   ))}
                 </Slider>
@@ -513,12 +577,15 @@ const DonateList: React.FC<DonateListProps> = ({ category }) => {
                   key={`gallery-${item.id}-${index}`}
                   className="overflow-hidden rounded-lg shadow-md bg-gray-50"
                 >
-                  <img
-                    src={imgSrc}
-                    alt={`${item.name} - Image ${index + 1}`}
-                    className="h-full w-full object-contain transition-transform hover:scale-105"
-                    loading="lazy"
-                  />
+                  <div className="h-40 w-full flex items-center justify-center p-2">
+                    <img
+                      src={imgSrc}
+                      alt={`${item.name} - Image ${index + 1}`}
+                      className="max-h-full max-w-full object-contain transition-transform hover:scale-105 cursor-pointer"
+                      loading="lazy"
+                      onClick={() => openFullImageViewer(allImages, index)}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -816,6 +883,89 @@ const DonateList: React.FC<DonateListProps> = ({ category }) => {
         <div className="my-8 rounded-lg bg-gray-100 p-4 text-center text-gray-700">
           No results match your search criteria. Please try a different search
           term or filter.
+        </div>
+      )}
+
+      {/* Full-page image viewer */}
+      {showFullImageViewer && currentFullImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
+          {/* Close button */}
+          <button
+            onClick={closeFullImageViewer}
+            className="absolute top-4 right-4 z-50 rounded-full bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70"
+            aria-label="Close image viewer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {/* Previous button */}
+          <button
+            onClick={goToPrevImage}
+            className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black bg-opacity-50 p-3 text-white hover:bg-opacity-70"
+            aria-label="Previous image"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          {/* Next button */}
+          <button
+            onClick={goToNextImage}
+            className="absolute right-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black bg-opacity-50 p-3 text-white hover:bg-opacity-70"
+            aria-label="Next image"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+
+          {/* Image counter */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded bg-black bg-opacity-50 px-3 py-1 text-sm text-white">
+            {currentImageIndex + 1} / {currentImageSet.length}
+          </div>
+
+          {/* Image */}
+          <img
+            src={currentFullImage}
+            alt={`Full size image ${currentImageIndex + 1}`}
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+          />
         </div>
       )}
     </div>
