@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import reportLinks from "../assets/reports/reports.json"; // Import JSON data
 import GoHomeButton from "../components/GoHomeButton";
 

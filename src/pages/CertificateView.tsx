@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import certificatesData from "../assets/certificates/json/certificates.json";
 import { useEffect, useState } from "react";
 import GoHomeButton from "../components/GoHomeButton";
