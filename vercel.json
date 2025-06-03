@@ -7,6 +7,11 @@
   ],
   "redirects": [
     {
+      "source": "www.lckhp.org/:path*",
+      "destination": "https://lckhp.org/:path*",
+      "permanent": true
+    },
+    {
       "source": "/register",
       "destination": "https://forms.gle/b7gmsnXeQTGjRCAx8",
       "permanent": true
@@ -37,11 +42,6 @@
       "permanent": true
     },
     {
-      "source": "/www.:path(.*)",
-      "destination": "/:path*",
-      "permanent": true
-    },
-    {
       "source": "/contact",
       "destination": "/#contact-section",
       "permanent": true
@@ -66,12 +66,78 @@
       ]
     },
     {
+      "source": "/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Link", "value": "<https://lckhp.org>; rel=\"canonical\"" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/2425/calendar",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        {
+          "key": "Link",
+          "value": "<https://lckhp.org/2425/calendar>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/resources",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        {
+          "key": "Link",
+          "value": "<https://lckhp.org/resources>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/resources-page",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/2425/members/:id",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        {
+          "key": "Link",
+          "value": "<https://lckhp.org/2425/members/:id>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
       "source": "/:path(.*)\\.(xml)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
       "source": "/tag/:tag",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/blog.lckhp.org/tag/:tag",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/donate",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        {
+          "key": "Link",
+          "value": "<https://lckhp.org/donate>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/donate/:category",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        {
+          "key": "Link",
+          "value": "<https://lckhp.org/donate/:category>; rel=\"canonical\""
+        }
+      ]
     }
   ]
 }

@@ -21,6 +21,45 @@ const SEO: React.FC<SEOProps> = ({
   const fullUrl = url.startsWith("http") ? url : `${siteUrl}${url}`;
   const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
+  // Structured data for the organization
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Leo Club of Kathmandu Himalayas Patan",
+    url: "https://lckhp.org",
+    logo: "https://lckhp.org/lckhp-logo.png",
+    description:
+      "Nepal's oldest Leo Club established in 1974, offering youth leadership opportunities and community service activities.",
+    sameAs: [
+      "https://www.facebook.com/leokhp",
+      "https://www.instagram.com/lckhp",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Patan",
+      addressRegion: "Lalitpur",
+      addressCountry: "Nepal",
+    },
+  };
+
+  // Structured data for website
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: "https://lckhp.org",
+    name: "Leo Club of Kathmandu Himalayas Patan",
+    description:
+      "Official website of Leo Club of Kathmandu Himalayas Patan, Nepal's oldest Leo Club.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://lckhp.org/?s={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <Helmet>
       {/* Basic Meta Tags */}
@@ -44,6 +83,15 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Canonical URL */}
       <link rel="canonical" href={fullUrl} />
+
+      {/* Structured data JSON-LD */}
+      <script type="application/ld+json">
+        {JSON.stringify(organizationJsonLd)}
+      </script>
+
+      <script type="application/ld+json">
+        {JSON.stringify(websiteJsonLd)}
+      </script>
     </Helmet>
   );
 };

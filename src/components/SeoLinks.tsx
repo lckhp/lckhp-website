@@ -6,6 +6,12 @@ import React from "react";
  * still accessible to search engine crawlers.
  */
 const SeoLinks: React.FC = () => {
+  // List of member IDs to create links for
+  const memberIds = [
+    1, 2, 3, 8, 9, 10, 11, 16, 25, 26, 30, 31, 32, 39, 40, 41, 44, 46, 47, 48,
+    50, 51, 52, 53, 55, 56, 58, 59, 60, 61,
+  ];
+
   return (
     <div className="sr-only" aria-hidden="true">
       <h2>Important Pages</h2>
@@ -42,6 +48,15 @@ const SeoLinks: React.FC = () => {
         <li>
           <a href="https://blog.lckhp.org">LCKHP Official Blog</a>
         </li>
+      </ul>
+
+      <h2>Leo Club Member Profiles</h2>
+      <ul>
+        {memberIds.map((id) => (
+          <li key={id}>
+            <a href={`/2425/members/${id}`}>Leo Member Profile {id}</a>
+          </li>
+        ))}
       </ul>
 
       <h2>Youth Volunteering in Nepal</h2>

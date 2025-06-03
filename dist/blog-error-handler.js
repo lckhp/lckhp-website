@@ -3,8 +3,23 @@
 (function () {
   // Only run on the blog subdomain
   if (window.location.hostname.includes("blog.lckhp.org")) {
-    // Check if we're on a tag page
+    // Add noindex meta tag for all tag pages
     if (window.location.pathname.startsWith("/tag/")) {
+      // Add noindex meta tag dynamically
+      const metaRobots = document.createElement("meta");
+      metaRobots.name = "robots";
+      metaRobots.content = "noindex, nofollow";
+      document.head.appendChild(metaRobots);
+
+      // If the page is accessed directly, redirect to homepage
+      if (
+        document.referrer === "" ||
+        !document.referrer.includes("blog.lckhp.org")
+      ) {
+        window.location.href = "https://blog.lckhp.org/";
+        return;
+      }
+
       // If the page fails to load (5xx error), redirect to homepage
       window.addEventListener(
         "error",
@@ -27,7 +42,16 @@
         if (!mainContent || mainContent.innerHTML.trim() === "") {
           window.location.href = "https://blog.lckhp.org/";
         }
-      }, 5000);
+
+        // Set X-Robots-Tag header via service worker if possible
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .register("/sw-noindex.js", { scope: "/tag/" })
+            .catch(function (error) {
+              console.error("Service worker registration failed:", error);
+            });
+        }
+      }, 3000);
     }
   }
 })();

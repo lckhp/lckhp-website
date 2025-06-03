@@ -2,14 +2,30 @@
 User-agent: *
 Allow: /
 
+# Explicitly prioritize main site content
+Allow: /$
+Allow: /2425/calendar$
+Allow: /resources$
+Allow: /donate$
+Allow: /2425/programs$
+Allow: /2425/members$
+
+# Explicitly block all tag pages on blog.lckhp.org (they're causing 5xx errors)
+Disallow: /tag/
+Disallow: */tag/*
+Disallow: https://blog.lckhp.org/tag/
+Disallow: https://blog.lckhp.org/tag/*
+
 # Disallow RSS feeds (they should not be indexed directly)
 Disallow: /*.xml$
 Disallow: */rss.xml
 Disallow: */feed.xml
 Disallow: */rss
 
-# Disallow blog tag pages until the server errors are fixed
-Disallow: /tag/
+# Allow sitemaps explicitly
+Allow: /sitemap.xml
+Allow: /blog-sitemap.xml
+Allow: /members-sitemap.xml
 
 # Specify sitemap locations
 Sitemap: https://lckhp.org/sitemap.xml
