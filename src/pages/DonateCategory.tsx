@@ -30,6 +30,15 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
         keywords:
           "old age homes nepal, donate to old age home kathmandu, old age home donations, help elderly nepal, donate blankets, donate food old age home, verified old age homes kathmandu, support elderly patan",
       };
+    } else if (category === "urgent_needs") {
+      return {
+        title:
+          "Urgent Needs & Emergency Donations | Leo Club of Kathmandu Himalayas Patan",
+        description:
+          "Support emergency fund collections for medical treatments, disaster relief, and critical situations in Nepal. Help those in urgent need through Leo Club of Kathmandu Himalayas Patan.",
+        keywords:
+          "emergency donations nepal, medical fundraising kathmandu, urgent help nepal, disaster relief donations, liver transplant fund, cancer treatment donation, flood relief nepal, emergency fundraising kathmandu, medical emergency funds",
+      };
     } else {
       return {
         title:
@@ -55,6 +64,8 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
             ? "blood-bank"
             : category === "old_age_home"
             ? "old-age-homes"
+            : category === "urgent_needs"
+            ? "urgent-needs"
             : "orphanages"
         }`}
       />
@@ -73,6 +84,8 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
             ? "Blood Banks & Donation Centers in Nepal"
             : category === "old_age_home"
             ? "Old Age Homes Accepting Donations in Nepal"
+            : category === "urgent_needs"
+            ? "Urgent Needs & Emergency Fund Collections in Nepal"
             : "Orphanages & Children's Homes Needing Support in Nepal"}
         </h1>
 
@@ -112,6 +125,21 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
                 medicine, and blankets to these verified facilities. Your
                 contributions help provide better care for elderly citizens in
                 need.
+              </p>
+            </div>
+          )}
+          {category === "urgent_needs" && (
+            <div>
+              <h2 className="text-xl font-semibold mb-3 text-gray-800">
+                Supporting Urgent & Emergency Needs in Nepal
+              </h2>
+              <p className="text-gray-600 mb-4">
+                These are verified emergency fund collections for critical
+                situations such as medical treatments (cancer, transplants),
+                natural disasters (floods, landslides, fires, earthquakes), and
+                other urgent needs. Your donation, no matter how small, can make
+                a significant difference in someone's life during their most
+                challenging times.
               </p>
             </div>
           )}

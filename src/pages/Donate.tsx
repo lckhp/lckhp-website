@@ -55,6 +55,23 @@ const OrphanageIcon = () => (
   </svg>
 );
 
+const UrgentNeedsIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M20.618 5.984A11.955 11.955 0 0112 2.5c-2.968 0-5.71 1.08-7.818 2.884M6.9 5.19l.9 3.2 3.2-.9m-3.2.9L3.5 8.9l3.2-.9m10.9 7.5l-3.2.9.9 3.2m-.9-3.2l3.2.9-.9-3.2M9.1 17.9l-3.2.9.9 3.2m-.9-3.2L3.5 19.8l3.2-.9"
+    />
+  </svg>
+);
+
 const Donate: React.FC = () => {
   // Handle contact click with a more reliable approach
   const handleContactClick = (e: React.MouseEvent) => {
@@ -86,7 +103,7 @@ const Donate: React.FC = () => {
             team to ensure your contributions reach those in need.
           </p>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             <Link
               to="/donate/blood-bank"
               className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md transition-all hover:bg-gray-800 hover:text-white"
@@ -125,6 +142,20 @@ const Donate: React.FC = () => {
                 Help children's homes and orphanages in Kathmandu and Patan
               </p>
             </Link>
+
+            <Link
+              to="/donate/urgent-needs"
+              className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md transition-all hover:bg-gray-800 hover:text-white"
+            >
+              <div className="mb-3 rounded-full bg-amber-100 p-3 text-amber-600">
+                <UrgentNeedsIcon />
+              </div>
+              <h3 className="text-lg font-medium">Urgent Needs</h3>
+              <p className="text-sm text-center mt-2">
+                Support emergency funds for critical medical treatments and
+                disasters
+              </p>
+            </Link>
           </div>
         </div>
 
@@ -142,6 +173,7 @@ const Donate: React.FC = () => {
               Support old age homes with donations of blankets, medicine, or
               food
             </li>
+            <li>Provide funds for urgent medical treatments and emergencies</li>
             <li>Volunteer your time and skills at these organizations</li>
             <li>
               Organize donation drives with your friends, family, or colleagues
