@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import GoHomeButton from "../components/GoHomeButton";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -468,10 +469,8 @@ const Programs: React.FC<ProgramProps> = ({ year }) => {
             </div>
           </div>
 
-          <div className="navigation text-center py-4 bg-gray-800 rounded-lg p-2 mt-auto">
-            <Link to="/" className="text-blue-400 hover:underline">
-              Go to Home
-            </Link>
+          <div className="navigation text-center py-4 mt-auto">
+            <GoHomeButton variant="secondary" />
           </div>
         </div>
       ) : (
@@ -479,10 +478,8 @@ const Programs: React.FC<ProgramProps> = ({ year }) => {
           <h1 className="text-2xl md:text-4xl font-bold mb-8 text-center">
             Sorry, the programs for L.Y. {year} are currently unavailable!
           </h1>
-          <div className="navigation py-4 bg-gray-800 rounded-lg p-4">
-            <Link to="/" className="text-blue-400 hover:underline">
-              Go to Home
-            </Link>
+          <div className="navigation py-4">
+            <GoHomeButton variant="secondary" />
           </div>
         </div>
       )}

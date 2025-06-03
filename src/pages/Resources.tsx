@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import GoHomeButton from "../components/GoHomeButton";
 
 const Resources: React.FC = () => {
   useEffect(() => {
@@ -155,9 +156,7 @@ const Resources: React.FC = () => {
         ))}
       </div>
       <div className="mt-8 flex justify-center">
-        <Link to="/" className="text-blue-400 hover:underline">
-          Go to Home
-        </Link>
+        <GoHomeButton variant="primary" />
       </div>
     </div>
   );

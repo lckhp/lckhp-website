@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import certificatesData from "../assets/certificates/json/certificates.json";
 import { useEffect, useState } from "react";
+import GoHomeButton from "../components/GoHomeButton";
 
 const CertificateView = () => {
   const { uuid } = useParams<{ uuid: string }>();
@@ -52,9 +53,7 @@ const CertificateView = () => {
         <h1 className="text-2xl md:text-4xl font-bold mb-4">
           Sorry, the certificate you are looking for does not exist!
         </h1>
-        <Link to="/" className="text-blue-400 hover:underline text-lg">
-          Go to Home
-        </Link>
+        <GoHomeButton variant="secondary" />
       </div>
     );
   }
@@ -110,10 +109,8 @@ const CertificateView = () => {
         </button>
       )}
 
-      <div className="navigation mt-8 flex justify-center">
-        <Link to="/" className="text-blue-400 hover:underline">
-          Go to Home
-        </Link>
+      <div className="mt-8">
+        <GoHomeButton variant="primary" />
       </div>
     </div>
   );

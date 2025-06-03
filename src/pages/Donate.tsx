@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import GoHomeButton from "../components/GoHomeButton";
 
 // Icons for the buttons
 const BloodBankIcon = () => (
@@ -161,12 +162,7 @@ const Donate: React.FC = () => {
 
         {/* Go to Home Button */}
         <div className="mt-12 text-center">
-          <Link
-            to="/"
-            className="inline-block rounded-lg bg-green-500 px-6 py-3 font-medium text-white transition-all hover:bg-green-600 hover:shadow-md"
-          >
-            Go to Home
-          </Link>
+          <GoHomeButton variant="primary" />
         </div>
       </div>
     </div>

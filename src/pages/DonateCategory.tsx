@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import DonateList from "../component/DonateList";
 import SEO from "../components/SEO";
 import WhatsAppEmergencyButton from "../components/WhatsAppEmergencyButton";
+import GoHomeButton from "../components/GoHomeButton";
 
 interface DonateCategoryProps {
   category: string;
@@ -165,12 +166,7 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
 
         {/* Go to Home Button */}
         <div className="mt-12 text-center">
-          <Link
-            to="/"
-            className="inline-block rounded-lg bg-green-500 px-6 py-3 font-medium text-white transition-all hover:bg-green-600 hover:shadow-md"
-          >
-            Go to Home
-          </Link>
+          <GoHomeButton variant="primary" />
         </div>
       </div>
     </div>

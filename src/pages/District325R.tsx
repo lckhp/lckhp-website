@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import GoHomeButton from "../components/GoHomeButton";
 
 const District325R: React.FC = () => {
   const { "*": wildcard } = useParams();
@@ -54,10 +55,8 @@ const District325R: React.FC = () => {
       <h1 className="text-2xl md:text-4xl font-bold">
         Sorry, this content is currently unavailable!
       </h1>
-      <div className="navigation mt-8">
-        <Link to="/" className="text-blue-400 hover:underline">
-          Go to Home
-        </Link>
+      <div className="mt-8 flex justify-center">
+        <GoHomeButton variant="secondary" />
       </div>
     </div>
   );

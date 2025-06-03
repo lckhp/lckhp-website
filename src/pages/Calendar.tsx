@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import GoHomeButton from "../components/GoHomeButton";
 
 import { monthImages } from "../constants/data";
 import ZoomIcon from "../assets/zoom-icon.png"; // Ensure this path is correct and the image exists
@@ -111,7 +111,7 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
           <h1 className="text-2xl md:text-4xl font-bold mb-6">
             LCKHP Calendar for L.Y. {year}
           </h1>
-          <div className="w-[75%] max-w-[75%] relative">
+          <div className="w-[75%] max-w-[75%] relative mb-12">
             <Slider {...settings}>
               {monthImages.length > 0 ? (
                 monthImages.map((month) => (
@@ -145,14 +145,12 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
           </div>
         </>
       ) : (
-        <h1 className="text-2xl md:text-4xl font-bold">
+        <h1 className="text-2xl md:text-4xl font-bold mb-8">
           Sorry, the calendar for L.Y. {year} is currently unavailable!
         </h1>
       )}
-      <div className="navigation mt-8">
-        <Link to="/" className="text-blue-400 hover:underline">
-          Go to Home
-        </Link>
+      <div className="navigation">
+        <GoHomeButton variant="secondary" className="text-sm px-4 py-2" />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import reportLinks from "../assets/reports/reports.json"; // Import JSON data
+import GoHomeButton from "../components/GoHomeButton";
 
 const ReportRedirect: React.FC<{
   role: "secretary" | "treasurer" | "tail-twister";
@@ -40,10 +41,8 @@ const ReportRedirect: React.FC<{
       <h1 className="text-2xl md:text-4xl font-bold">
         Sorry, the report is currently unavailable!
       </h1>
-      <div className="navigation mt-8">
-        <Link to="/" className="text-blue-400 hover:underline">
-          Go to Home
-        </Link>
+      <div className="mt-8 flex justify-center">
+        <GoHomeButton variant="secondary" />
       </div>
     </div>
   );
