@@ -1,16 +1,18 @@
-import images from "./Image";
+// Calendar years configuration
+export const calendarYears = ["2425"];
 
-export const monthImages = [
-  { name: "2024-07", src: images.july },
-  { name: "2024-08", src: images.august },
-  { name: "2024-09", src: images.september },
-  { name: "2024-10", src: images.october },
-  { name: "2024-11", src: images.november },
-  { name: "2024-12", src: images.december },
-  { name: "2025-01", src: images.january },
-  { name: "2025-02", src: images.february },
-  { name: "2025-03", src: images.march },
-  { name: "2025-04", src: images.april },
-  { name: "2025-05", src: images.may },
-  { name: "2025-06", src: images.june },
+// Month configurations that will be used across all years
+export const calendarMonths = [
+  { number: "07", name: "July" },
+  { number: "08", name: "August" },
+  { number: "09", name: "September" },
+  { number: "10", name: "October" },
+  { number: "11", name: "November" },
+  { number: "12", name: "December" },
+  { number: "01", name: "January" },
+  { number: "02", name: "February" },
+  { number: "03", name: "March" },
+  { number: "04", name: "April" },
+  { number: "05", name: "May" },
+  { number: "06", name: "June" },
 ];
