@@ -7,7 +7,22 @@
   ],
   "redirects": [
     {
-      "source": "www.lckhp.org/:path*",
+      "source": "/:path*/",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://lckhp.org/:path*",
+      "destination": "https://lckhp.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://www.lckhp.org/:path*",
+      "destination": "https://lckhp.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://www.lckhp.org/:path*",
       "destination": "https://lckhp.org/:path*",
       "permanent": true
     },

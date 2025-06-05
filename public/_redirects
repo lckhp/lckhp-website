@@ -7,11 +7,14 @@
 /directory/blood-banks /donate/blood-bank 301!
 /directory/old-age-homes /donate/old-age-homes 301!
 
-# Proper handling for the root domain variations
-http://lckhp.org/ https://lckhp.org/ 301!
-http://www.lckhp.org/ https://lckhp.org/ 301!
-https://www.lckhp.org/ https://lckhp.org/ 301!
+# Proper handling for the root domain variations - enforcing HTTPS and non-www as canonical
+http://lckhp.org/* https://lckhp.org/:splat 301!
+http://www.lckhp.org/* https://lckhp.org/:splat 301!
+https://www.lckhp.org/* https://lckhp.org/:splat 301!
 
 # Handle hash fragments properly
 /2425/members/#about-section /2425/members 301!
-/#about-section / 200 
+/#about-section / 200
+
+# SPA fallback - must be last
+/* /index.html 200 

@@ -56,7 +56,7 @@ async function pingSearchEngines() {
 }
 
 // Run the function when called directly with Node.js
-if (typeof window === "undefined" && require.main === module) {
+if (typeof process !== "undefined" && process.argv[1] === import.meta.url) {
   pingSearchEngines().catch(console.error);
 }
 
@@ -66,9 +66,7 @@ if (typeof window !== "undefined") {
 }
 
 // Export for module use
-if (typeof module !== "undefined") {
-  module.exports = { pingSearchEngines };
-}
+export { pingSearchEngines };
 
 /*
  * Instructions for use:
