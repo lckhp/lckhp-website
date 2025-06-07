@@ -83,7 +83,7 @@ const Header = () => {
           </li>
           <li className="md:mr-8 lg:mr-12">
             <a
-              href="325r/2425/LDC325R-LeoDarpan.pdf"
+              href="/325r/2425/LDC325R-LeoDarpan.pdf"
               className="block py-1"
               target="_blank"
               rel="noopener noreferrer"
