@@ -123,7 +123,7 @@
       ]
     },
     {
-      "source": "/:path(.*)\\.(xml)",
+      "source": "/:path(.*)\\.xml",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
