@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 import QRCode from "react-qr-code";
-import gsap from "gsap";
 import Header from "./Header";
 import Footer from "./Footer";
 
