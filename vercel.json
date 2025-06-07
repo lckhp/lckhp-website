@@ -7,23 +7,8 @@
   ],
   "redirects": [
     {
-      "source": "/:path*/",
-      "destination": "/:path*",
-      "permanent": true
-    },
-    {
-      "source": "http://lckhp.org/:path*",
-      "destination": "https://lckhp.org/:path*",
-      "permanent": true
-    },
-    {
-      "source": "http://www.lckhp.org/:path*",
-      "destination": "https://lckhp.org/:path*",
-      "permanent": true
-    },
-    {
-      "source": "https://www.lckhp.org/:path*",
-      "destination": "https://lckhp.org/:path*",
+      "source": "/:path+/",
+      "destination": "/:path+",
       "permanent": true
     },
     {
@@ -67,7 +52,7 @@
       "permanent": false
     },
     {
-      "source": "/:path*/rss.xml",
+      "source": "/:path+/rss.xml",
       "destination": "https://blog.lckhp.org/",
       "permanent": false
     }
@@ -123,7 +108,7 @@
       ]
     },
     {
-      "source": "/:path(.*)\\.xml",
+      "source": "/:path(.*).xml",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
