@@ -8,6 +8,41 @@ import GoHomeButton from "../components/GoHomeButton";
 import { calendarYears, calendarMonths } from "../constants/data";
 import ZoomIcon from "../assets/zoom-icon.png"; // Ensure this path is correct and the image exists
 
+// Import all calendar images statically
+// 2024 images
+import July2024 from "../assets/calendar/2425/2024-07.png";
+import August2024 from "../assets/calendar/2425/2024-08.png";
+import September2024 from "../assets/calendar/2425/2024-09.png";
+import October2024 from "../assets/calendar/2425/2024-10.png";
+import November2024 from "../assets/calendar/2425/2024-11.png";
+import December2024 from "../assets/calendar/2425/2024-12.png";
+// 2025 images
+import January2025 from "../assets/calendar/2425/2025-01.png";
+import February2025 from "../assets/calendar/2425/2025-02.png";
+import March2025 from "../assets/calendar/2425/2025-03.png";
+import April2025 from "../assets/calendar/2425/2025-04.png";
+import May2025 from "../assets/calendar/2425/2025-05.png";
+import June2025 from "../assets/calendar/2425/2025-06.png";
+
+// Create a mapping of images
+const calendarImages: Record<string, Record<string, string>> = {
+  "2425": {
+    "2024-07": July2024,
+    "2024-08": August2024,
+    "2024-09": September2024,
+    "2024-10": October2024,
+    "2024-11": November2024,
+    "2024-12": December2024,
+    "2025-01": January2025,
+    "2025-02": February2025,
+    "2025-03": March2025,
+    "2025-04": April2025,
+    "2025-05": May2025,
+    "2025-06": June2025,
+  },
+  // Add more years as needed
+};
+
 interface CalendarProps {
   year: string;
 }
@@ -39,62 +74,36 @@ const Calendar: React.FC<CalendarProps> = ({ year }) => {
     }
   }, [year]);
 
-  // Load calendar images dynamically based on the selected year
+  // Load calendar images based on the selected year
   useEffect(() => {
-    const loadCalendarImages = async () => {
+    const loadCalendarImages = () => {
       setIsLoading(true);
 
       try {
-        if (calendarYears.includes(year)) {
+        if (calendarYears.includes(year) && calendarImages[year]) {
           const startYear = year === "2425" ? "2024" : "2025";
           const endYear = year === "2425" ? "2025" : "2026";
 
           const images: MonthImage[] = [];
 
-          // Dynamic import for July-December (first year)
+          // Load July-December (first year)
           for (let i = 0; i < 6; i++) {
             const month = calendarMonths[i];
-            try {
-              const imagePath = `../assets/calendar/${year}/${startYear}-${month.number}.png`;
-              const imageModule = await import(/* @vite-ignore */ imagePath);
-              images.push({
-                name: `${startYear}-${month.number}`,
-                src: imageModule.default,
-              });
-            } catch (error) {
-              console.error(
-                `Failed to load image for ${startYear}-${month.number}:`,
-                error
-              );
-              // Add placeholder for missing image
-              images.push({
-                name: `${startYear}-${month.number}`,
-                src: "",
-              });
-            }
+            const monthKey = `${startYear}-${month.number}`;
+            images.push({
+              name: monthKey,
+              src: calendarImages[year][monthKey] || "",
+            });
           }
 
-          // Dynamic import for January-June (second year)
+          // Load January-June (second year)
           for (let i = 6; i < 12; i++) {
             const month = calendarMonths[i];
-            try {
-              const imagePath = `../assets/calendar/${year}/${endYear}-${month.number}.png`;
-              const imageModule = await import(/* @vite-ignore */ imagePath);
-              images.push({
-                name: `${endYear}-${month.number}`,
-                src: imageModule.default,
-              });
-            } catch (error) {
-              console.error(
-                `Failed to load image for ${endYear}-${month.number}:`,
-                error
-              );
-              // Add placeholder for missing image
-              images.push({
-                name: `${endYear}-${month.number}`,
-                src: "",
-              });
-            }
+            const monthKey = `${endYear}-${month.number}`;
+            images.push({
+              name: monthKey,
+              src: calendarImages[year][monthKey] || "",
+            });
           }
 
           setMonthImages(images);

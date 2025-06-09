@@ -43,6 +43,9 @@ const AppContent: React.FC = () => {
   const [skeletonType, setSkeletonType] = useState<string>("default");
 
   useEffect(() => {
+    // Scroll to top when location changes
+    window.scrollTo(0, 0);
+
     // Determine skeleton type based on the current route
     const path = location.pathname;
 
