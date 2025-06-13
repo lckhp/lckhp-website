@@ -1008,6 +1008,24 @@
     "linkedin_url": ""
   },
   {
+    "id": 75,
+    "name": "Jenny Dev",
+    "photo_path": "src/assets/members/images/75.png",
+    "designation": "Member",
+    "contact_number": "+977-9844888976",
+    "blood_group": "O+",
+    "address": "Kupondole, Lalitpur",
+    "membership_type": "General Member",
+    "leo_lions_id": "",
+    "occupation": "Computer Engineer",
+    "joined_date": "2025/6/13",
+    "email": "jennydev2001@gmail.com",
+    "club_email": "jennydev@lckhp.org",
+    "fb_url": "https://www.facebook.com/share/1CMsJxSgnq/?mibextid=wwXIfr",
+    "insta_url": "",
+    "linkedin_url": ""
+  },
+  {
     "id": 41,
     "name": "Pranish Manandhar",
     "photo_path": "src/assets/members/images/41.png",
