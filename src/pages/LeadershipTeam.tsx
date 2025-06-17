@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
+// Set default year here - EASY TO UPDATE
+const defaultYear = "2425";
 
 interface Member {
   id: number;
@@ -19,6 +22,7 @@ interface LeadershipPosition {
 }
 
 const LeadershipTeam: React.FC = () => {
+  const { year = defaultYear } = useParams<{ year: string }>();
   const [leadershipPositions, setLeadershipPositions] = useState<
     LeadershipPosition[]
   >([
@@ -31,8 +35,8 @@ const LeadershipTeam: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch members data
-    import("../assets/members/json/2425.json")
+    // Fetch members data based on year
+    import(`../assets/members/json/${year}.json`)
       .then((data) => {
         const membersData = data.default as Member[];
 
@@ -68,7 +72,15 @@ const LeadershipTeam: React.FC = () => {
         console.error("Error loading members data:", error);
         setIsLoading(false);
       });
-  }, []);
+  }, [year]);
+
+  // Helper function to convert year code to display format
+  function getYearLabel(yearCode: string): string {
+    if (yearCode === "2425") return "2024/25";
+    if (yearCode === "2324") return "2023/24";
+    if (yearCode === "2526") return "2025/26";
+    return yearCode;
+  }
 
   // Function to get the correct image path
   const getImagePath = (path: string) => {
@@ -96,7 +108,7 @@ const LeadershipTeam: React.FC = () => {
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             <span className="block">Our Leadership Team</span>
             <span className="mt-2 block text-lg font-normal text-gray-500">
-              Meet the dedicated officers leading our club
+              Leo Club of KHP Leadership for L.Y. {getYearLabel(year)}
             </span>
           </h2>
           <div className="mx-auto mt-3 h-1 w-24 bg-green-500"></div>
@@ -166,7 +178,7 @@ const LeadershipTeam: React.FC = () => {
                     ) : position.member ? (
                       // Card for position with a member
                       <Link
-                        to={`/2425/members/${position.member.id}`}
+                        to={`/${year}/members/${position.member.id}`}
                         className="block h-full"
                       >
                         <div className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 h-full">

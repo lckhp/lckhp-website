@@ -1,5 +1,8 @@
 import React from "react";
 
+// Set default year here - EASY TO UPDATE
+const defaultYear = "2425";
+
 /**
  * This component renders hidden links that help search engines discover
  * all important pages on the site. These links are visually hidden but
@@ -26,10 +29,12 @@ const SeoLinks: React.FC = () => {
           <a href="/register">Join Leo Club in Nepal</a>
         </li>
         <li>
-          <a href="/2425/programs">Leo Club Activities and Events</a>
+          <a href={`/${defaultYear}/programs`}>
+            Leo Club Activities and Events
+          </a>
         </li>
         <li>
-          <a href="/2425/members">Youth Volunteers in Nepal</a>
+          <a href={`/${defaultYear}/members`}>Youth Volunteers in Nepal</a>
         </li>
         <li>
           <a href="/donate">Directory for Donations and Volunteering</a>
@@ -54,7 +59,9 @@ const SeoLinks: React.FC = () => {
       <ul>
         {memberIds.map((id) => (
           <li key={id}>
-            <a href={`/2425/members/${id}`}>Leo Member Profile {id}</a>
+            <a href={`/${defaultYear}/members/${id}`}>
+              Leo Member Profile {id}
+            </a>
           </li>
         ))}
       </ul>
@@ -65,10 +72,14 @@ const SeoLinks: React.FC = () => {
           <a href="/register">How to Join Leo Club</a>
         </li>
         <li>
-          <a href="/2425/programs">Youth Volunteer Programs in Kathmandu</a>
+          <a href={`/${defaultYear}/programs`}>
+            Youth Volunteer Programs in Kathmandu
+          </a>
         </li>
         <li>
-          <a href="/2425/calendar">Community Service Events Calendar</a>
+          <a href={`/${defaultYear}/calendar`}>
+            Community Service Events Calendar
+          </a>
         </li>
         <li>
           <a href="/#about-section">Leo Club vs Lions Club</a>

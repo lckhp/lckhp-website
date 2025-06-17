@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="/@vite/client"></script>
+
     <meta charset="UTF-8" />
     <!-- Standard favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -102,11 +112,10 @@
         "foundingDate": "1974-10-29"
       }
     </script>
-    <script type="module" crossorigin src="/assets/index-CzZkgHso.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bsi0lAAA.css">
   </head>
 
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.tsx?t=1750179746828"></script>
   </body>
 </html>
