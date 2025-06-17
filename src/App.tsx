@@ -109,6 +109,10 @@ const AppContent: React.FC = () => {
           path="/donate/urgent-needs"
           element={<DonateCategory category="urgent_needs" />}
         />
+        <Route
+          path="/donate/organizations"
+          element={<DonateCategory category="organization" />}
+        />
         <Route path="/club-assets" element={<Redirect page="club-assets" />} />
         <Route path="/:year/*" element={<YearRoutes />} />
         <Route path="/325r/*" element={<District325R />} />

@@ -47,6 +47,7 @@ import bloodBankData from "../assets/directory/blood_bank/blood_bank.json";
 import oldAgeHomeData from "../assets/directory/old_age_home/old_age_home.json";
 import orphanageData from "../assets/directory/orphanage/orphanage.json";
 import urgentNeedsData from "../assets/directory/urgent_needs/urgent_needs.json";
+import organizationData from "../assets/directory/organization/organization.json";
 
 // Import first images for urgent needs
 import urgentNeed1FirstImage from "../assets/directory/urgent_needs/images/1/1.jpg";
@@ -193,6 +194,9 @@ const DonateList: React.FC<DonateListProps> = ({ category }): JSX.Element => {
         break;
       case "orphanage":
         categoryData = orphanageData as DirectoryItem[];
+        break;
+      case "organization":
+        categoryData = organizationData as DirectoryItem[];
         break;
       case "urgent_needs":
         // Filter only active urgent needs

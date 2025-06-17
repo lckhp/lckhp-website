@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "name": "C.M. Pathshala",
+    "type": "organization",
+    "location": "Jorpati-Sundarijal Road, Kathmandu",
+    "contact_number": "9851270982",
+    "alt_contact_number": "",
+    "needs": "Donation",
+    "attention_level": "4",
+    "last_updated": "2025/6/17"
+  },
+  {
+    "id": "2",
+    "name": "Educ Nepal",
+    "type": "organization",
+    "location": "Basundhara, Kathmandu",
+    "contact_number": "9808751630",
+    "alt_contact_number": "",
+    "needs": "Donation",
+    "attention_level": "4",
+    "last_updated": "2025/6/17"
+  }
+]

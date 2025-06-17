@@ -43,6 +43,16 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
           "emergency donations nepal, medical fundraising kathmandu, urgent help nepal, disaster relief donations, liver transplant fund, cancer treatment donation, flood relief nepal, emergency fundraising kathmandu, medical emergency funds, donate to urgent cause nepal",
         image: "/emergency-donations-nepal.jpg",
       };
+    } else if (category === "organization") {
+      return {
+        title:
+          "Non-Profit Organizations in Nepal | Support Schools & Community Organizations",
+        description:
+          "Directory of verified non-profit organizations and schools in Nepal that need support and donations. Help these organizations through Leo Club of Kathmandu Himalayas Patan.",
+        keywords:
+          "non-profit organizations nepal, donate to schools nepal, support community organizations kathmandu, educational donations nepal, school supply donations, community support nepal, verified non-profits nepal, donate educational materials",
+        image: "/organizations-nepal.jpg",
+      };
     } else {
       return {
         title:
@@ -65,6 +75,8 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
       ? "old-age-homes"
       : category === "urgent_needs"
       ? "urgent-needs"
+      : category === "organization"
+      ? "organizations"
       : "orphanages"
   }`;
 
@@ -145,6 +157,24 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
               "Contribute to urgent medical and disaster relief needs in Nepal",
           },
         };
+      } else if (category === "organization") {
+        return {
+          ...baseData,
+          name: "Non-Profit Organizations in Nepal",
+          description:
+            "Directory of verified non-profit organizations and schools in Nepal that need donations and support",
+          serviceType: "Organization Directory",
+          audience: {
+            "@type": "Audience",
+            audienceType: "Education and Community Supporters",
+          },
+          potentialAction: {
+            "@type": "DonateAction",
+            name: "Donate to Organizations",
+            description:
+              "Support non-profit organizations and schools in Nepal with donations and supplies",
+          },
+        };
       } else {
         return {
           ...baseData,
@@ -205,6 +235,8 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
             ? "Old Age Homes Accepting Donations in Nepal"
             : category === "urgent_needs"
             ? "Urgent Needs & Emergency Fund Collections in Nepal"
+            : category === "organization"
+            ? "Non-Profit Organizations & Schools Needing Support in Nepal"
             : "Orphanages & Children's Homes Needing Support in Nepal"}
         </h1>
 
@@ -250,73 +282,70 @@ const DonateCategory: React.FC<DonateCategoryProps> = ({ category }) => {
           {category === "urgent_needs" && (
             <div>
               <h2 className="text-xl font-semibold mb-3 text-gray-800">
-                Supporting Urgent & Emergency Needs in Nepal
+                Urgent Needs & Emergency Fund Collections in Nepal
               </h2>
               <p className="text-gray-600 mb-4">
-                These are verified emergency fund collections for critical
-                situations such as medical treatments (cancer, transplants),
-                natural disasters (floods, landslides, fires, earthquakes), and
-                other urgent needs. Your donation, no matter how small, can make
-                a significant difference in someone's life during their most
-                challenging times.
+                These are critical situations requiring immediate financial
+                support, including medical treatments and disaster relief. Each
+                case has been verified by our team. Your donations to these
+                urgent causes can make a life-saving difference for individuals
+                and families in crisis.
+              </p>
+            </div>
+          )}
+          {category === "organization" && (
+            <div>
+              <h2 className="text-xl font-semibold mb-3 text-gray-800">
+                Supporting Non-Profit Organizations in Nepal
+              </h2>
+              <p className="text-gray-600 mb-4">
+                These verified non-profit organizations and schools in Nepal
+                need your support. You can contribute by donating educational
+                materials, supplies, and resources to help these organizations
+                continue their important work in the community.
               </p>
             </div>
           )}
           {category === "orphanage" && (
             <div>
               <h2 className="text-xl font-semibold mb-3 text-gray-800">
-                Helping Orphanages in Nepal
+                Supporting Orphanages & Children's Homes in Nepal
               </h2>
               <p className="text-gray-600 mb-4">
-                Orphanages and children's homes in Nepal need continuous support
-                to provide education, shelter, and care for children. Consider
-                donating clothes, school supplies, food, or toys to these
-                verified organizations. Your contribution can make a significant
-                difference in a child's life.
+                Children's homes and orphanages in Nepal need continuous support
+                from donors. You can help by donating food, clothing,
+                educational supplies, and other necessities to these verified
+                facilities. Your generosity directly impacts the quality of life
+                for children without families.
               </p>
             </div>
           )}
+
+          <p className="text-gray-600 italic">
+            * All listings on this page have been verified by Leo Club of
+            Kathmandu Himalayas Patan as of{" "}
+            <span className="font-medium">
+              {new Date().toLocaleDateString("en-US", {
+                month: "long",
+                year: "numeric",
+              })}
+            </span>
+            . If you notice any information that needs updating, please contact
+            us.
+          </p>
         </div>
 
-        <DonateList category={category} />
-
-        {/* WhatsApp Emergency Contact for Blood Banks */}
-        {category === "blood_bank" && (
-          <div className="mt-8 rounded-lg border-2 border-red-300 bg-red-50 p-5 text-center">
-            <h3 className="text-xl font-bold text-red-800 mb-2">
-              Emergency Blood Request
-            </h3>
-            <p className="text-lg font-medium text-red-800">
-              In case of urgency in Kathmandu and Pokhara,
-              <a
-                href="https://wa.me/9779862857260"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mx-1 text-blue-600 underline hover:text-blue-800"
-              >
-                Whatsapp
-              </a>
-              your authorized hospital prescription letter to Leo Sonam Sherpa
-              (Founder Member of T.U. Lions Blood Transfusion & Research Center,
-              Kirtipur) in this number:
-              <a
-                href="https://wa.me/9779862857260"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-1 font-semibold text-blue-600 hover:text-blue-800"
-              >
-                +977-9862857260
-              </a>
-            </p>
-          </div>
-        )}
+        {/* Display list of directory items */}
+        <div className="mb-10">
+          <DonateList category={category} />
+        </div>
 
         {/* Go to Home Button */}
         <div className="mt-12 text-center">
           <GoHomeButton variant="primary" />
         </div>
 
-        {/* Add SEO links for better search engine visibility */}
+        {/* SEO Links for better search visibility */}
         <DonateSeoLinks />
       </div>
     </div>

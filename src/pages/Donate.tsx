@@ -73,6 +73,23 @@ const UrgentNeedsIcon = () => (
   </svg>
 );
 
+const OrganizationIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+    />
+  </svg>
+);
+
 const Donate: React.FC = () => {
   // Handle contact click with a more reliable approach
   const handleContactClick = (e: React.MouseEvent) => {
@@ -205,6 +222,20 @@ const Donate: React.FC = () => {
                 disasters
               </p>
             </Link>
+
+            <Link
+              to="/donate/organizations"
+              className="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md transition-all hover:bg-gray-800 hover:text-white"
+            >
+              <div className="mb-3 rounded-full bg-green-100 p-3 text-green-600">
+                <OrganizationIcon />
+              </div>
+              <h3 className="text-lg font-medium">Organizations</h3>
+              <p className="text-sm text-center mt-2">
+                Support non-profit organizations and schools that need
+                assistance
+              </p>
+            </Link>
           </div>
         </div>
 
@@ -226,6 +257,10 @@ const Donate: React.FC = () => {
             <li>Volunteer your time and skills at these organizations</li>
             <li>
               Organize donation drives with your friends, family, or colleagues
+            </li>
+            <li>
+              Support non-profit organizations and schools with supplies and
+              resources
             </li>
           </ul>
           <p className="text-gray-600">

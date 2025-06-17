@@ -212,7 +212,7 @@ const MemberProfile: React.FC = () => {
 
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Back button */}
-        <div className="mb-6 relative z-10">
+        <div className="mb-6 mt-4 relative z-10">
           <Link
             to="/2425/members"
             className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium transition-colors"

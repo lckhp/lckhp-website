@@ -54,6 +54,14 @@ const DonateSeoLinks: React.FC = () => {
         <li>
           <a href="/donate/urgent-needs">Urgent Donation Needs in Kathmandu</a>
         </li>
+        <li>
+          <a href="/donate/organizations">
+            Non-Profit Organizations in Nepal Needing Support
+          </a>
+        </li>
+        <li>
+          <a href="/donate/organizations">Donate to Schools in Nepal</a>
+        </li>
       </ul>
 
       <h2>Types of Donations in Nepal</h2>
@@ -93,6 +101,16 @@ const DonateSeoLinks: React.FC = () => {
         <li>
           <a href="/donate/urgent-needs">Earthquake Relief Donations Nepal</a>
         </li>
+        <li>
+          <a href="/donate/organizations">
+            Educational Supply Donations to Schools in Nepal
+          </a>
+        </li>
+        <li>
+          <a href="/donate/organizations">
+            Support Community Organizations in Kathmandu
+          </a>
+        </li>
       </ul>
 
       <h2>Volunteer Opportunities in Nepal</h2>
@@ -110,6 +128,11 @@ const DonateSeoLinks: React.FC = () => {
         </li>
         <li>
           <a href="/donate/blood-bank">Blood Donation Drive Volunteer Nepal</a>
+        </li>
+        <li>
+          <a href="/donate/organizations">
+            Volunteer at Schools and Non-Profits in Nepal
+          </a>
         </li>
       </ul>
     </div>
