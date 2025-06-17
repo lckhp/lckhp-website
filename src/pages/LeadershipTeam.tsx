@@ -32,7 +32,7 @@ const LeadershipTeam: React.FC = () => {
 
   useEffect(() => {
     // Fetch members data
-    import("../assets/members/json/members.json")
+    import("../assets/members/json/2425.json")
       .then((data) => {
         const membersData = data.default as Member[];
 

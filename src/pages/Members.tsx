@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import membersData from "../assets/members/json/members.json"; // Import JSON data
+import membersData from "../assets/members/json/2425.json"; // Import JSON data
 import GoHomeButton from "../components/GoHomeButton";
 
 interface MembersProps {

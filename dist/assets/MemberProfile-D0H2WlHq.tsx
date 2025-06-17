@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import membersData from "../assets/members/json/members.json";
+import membersData from "../assets/members/json/2425.json";
 import SEO from "../components/SEO";
 
 // Import social media logos
