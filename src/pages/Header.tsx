@@ -55,6 +55,11 @@ const Header = () => {
             </a>
           </li>
           <li className="md:mr-8 lg:mr-12">
+            <a href="/projects" className="block py-1">
+              Projects
+            </a>
+          </li>
+          <li className="md:mr-8 lg:mr-12">
             <a href="/donate" className="block py-1">
               Donate
             </a>

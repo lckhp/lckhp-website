@@ -181,6 +181,14 @@ const Footer = () => {
               </li>
               <li>
                 <a
+                  href="/projects"
+                  className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
+                >
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a
                   href="/325r/2425/LDC325R-LeoDarpan.pdf"
                   className="inline-block text-gray-300 transition-colors duration-300 hover:text-white hover:underline"
                   target="_blank"

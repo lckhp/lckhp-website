@@ -27,6 +27,8 @@ const DonateCategory = lazy(() => import("./pages/DonateCategory"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const Donate = lazy(() => import("./pages/Donate"));
+const Projects = lazy(() => import("./pages/Projects"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 
 const App: React.FC = () => {
   return (
@@ -73,6 +75,8 @@ const AppContent: React.FC = () => {
         <Route path="/donate" element={<Donate />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:projectId" element={<ProjectDetail />} />
         <Route
           path="/directory/blood-bank"
           element={<Navigate to="/donate/blood-bank" replace />}
