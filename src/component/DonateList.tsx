@@ -611,6 +611,8 @@ const DonateList: React.FC<DonateListProps> = ({ category }): JSX.Element => {
           ? "Old Age Homes"
           : category === "urgent_needs"
           ? "Urgent Needs"
+          : category === "organization"
+          ? "Organizations"
           : "Orphanages"}
       </h2>
 
