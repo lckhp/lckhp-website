@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import DonateList from "../component/DonateList";
+import DonateList from "../components/DonateList";
 import SEO from "../components/SEO";
 import WhatsAppEmergencyButton from "../components/WhatsAppEmergencyButton";
 import GoHomeButton from "../components/GoHomeButton";
