@@ -11,6 +11,11 @@ const Header = () => {
   const [programsDropdownOpen, setProgramsDropdownOpen] = React.useState(false);
   const [mediaDropdownOpen, setMediaDropdownOpen] = React.useState(false);
 
+  // Timeout refs for delayed closing
+  const aboutTimeoutRef = useRef<number | null>(null);
+  const programsTimeoutRef = useRef<number | null>(null);
+  const mediaTimeoutRef = useRef<number | null>(null);
+
   // Refs for dropdowns
   const aboutDropdownRef = useRef<HTMLLIElement>(null);
   const programsDropdownRef = useRef<HTMLLIElement>(null);
@@ -34,33 +39,46 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Clean up timeouts on unmount
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        aboutDropdownRef.current &&
-        !aboutDropdownRef.current.contains(event.target as Node)
-      ) {
-        setAboutDropdownOpen(false);
-      }
-      if (
-        programsDropdownRef.current &&
-        !programsDropdownRef.current.contains(event.target as Node)
-      ) {
-        setProgramsDropdownOpen(false);
-      }
-      if (
-        mediaDropdownRef.current &&
-        !mediaDropdownRef.current.contains(event.target as Node)
-      ) {
-        setMediaDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      if (aboutTimeoutRef.current) clearTimeout(aboutTimeoutRef.current);
+      if (programsTimeoutRef.current) clearTimeout(programsTimeoutRef.current);
+      if (mediaTimeoutRef.current) clearTimeout(mediaTimeoutRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    // Only add click outside listener for mobile
+    // Desktop will use hover instead
+    if (isMobile) {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          aboutDropdownRef.current &&
+          !aboutDropdownRef.current.contains(event.target as Node)
+        ) {
+          setAboutDropdownOpen(false);
+        }
+        if (
+          programsDropdownRef.current &&
+          !programsDropdownRef.current.contains(event.target as Node)
+        ) {
+          setProgramsDropdownOpen(false);
+        }
+        if (
+          mediaDropdownRef.current &&
+          !mediaDropdownRef.current.contains(event.target as Node)
+        ) {
+          setMediaDropdownOpen(false);
+        }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
+  }, [isMobile]);
 
   const closeAllDropdowns = () => {
     setAboutDropdownOpen(false);
@@ -69,21 +87,30 @@ const Header = () => {
   };
 
   const toggleAboutDropdown = () => {
-    setAboutDropdownOpen(!aboutDropdownOpen);
-    setProgramsDropdownOpen(false);
-    setMediaDropdownOpen(false);
+    // Only toggle if mobile (desktop uses hover)
+    if (isMobile) {
+      setAboutDropdownOpen(!aboutDropdownOpen);
+      setProgramsDropdownOpen(false);
+      setMediaDropdownOpen(false);
+    }
   };
 
   const toggleProgramsDropdown = () => {
-    setProgramsDropdownOpen(!programsDropdownOpen);
-    setAboutDropdownOpen(false);
-    setMediaDropdownOpen(false);
+    // Only toggle if mobile (desktop uses hover)
+    if (isMobile) {
+      setProgramsDropdownOpen(!programsDropdownOpen);
+      setAboutDropdownOpen(false);
+      setMediaDropdownOpen(false);
+    }
   };
 
   const toggleMediaDropdown = () => {
-    setMediaDropdownOpen(!mediaDropdownOpen);
-    setAboutDropdownOpen(false);
-    setProgramsDropdownOpen(false);
+    // Only toggle if mobile (desktop uses hover)
+    if (isMobile) {
+      setMediaDropdownOpen(!mediaDropdownOpen);
+      setAboutDropdownOpen(false);
+      setProgramsDropdownOpen(false);
+    }
   };
 
   const toggleMobileMenu = () => {
@@ -95,11 +122,62 @@ const Header = () => {
     closeAllDropdowns();
   };
 
+  // Event handlers for hover
+  const handleMouseEnter = (dropdown: "about" | "programs" | "media") => {
+    if (!isMobile) {
+      // Clear any pending timeout that would close this dropdown
+      if (dropdown === "about" && aboutTimeoutRef.current) {
+        clearTimeout(aboutTimeoutRef.current);
+        aboutTimeoutRef.current = null;
+      } else if (dropdown === "programs" && programsTimeoutRef.current) {
+        clearTimeout(programsTimeoutRef.current);
+        programsTimeoutRef.current = null;
+      } else if (dropdown === "media" && mediaTimeoutRef.current) {
+        clearTimeout(mediaTimeoutRef.current);
+        mediaTimeoutRef.current = null;
+      }
+
+      // Open the current dropdown and close others
+      if (dropdown === "about") {
+        setAboutDropdownOpen(true);
+        setProgramsDropdownOpen(false);
+        setMediaDropdownOpen(false);
+      } else if (dropdown === "programs") {
+        setProgramsDropdownOpen(true);
+        setAboutDropdownOpen(false);
+        setMediaDropdownOpen(false);
+      } else if (dropdown === "media") {
+        setMediaDropdownOpen(true);
+        setAboutDropdownOpen(false);
+        setProgramsDropdownOpen(false);
+      }
+    }
+  };
+
+  const handleMouseLeave = (dropdown: "about" | "programs" | "media") => {
+    if (!isMobile) {
+      // Set a short timeout before closing to allow moving between elements
+      if (dropdown === "about") {
+        aboutTimeoutRef.current = setTimeout(() => {
+          setAboutDropdownOpen(false);
+        }, 100);
+      } else if (dropdown === "programs") {
+        programsTimeoutRef.current = setTimeout(() => {
+          setProgramsDropdownOpen(false);
+        }, 100);
+      } else if (dropdown === "media") {
+        mediaTimeoutRef.current = setTimeout(() => {
+          setMediaDropdownOpen(false);
+        }, 100);
+      }
+    }
+  };
+
   // Dropdown menu styles
   const dropdownMenuStyles = {
     mobile: "w-full mt-2 flex flex-col items-center space-y-4 bg-white py-3",
     desktop:
-      "absolute left-0 mt-2 w-48 rounded-md bg-white py-2 shadow-lg ring-1 ring-black ring-opacity-5 z-50",
+      "absolute left-0 mt-0 pt-2 w-48 bg-white rounded-b-md shadow-lg ring-1 ring-black ring-opacity-5 z-50",
   };
 
   // Dropdown item styles
@@ -183,22 +261,29 @@ const Header = () => {
             : "max-h-0 md:max-h-full overflow-hidden md:overflow-visible"
         }`}
       >
-        <ul className="flex flex-col items-center space-y-4 py-3 w-full md:w-auto md:ml-auto md:flex-row md:space-y-0 md:py-0">
+        <ul className="flex flex-col items-center space-y-4 py-3 w-full md:w-auto md:ml-auto md:flex-row md:space-y-0 md:py-0 md:items-center">
           {/* About Us Dropdown */}
-          <li className="relative md:mr-8 lg:mr-12" ref={aboutDropdownRef}>
-            <DropdownButton
-              label="About Us"
-              isOpen={aboutDropdownOpen}
-              onClick={toggleAboutDropdown}
-            />
+          <li
+            className="relative md:mr-8 lg:mr-12"
+            ref={aboutDropdownRef}
+            onMouseEnter={() => handleMouseEnter("about")}
+            onMouseLeave={() => handleMouseLeave("about")}
+          >
+            <div className="h-full flex items-center">
+              <DropdownButton
+                label="About Us"
+                isOpen={aboutDropdownOpen}
+                onClick={toggleAboutDropdown}
+              />
+            </div>
 
-            {/* About Us Dropdown menu */}
+            {/* About Us Dropdown menu - positioned absolute */}
             {aboutDropdownOpen && (
               <div
                 className={
                   isMobile
                     ? dropdownMenuStyles.mobile
-                    : dropdownMenuStyles.desktop
+                    : `${dropdownMenuStyles.desktop} top-full`
                 }
               >
                 <a
@@ -250,12 +335,19 @@ const Header = () => {
           </li>
 
           {/* Programs & Events Dropdown */}
-          <li className="relative md:mr-8 lg:mr-12" ref={programsDropdownRef}>
-            <DropdownButton
-              label="Programs & Events"
-              isOpen={programsDropdownOpen}
-              onClick={toggleProgramsDropdown}
-            />
+          <li
+            className="relative md:mr-8 lg:mr-12"
+            ref={programsDropdownRef}
+            onMouseEnter={() => handleMouseEnter("programs")}
+            onMouseLeave={() => handleMouseLeave("programs")}
+          >
+            <div className="h-full flex items-center">
+              <DropdownButton
+                label="Programs & Events"
+                isOpen={programsDropdownOpen}
+                onClick={toggleProgramsDropdown}
+              />
+            </div>
 
             {/* Programs Dropdown menu */}
             {programsDropdownOpen && (
@@ -263,7 +355,7 @@ const Header = () => {
                 className={
                   isMobile
                     ? dropdownMenuStyles.mobile
-                    : dropdownMenuStyles.desktop
+                    : `${dropdownMenuStyles.desktop} top-full`
                 }
               >
                 <a
@@ -304,12 +396,19 @@ const Header = () => {
           </li>
 
           {/* Media & Updates Dropdown */}
-          <li className="relative md:mr-8 lg:mr-12" ref={mediaDropdownRef}>
-            <DropdownButton
-              label="Media & Updates"
-              isOpen={mediaDropdownOpen}
-              onClick={toggleMediaDropdown}
-            />
+          <li
+            className="relative md:mr-8 lg:mr-12"
+            ref={mediaDropdownRef}
+            onMouseEnter={() => handleMouseEnter("media")}
+            onMouseLeave={() => handleMouseLeave("media")}
+          >
+            <div className="h-full flex items-center">
+              <DropdownButton
+                label="Media & Updates"
+                isOpen={mediaDropdownOpen}
+                onClick={toggleMediaDropdown}
+              />
+            </div>
 
             {/* Media Dropdown menu */}
             {mediaDropdownOpen && (
@@ -317,7 +416,7 @@ const Header = () => {
                 className={
                   isMobile
                     ? dropdownMenuStyles.mobile
-                    : dropdownMenuStyles.desktop
+                    : `${dropdownMenuStyles.desktop} top-full`
                 }
               >
                 <a
@@ -364,22 +463,22 @@ const Header = () => {
           </li>
 
           {/* Donate link */}
-          <li className="md:mr-8 lg:mr-12">
+          <li className="md:mr-8 lg:mr-12 flex items-center h-full">
             <a href="/donate" className="block py-1" onClick={closeMobileMenu}>
               Donate
             </a>
           </li>
 
           {/* Join Us button */}
-          <li className="w-full text-center md:w-auto md:mr-0">
+          <li className="w-full text-center md:w-auto md:mr-0 flex items-center h-full">
             <a
               href="/register"
               target="_blank"
               rel="noopener noreferrer"
-              className="block"
+              className="block w-full md:w-auto"
               onClick={closeMobileMenu}
             >
-              <button className="rounded-full border-2 border-green-500 px-6 py-2 text-green-600 transition-colors hover:bg-green-500 hover:text-white w-3/4 md:w-auto">
+              <button className="rounded-full border-2 border-green-500 px-6 py-2 text-green-600 transition-colors hover:bg-green-500 hover:text-white mx-auto whitespace-nowrap">
                 Join Us
               </button>
             </a>
