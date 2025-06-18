@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { FaArrowLeft, FaDownload, FaExternalLinkAlt } from "react-icons/fa";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { FaArrowLeft } from "react-icons/fa";
 import GoHomeButton from "../components/GoHomeButton";
 
 interface ProjectData {
@@ -13,10 +10,7 @@ interface ProjectData {
   title: string;
   description: string;
   fullDescription: string[];
-  hasPdf?: boolean;
-  pdfPath?: string;
   imageUrl?: string;
-  pdfImages?: number;
 }
 
 const ProjectDetail: React.FC = () => {
@@ -24,8 +18,6 @@ const ProjectDetail: React.FC = () => {
   const navigate = useNavigate();
   const [project, setProject] = useState<ProjectData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const sliderRef = React.useRef<Slider>(null);
 
   // Project data
   const projectsData: ProjectData[] = [
@@ -40,11 +32,7 @@ const ProjectDetail: React.FC = () => {
         "'We Hear Your Outcry' establishes a platform that not only amplifies often-unheard voices but also serves as a beacon of inspiration for individuals navigating difficult circumstances. By thoughtfully sharing these experiences, we cultivate an environment of empathy, understanding, and mutual support throughout our community.",
         "We invite you to join us in this meaningful journey as we transform challenges into opportunities for collective growth, healing, and unity. Together, we can create positive change and provide support to those who need it most, embodying our commitment to service and compassion.",
       ],
-      hasPdf: true,
-      pdfPath:
-        "/assets/projects/WeHearYourOutcry-Episode1-DrugAidsAndAwareness.pdf",
       imageUrl: "/assets/projects/we-hear-your-outcry.jpg",
-      pdfImages: 15,
     },
     {
       id: "uttam-shakti",
@@ -76,40 +64,6 @@ const ProjectDetail: React.FC = () => {
     setLoading(false);
   }, [projectId, navigate]);
 
-  // Slider settings
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    beforeChange: (_: number, newIndex: number) => {
-      setCurrentPage(newIndex + 1);
-    },
-    customPaging: (i: number) => (
-      <div
-        className="w-3 h-3 mx-1 rounded-full bg-gray-300 hover:bg-blue-500"
-        style={{
-          backgroundColor: i === currentPage - 1 ? "#3B82F6" : "#D1D5DB",
-        }}
-      />
-    ),
-    dotsClass: "slick-dots custom-dots",
-  };
-
-  const generatePdfImageArray = (totalPages: number) => {
-    const images = [];
-    for (let i = 1; i <= totalPages; i++) {
-      images.push({
-        id: i,
-        src: `/assets/projects/WeHearYourOutcry-Episode1-DrugAidsAndAwareness/${i}.jpg`,
-        alt: `Page ${i}`,
-      });
-    }
-    return images;
-  };
-
   if (loading || !project) {
     return (
       <div className="min-h-screen flex justify-center items-center">
@@ -121,10 +75,14 @@ const ProjectDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <Helmet>
-        <title>{project.title} | Leo Club of Kathmandu Himalayas Patan</title>
+        <title>{`${project.title} - Community Project in Nepal | Leo Club of Kathmandu Himalayas Patan`}</title>
         <meta
           name="description"
-          content={`Learn more about ${project.title}, a project initiated by Leo Club of Kathmandu Himalayas Patan.`}
+          content={`Learn about ${project.title}, a community service project by Leo Club of KHP addressing community support in Nepal.`}
+        />
+        <link
+          rel="canonical"
+          href={`https://lckhp.org/projects/${project.id}`}
         />
       </Helmet>
 
@@ -170,102 +128,8 @@ const ProjectDetail: React.FC = () => {
             ))}
           </div>
 
-          {project.hasPdf && (
-            <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
-                <h2 className="text-2xl font-semibold text-blue-900 mb-4 md:mb-0">
-                  Project Document
-                </h2>
-                <div className="flex space-x-4">
-                  <a
-                    href={project.pdfPath}
-                    download
-                    className="flex items-center bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition-colors"
-                  >
-                    <FaDownload className="mr-2" />
-                    Download PDF
-                  </a>
-                  <a
-                    href={project.pdfPath}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 transition-colors"
-                  >
-                    <FaExternalLinkAlt className="mr-2" />
-                    View PDF
-                  </a>
-                </div>
-              </div>
-
-              {project.pdfImages && project.pdfImages > 0 && (
-                <div className="mt-6">
-                  <div className="carousel-container">
-                    <Slider {...settings} ref={sliderRef}>
-                      {generatePdfImageArray(project.pdfImages).map((image) => (
-                        <div key={image.id} className="outline-none">
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="w-full max-h-[70vh] object-contain mx-auto"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.onerror = null;
-                              target.src = "/placeholder-image.png";
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </Slider>
-                  </div>
-
-                  <div className="mt-4 flex justify-between items-center">
-                    <button
-                      className={`px-4 py-2 rounded flex items-center ${
-                        currentPage <= 1
-                          ? "bg-gray-300 cursor-not-allowed"
-                          : "bg-blue-700 text-white hover:bg-blue-800"
-                      }`}
-                      onClick={() => sliderRef.current?.slickPrev()}
-                      disabled={currentPage <= 1}
-                    >
-                      <FaArrowLeft className="mr-2" />
-                      Previous
-                    </button>
-
-                    <span className="text-gray-700">
-                      Page {currentPage} of {project.pdfImages}
-                    </span>
-
-                    <button
-                      className={`px-4 py-2 rounded flex items-center ${
-                        currentPage >= project.pdfImages
-                          ? "bg-gray-300 cursor-not-allowed"
-                          : "bg-blue-700 text-white hover:bg-blue-800"
-                      }`}
-                      onClick={() => sliderRef.current?.slickNext()}
-                      disabled={currentPage >= project.pdfImages}
-                    >
-                      Next
-                      <svg
-                        className="ml-2 w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          <div className="flex justify-center mt-12">
-            <GoHomeButton variant="secondary" className="text-sm px-6 py-3" />
+          <div className="mt-10 text-center">
+            <GoHomeButton variant="primary" />
           </div>
         </motion.div>
       </div>
