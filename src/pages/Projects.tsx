@@ -95,7 +95,8 @@ const Projects: React.FC = () => {
           description:
             "A compassionate initiative dedicated to acknowledging and addressing the diverse challenges faced by individuals in our community, creating a platform for unheard voices.",
           url: "https://lckhp.org/projects/we-hear-your-outcry",
-          image: "https://lckhp.org/assets/projects/we-hear-your-outcry.jpg",
+          image:
+            "https://lckhp.org/public/assets/projects/we-hear-your-outcry.jpg",
         },
         {
           "@type": "CreativeWork",
@@ -103,7 +104,7 @@ const Projects: React.FC = () => {
           description:
             "Empowering individuals through pad-making training and sustainable livelihood skills, addressing health needs in rural Nepal while fostering economic independence.",
           url: "https://lckhp.org/projects/uttam-shakti",
-          image: "https://lckhp.org/assets/projects/uttam-shakti.jpg",
+          image: "https://lckhp.org/public/assets/projects/uttam-shakti.jpg",
         },
       ],
     };
@@ -133,14 +134,14 @@ const Projects: React.FC = () => {
       title: "We Hear Your Outcry",
       description:
         "A compassionate initiative dedicated to acknowledging and addressing the diverse challenges faced by individuals in our community, creating a platform for unheard voices.",
-      image: "/assets/projects/we-hear-your-outcry.jpg", // This will be created from the PDF cover
+      image: "/public/assets/projects/we-hear-your-outcry.jpg", // This will be created from the PDF cover
     },
     {
       id: "uttam-shakti",
       title: "Uttam Shakti",
       description:
         "Empowering individuals through pad-making training and sustainable livelihood skills, addressing health needs in rural Nepal while fostering economic independence.",
-      image: "/assets/projects/uttam-shakti.jpg", // Placeholder image until available
+      image: "/public/assets/projects/uttam-shakti.jpg", // Placeholder image until available
     },
   ];
 

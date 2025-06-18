@@ -45,7 +45,7 @@ const ProjectDetail: React.FC = () => {
       hasPdf: true,
       pdfPath:
         "/assets/projects/WeHearYourOutcry-Episode1-DrugAidsAndAwareness.pdf",
-      imageUrl: "/assets/projects/we-hear-your-outcry.jpg",
+      imageUrl: "/public/assets/projects/we-hear-your-outcry.jpg",
       pdfImages: 15,
       keywords:
         "mental health awareness nepal, youth outreach project, community support initiative, personal struggles, emotional wellbeing kathmandu, we hear your outcry project, leo club youth project, mental health nepal",
@@ -62,7 +62,7 @@ const ProjectDetail: React.FC = () => {
         "Through workshops, mentorship, and ongoing support, participants gain both technical expertise in producing quality sanitary products and fundamental business knowledge to transform these skills into income-generating opportunities. This dual focus on health awareness and economic empowerment creates lasting positive impacts for individuals and their communities.",
         "Uttam Shakti represents our commitment to sustainable development solutions that honor local contexts and needs. By investing in people's capabilities and creating access to essential health products, we're working toward a vision of healthier, more resilient, and economically empowered communities across Nepal.",
       ],
-      imageUrl: "/assets/projects/uttam-shakti.jpg",
+      imageUrl: "/public/assets/projects/uttam-shakti.jpg",
       keywords:
         "women empowerment nepal, pad making training, menstrual health education, sustainable livelihood, skill development kathmandu, uttam shakti project, economic empowerment nepal, sanitary product access rural nepal",
       datePublished: "2024-02-20",
@@ -176,7 +176,7 @@ const ProjectDetail: React.FC = () => {
     for (let i = 1; i <= totalPages; i++) {
       images.push({
         id: i,
-        src: `/assets/projects/WeHearYourOutcry-Episode1-DrugAidsAndAwareness/${i}.jpg`,
+        src: `/public/assets/projects/WeHearYourOutcry-Episode1-DrugAidsAndAwareness/${i}.jpg`,
         alt: `Page ${i}`,
       });
     }
