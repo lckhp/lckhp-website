@@ -9,6 +9,10 @@ Allow: /resources$
 Allow: /donate$
 Allow: /2425/programs$
 Allow: /2425/members$
+Allow: /projects$
+Allow: /projects/we-hear-your-outcry$
+Allow: /projects/uttam-shakti$
+Allow: /donate/organizations$
 
 # Explicitly block all tag pages on blog.lckhp.org (they're causing 5xx errors)
 Disallow: /tag/
