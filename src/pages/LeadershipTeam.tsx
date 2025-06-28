@@ -285,12 +285,12 @@ const LeadershipTeam: React.FC = () => {
             <div className="mt-12 text-center">
               <Link
                 to="/2425/members"
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                className="group inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
               >
                 Meet Our Full Team
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
+                  className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-2"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
