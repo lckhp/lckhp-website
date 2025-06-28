@@ -108,17 +108,17 @@ const About = () => {
               </p>
 
               <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div className="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg">
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">
+                <div className="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
+                  <h3 className="mb-2 text-xl font-semibold text-green-600">
                     Our Motto
                   </h3>
                   <p className="text-gray-600">
-                    Leadership, Experience, Opportunity.
+                  Leadership, Experience, Opportunity.
                   </p>
                 </div>
 
-                <div className="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg">
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">
+                <div className="rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105">
+                  <h3 className="mb-2 text-xl font-semibold text-green-600">
                     Our Goal
                   </h3>
                   <p className="text-gray-600">
