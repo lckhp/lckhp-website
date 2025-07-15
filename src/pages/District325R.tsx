@@ -26,6 +26,15 @@ const District325R: React.FC = () => {
       redirectUrl = "https://forms.gle/kgkHD79ihVCuArQ1A";
       setRedirectMessage("Redirecting to RLLI Registration Form...");
       document.title = "Redirecting to RLLI Registration...";
+    } else if (
+      wildcard === "2526/pvmst-schooling-and-district-handover/register"
+    ) {
+      redirectUrl = "https://forms.gle/c8ZZYo7PEX2i16vdA";
+      setRedirectMessage(
+        "Redirecting to District Handover & Club Officer's (PVMST) Schooling Boost-Up Camp Registration Form..."
+      );
+      document.title =
+        "Redirecting to District Handover & Club Officer's (PVMST) Schooling Boost-Up Camp Registration...";
     }
 
     if (redirectUrl) {
