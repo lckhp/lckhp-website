@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 // Set default year here - EASY TO UPDATE
-const defaultYear = "2425";
+const defaultYear = "2526";
 
 interface Member {
   id: number;
@@ -284,7 +284,7 @@ const LeadershipTeam: React.FC = () => {
             {/* Meet Our Team button */}
             <div className="mt-12 text-center">
               <Link
-                to="/2425/members"
+                to="/2526/members"
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
               >
                 Meet Our Full Team
