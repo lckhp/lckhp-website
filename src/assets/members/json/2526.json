@@ -666,6 +666,24 @@
     "linkedin_url": "https://www.linkedin.com/in/jenny-dev-872535283/"
   },
   {
+    "id": 76,
+    "name": "Dinesh Prasad Lamichhane",
+    "photo_path": "src/assets/members/images/76.png",
+    "designation": "Member",
+    "contact_number": "+977-9763692222",
+    "blood_group": "B+",
+    "address": "Mulpani, Kathmandu",
+    "membership_type": "General Member",
+    "leo_lions_id": "",
+    "occupation": "Student ( Cybersecurity and Networking, Islington College)",
+    "joined_date": "2025/7/18",
+    "email": "dineshlamichhane965@gmail.com",
+    "club_email": "dineshlamichhane@lckhp.org",
+    "fb_url": "https://www.facebook.com/61578154258088/",
+    "insta_url": "",
+    "linkedin_url": ""
+  },
+  {
     "id": 44,
     "name": "Swastika Gajurel",
     "photo_path": "src/assets/members/images/44.png",
