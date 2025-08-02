@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import presidentLogo from "../assets/lckhp-president-logo-2526.png";
+import presidentLogo from "../assets/lckhp-president-logo-2526.jpg";
 
 const PresidentTheme: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
