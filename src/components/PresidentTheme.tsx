@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import presidentLogo from "../assets/lckhp-president-logo-2425.png";
+import presidentLogo from "../assets/lckhp-president-logo-2526.png";
 
 const PresidentTheme: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,7 +34,7 @@ const PresidentTheme: React.FC = () => {
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             <span className="block">President's Theme</span>
             <span className="mt-2 block text-lg font-normal text-gray-500">
-              2024-2025
+              2025-2026
             </span>
           </h2>
           <div className="mx-auto mt-3 h-1 w-24 bg-green-500"></div>
@@ -78,14 +78,15 @@ const PresidentTheme: React.FC = () => {
                 <h3 className="mb-2 text-xl font-semibold text-gray-800">
                   President's Theme
                 </h3>
-                <p className="text-gray-600">Striving For Change</p>
+                <p className="text-gray-600">Empower to Evolve</p>
               </div>
 
               <p className="text-lg text-gray-700">
-                Our President's theme for 2024-2025 focuses on making meaningful
-                change in our community through dedicated service, innovative
-                approaches, and collaborative efforts. We believe in the power
-                of youth to transform society for the better.
+                The idea behind Empowered to Evolve is to honor the foundation 
+                built before us while ensuring we never stop growing — as 
+                individuals, as a club, and as leaders. It reflects our belief 
+                that when we empower ourselves and others, we naturally evolve 
+                into better versions of who we are meant to be.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-4">
